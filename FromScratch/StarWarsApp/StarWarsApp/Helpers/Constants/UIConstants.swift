@@ -17,5 +17,8 @@ struct UIConstants {
     
     // Table cells identifiers
     static let PERSON_CELL_IDENTIFIER = "PersonCell"
+    
+    // UI Messages
+    static let LOADING = "Loading..."
 
 }

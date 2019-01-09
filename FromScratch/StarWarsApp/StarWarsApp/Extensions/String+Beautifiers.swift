@@ -13,7 +13,7 @@ extension String {
     /**
      Capitalized the first letter on a String.
      
-     - Returns: The modified String.
+     - Returns: The built URL request.
      */
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + self.lowercased().dropFirst()

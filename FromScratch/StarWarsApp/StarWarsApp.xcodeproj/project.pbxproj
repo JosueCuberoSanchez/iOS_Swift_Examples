@@ -38,6 +38,7 @@
 		CAC816DB21E636D000EB3D8D /* String+Beautifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816DA21E636D000EB3D8D /* String+Beautifiers.swift */; };
 		CAC816DE21E63A7400EB3D8D /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816DD21E63A7400EB3D8D /* UIConstants.swift */; };
 		CAC816E321E6437400EB3D8D /* ErrorMessagesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E221E6437400EB3D8D /* ErrorMessagesConstants.swift */; };
+		CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		CAC816DA21E636D000EB3D8D /* String+Beautifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Beautifiers.swift"; sourceTree = "<group>"; };
 		CAC816DD21E63A7400EB3D8D /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		CAC816E221E6437400EB3D8D /* ErrorMessagesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessagesConstants.swift; sourceTree = "<group>"; };
+		CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		CA12BA1E21E39D5C00DF6CC5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CAC816E721E67D2800EB3D8D /* LoadingScreenView */,
 				CA12BA3621E3AC0600DF6CC5 /* SpeciesTableView */,
 				CA12BA3121E3AB6200DF6CC5 /* StarshipsTableView */,
 				CA12BA2A21E3A92000DF6CC5 /* PeopleTableView */,
@@ -184,8 +187,8 @@
 		CA12BA2221E39D9500DF6CC5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CAC816DF21E63B4500EB3D8D /* Networking */,
 				CAC816DC21E63A2D00EB3D8D /* Constants */,
+				CAC816DF21E63B4500EB3D8D /* Networking */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -305,6 +308,14 @@
 				CAC816D221E52B5C00EB3D8D /* APIResponseProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CAC816E721E67D2800EB3D8D /* LoadingScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */,
+			);
+			path = LoadingScreenView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +461,7 @@
 				CA12BA4221E3AC6600DF6CC5 /* StarshipViewModel.swift in Sources */,
 				CA12BA4421E3AC7100DF6CC5 /* StarshipViewController.swift in Sources */,
 				CA12BA3D21E3AC4300DF6CC5 /* PersonViewController.swift in Sources */,
+				CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */,
 				CA12BA3021E3AB5500DF6CC5 /* PeopleTableViewController.swift in Sources */,
 				CAC816DB21E636D000EB3D8D /* String+Beautifiers.swift in Sources */,
 				CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */,

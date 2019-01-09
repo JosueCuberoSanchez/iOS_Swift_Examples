@@ -15,9 +15,11 @@ class PeopleTableViewController: UITableViewController {
     let disposeBag = DisposeBag()
     let apiClient = APIClient()
     var peopleTableViewModel: PeopleTableViewModel?
+    var loadingScreenView = LoadingScreenView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setLoadingScreen()
         setupViewModel()
         setupTableView()
         setupTableViewBinding()
@@ -38,7 +40,7 @@ class PeopleTableViewController: UITableViewController {
      Sets up the table view.
      */
     private func setupTableView() {
-        tableView.delegate = nil
+        // tableView.delegate = nil /// Commented in order to make scroll detection work
         tableView.dataSource = nil
         tableView.tableFooterView = UIView()
     }
@@ -53,7 +55,8 @@ class PeopleTableViewController: UITableViewController {
                 .bind(to: tableView.rx.items(cellIdentifier: UIConstants.PERSON_CELL_IDENTIFIER, cellType: PeopleTableViewCell.self)) { (row, element, cell) in
                     
                     self.customizePersonCell(cell, row, element.name, element.gender.rawValue.capitalizingFirstLetter())
-                    
+                    self.removeLoadingScreen()
+
                 }
                 .disposed(by: disposeBag)
         }
@@ -80,4 +83,26 @@ class PeopleTableViewController: UITableViewController {
         cell.personGenderLabel.text = personGender
         
     }
+    
+    /**
+     Sets a loading screen as subview of the tableView while the data is being fetched.
+     */
+    private func setLoadingScreen() {
+        loadingScreenView.setLoadingScreen((navigationController?.navigationBar.frame.height)!, tableView)
+    }
+    
+    /**
+    Hides the loading screen when the data is fetched.
+     */
+    private func removeLoadingScreen() {
+        loadingScreenView.removeLoadingScreen()
+    }
+    
+    // Testing!
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == 10 {
+            print("do something")
+        }
+    }
+    
 }
