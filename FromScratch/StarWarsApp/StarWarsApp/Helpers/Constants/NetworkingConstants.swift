@@ -21,6 +21,7 @@ struct NetworkingConstants {
     
     // Resource consuming options
     static let ACCEPT = "accept"
+    static let PEOPLE_MAX_PAGE = 80
     
     // Resource types
     static let APPLICATION_JSON = "application/json"

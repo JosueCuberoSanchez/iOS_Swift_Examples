@@ -1,5 +1,5 @@
 //
-//  Resource.swift
+//  PeopleAPI.swift
 //  StarWarsApp
 //
 //  Created by Josue on 1/7/19.
@@ -7,24 +7,19 @@
 //
 
 import Foundation
+import RxSwift
 
-enum Method: String {
-    case GET = "GET"
-}
-
-protocol Resource {
-    var method: Method { get }
-    var path: String? { get }
-    var parameters: [String: String] { get }
-    var baseURL: String? { get }
-    var fullURL: String? { get }
-}
-
-extension Resource {
+struct Resource: ResourceProtocol {
     
-    var method: Method {
-        return .GET
-    }
+    var requestURL: RequestURL?
+    var fullURL: String?
+    var baseURL: String?
+    var path: String?
+    var page: Int?
+    
+    // computed attributes
+    var parameters: [String: String] { return [NetworkingConstants.PAGE_PARAMETER_NAME:String(page!)] }
+    var method: Method { return .GET }
     
     /**
      Builds a URLRequest based on a baseURL, path and parameters.
@@ -77,4 +72,5 @@ extension Resource {
         request.addValue(NetworkingConstants.APPLICATION_JSON, forHTTPHeaderField: NetworkingConstants.ACCEPT)
         return request
     }
+    
 }

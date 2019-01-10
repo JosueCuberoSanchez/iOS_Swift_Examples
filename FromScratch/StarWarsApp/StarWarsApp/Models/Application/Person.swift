@@ -14,6 +14,8 @@ struct Person: Codable {
         case male = "male"
         case female = "female"
         case notApplicable = "n/a"
+        case hermaphrodite = "hermaphrodite"
+        case none = "none"
     }
     
     let name: String

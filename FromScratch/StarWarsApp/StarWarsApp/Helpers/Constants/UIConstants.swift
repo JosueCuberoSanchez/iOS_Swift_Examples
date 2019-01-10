@@ -21,4 +21,14 @@ struct UIConstants {
     // UI Messages
     static let LOADING = "Loading..."
 
+    // Loading screen view sizes
+    static let FRAME_WIDTH: CGFloat = 120
+    static let FRAME_HEIGTH: CGFloat = 30
+    static let FRAME_DIVISOR: CGFloat = 2
+    static let INITIAL_FRAME_ORIGIN = 0
+    static let FRAME_ORIGIN = 695
+    static let SPINNER_WIDTH = 30
+    static let SPINNER_HEIGHT = 30
+    static let LOADING_LABEL_WIDTH = 140
+    static let LOADING_LABEL_HEIGHT = 30 
 }

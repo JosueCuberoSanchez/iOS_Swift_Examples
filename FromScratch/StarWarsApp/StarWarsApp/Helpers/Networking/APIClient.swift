@@ -11,11 +11,33 @@ import RxSwift
 
 final class APIClient {
     
+    enum Response<T> {
+        case success(T)
+        case error(Error)
+    }
+    
     private let session: URLSession
-    var resourceAPI = ResourceAPI()
+    var resource = Resource()
     
     init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
         self.session = URLSession(configuration: URLSessionConfiguration.default)
+    }
+    
+    /**
+     Sets the resource parameters.
+     */
+    func setResourceURLParameters(_ baseURL: String, _ path: String) {
+        resource.baseURL = baseURL
+        resource.path = path
+        resource.requestURL = RequestURL.CUSTOM_URL
+    }
+    
+    /**
+     Sets the resource full URL.
+     */
+    func setResourceFullURL(_ fullURL: String) {
+        resource.fullURL = fullURL
+        resource.requestURL = RequestURL.FULL_URL
     }
     
     /**
@@ -45,20 +67,24 @@ final class APIClient {
         }
     }
     
-}
-
-extension APIClient { /// This extension will be for all of the custom requests (ex: getPeople, getStarships, getSpecies)
-    
     /**
      Gets an observable of the API response for the people resource.
      
      - Returns: An observable of type PeopleResponse, received from requestAPIResource.
      */
-    var getPeopleResponse: () -> Observable<PeopleResponse> {
-        return {
-            let request = self.resourceAPI.buildRequestWithParameters()
+    func getPeopleResponse() -> (_ page: Int) -> Observable<PeopleResponse> {
+        return { page in
+            var request: URLRequest;
+            
+            self.resource.page = page
+            if self.resource.requestURL == RequestURL.CUSTOM_URL {
+                request = self.resource.buildRequestWithParameters()
+            } else {
+                request = self.resource.buildRequestWithFullURL()
+            }
+            
             return self.requestAPIResource(request: request)
         }
     }
-
+    
 }

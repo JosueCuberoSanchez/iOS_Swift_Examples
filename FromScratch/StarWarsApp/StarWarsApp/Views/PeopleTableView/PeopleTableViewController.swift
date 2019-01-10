@@ -20,29 +20,61 @@ class PeopleTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoadingScreen()
+        setupAPIClientWithParameters(NetworkingConstants.BASE_URL, NetworkingConstants.PEOPLE_URL)
         setupViewModel()
         setupTableView()
         setupTableViewBinding()
     }
     
     /**
+     Sets a loading screen as subview of the tableView while the data is being fetched.
+     */
+    private func setLoadingScreen() {
+        loadingScreenView.setLoadingScreen((navigationController?.navigationBar.frame.height)!, tableView)
+    }
+    
+    /**
+     Hides the loading screen when the data is fetched.
+     */
+    private func removeLoadingScreen() {
+        loadingScreenView.removeLoadingScreen()
+    }
+    
+    /**
+     Shows the loading screen when more data is being fetched.
+     */
+    private func showLoadingScreen() {
+        loadingScreenView.showLoadingScreen()
+    }
+    
+    /**
+     Sets up the API Client with custom parameters that will be used for network requests.
+     */
+    private func setupAPIClientWithParameters(_ baseURL: String, _ path: String) {
+        apiClient.setResourceURLParameters(baseURL, path)
+    }
+    
+    /**
+     Sets up the API Client with custom parameters that will be used for network requests.
+     */
+    private func setupAPIClientWithFullURL(_ fullURL: String) {
+        apiClient.setResourceFullURL(fullURL)
+    }
+    
+    /**
      Sets up the view model passing as a parameter a closure for the API requests.
      */
     private func setupViewModel() {
-        // Aca manejo esto por los cambios que se pueden dar, no se donde mas ponerlo, pues el VC debe mandarle el closure al VM
-        apiClient.resourceAPI.baseURL = NetworkingConstants.BASE_URL
-        apiClient.resourceAPI.path = NetworkingConstants.PEOPLE_URL
-        apiClient.resourceAPI.page = 1
-        peopleTableViewModel = PeopleTableViewModel(request: apiClient.getPeopleResponse)
+        peopleTableViewModel = PeopleTableViewModel(request: apiClient.getPeopleResponse())
     }
     
     /**
      Sets up the table view.
      */
     private func setupTableView() {
-        // tableView.delegate = nil /// Commented in order to make scroll detection work
         tableView.dataSource = nil
-        tableView.tableFooterView = UIView()
+        tableView.delegate = nil
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
     }
     
     /**
@@ -50,16 +82,14 @@ class PeopleTableViewController: UITableViewController {
      */
     private func setupTableViewBinding() {
         
-        if let peopleList = peopleTableViewModel?.peopleList {
-            peopleList
-                .bind(to: tableView.rx.items(cellIdentifier: UIConstants.PERSON_CELL_IDENTIFIER, cellType: PeopleTableViewCell.self)) { (row, element, cell) in
-                    
-                    self.customizePersonCell(cell, row, element.name, element.gender.rawValue.capitalizingFirstLetter())
-                    self.removeLoadingScreen()
+        peopleTableViewModel?.outputs.peopleList?
+            .drive(tableView.rx.items(cellIdentifier: UIConstants.PERSON_CELL_IDENTIFIER, cellType: PeopleTableViewCell.self)) { (row, element, cell) in
+                
+                self.customizePersonCell(cell, row, element.name, element.gender.rawValue.capitalizingFirstLetter())
+                self.removeLoadingScreen()
 
-                }
-                .disposed(by: disposeBag)
-        }
+            }
+            .disposed(by: disposeBag)
         
     }
     
@@ -85,24 +115,30 @@ class PeopleTableViewController: UITableViewController {
     }
     
     /**
-     Sets a loading screen as subview of the tableView while the data is being fetched.
+     Detects if the user has scrolled all the way down and triggers a ViewModel event to fetch more data.
      */
-    private func setLoadingScreen() {
-        loadingScreenView.setLoadingScreen((navigationController?.navigationBar.frame.height)!, tableView)
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let rowCount = getAllRowCount()
+        
+        guard (rowCount == indexPath.row && rowCount < NetworkingConstants.PEOPLE_MAX_PAGE) else { return }
+        
+        showLoadingScreen()
+        peopleTableViewModel?.inputs.nextPageTrigger.accept(())
+        
     }
     
     /**
-    Hides the loading screen when the data is fetched.
+     Gets the number of rows in the table view.
+     - Returns: The number of rows in the table view.
      */
-    private func removeLoadingScreen() {
-        loadingScreenView.removeLoadingScreen()
-    }
-    
-    // Testing!
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row + 1 == 10 {
-            print("do something")
+    func getAllRowCount() -> Int{
+        var rowCount = 0
+        for index in 0...self.tableView.numberOfSections-1{
+            rowCount += self.tableView.numberOfRows(inSection: index)
         }
+        return rowCount-1
     }
+
     
 }

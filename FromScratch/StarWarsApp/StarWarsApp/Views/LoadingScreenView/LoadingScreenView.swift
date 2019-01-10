@@ -13,30 +13,34 @@ class LoadingScreenView: UIView {
     let spinner = UIActivityIndicatorView()
     let loadingLabel = UILabel()
     
+    var x: CGFloat?
+    var y: CGFloat?
+    
     /**
      Sets a loading screen on the given tableView
      - Parameter height: The frame height
      - Parameter tableView: The table view that will contain this view
      */
-    func setLoadingScreen(_ height: CGFloat, _ tableView: UITableView) {
+    func setLoadingScreen(_ navBarHeight: CGFloat, _ tableView: UITableView) {
         
         // Sets the view which contains the loading text and the spinner
-        let width: CGFloat = 120
-        let height: CGFloat = 30
-        let x = (tableView.frame.width / 2) - (width / 2)
-        let y = (tableView.frame.height / 2) - (height / 2) - height
-        self.frame = CGRect(x: x, y: y, width: width, height: height)
-        self.isOpaque = true
+        x = (tableView.frame.width / UIConstants.FRAME_DIVISOR) - (UIConstants.FRAME_WIDTH / UIConstants.FRAME_DIVISOR)
+        y = (tableView.frame.height / UIConstants.FRAME_DIVISOR) - (UIConstants.FRAME_HEIGTH / UIConstants.FRAME_DIVISOR) - navBarHeight
+        self.frame = CGRect(x: x!, y: y!, width: UIConstants.FRAME_WIDTH, height: UIConstants.FRAME_HEIGTH)
         
         // Sets loading text
         loadingLabel.textColor = .gray
         loadingLabel.textAlignment = .center
         loadingLabel.text = UIConstants.LOADING
-        loadingLabel.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
+        loadingLabel.frame =
+            CGRect(x: UIConstants.INITIAL_FRAME_ORIGIN, y: UIConstants.INITIAL_FRAME_ORIGIN,
+                                    width: UIConstants.LOADING_LABEL_WIDTH, height: UIConstants.LOADING_LABEL_HEIGHT)
         
         // Sets spinner
         spinner.style = .gray
-        spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        spinner.frame =
+            CGRect(x: UIConstants.INITIAL_FRAME_ORIGIN, y: UIConstants.INITIAL_FRAME_ORIGIN,
+                   width: UIConstants.SPINNER_WIDTH, height: UIConstants.SPINNER_HEIGHT)
         spinner.startAnimating()
         
         // Adds text and spinner to the view
@@ -63,6 +67,7 @@ class LoadingScreenView: UIView {
         spinner.startAnimating()
         spinner.isHidden = false
         loadingLabel.isHidden = false
+        self.frame = CGRect(x: Int(x!), y: UIConstants.FRAME_ORIGIN, width: Int(UIConstants.FRAME_WIDTH), height: Int(UIConstants.FRAME_HEIGTH))
     }
     
 
