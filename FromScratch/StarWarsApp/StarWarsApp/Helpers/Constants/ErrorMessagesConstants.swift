@@ -14,6 +14,5 @@ struct ErrorMessageConstants {
     static let BASE_URL_ERROR = "Unable to create base URL"
     static let URL_COMPONENTS_ERROR = "Unable to create URL components"
     static let URL_ERROR = "Could not get url"
-    static let SPECIES_URL = "species/"
-    
+    static let FONT_LOAD_ERROR = "Could not load font"
 }

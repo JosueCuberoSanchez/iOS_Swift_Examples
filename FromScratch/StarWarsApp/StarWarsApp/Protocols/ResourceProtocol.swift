@@ -12,14 +12,8 @@ enum Method: String {
     case GET = "GET"
 }
 
-enum RequestURL {
-    case FULL_URL
-    case CUSTOM_URL
-}
-
 protocol ResourceProtocol {
     var method: Method { get }
-    var requestURL: RequestURL? { get }
     var path: String? { get }
     var parameters: [String: String] { get }
     var baseURL: String? { get }

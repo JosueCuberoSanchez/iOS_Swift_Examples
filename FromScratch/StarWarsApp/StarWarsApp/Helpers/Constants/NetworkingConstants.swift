@@ -15,6 +15,7 @@ struct NetworkingConstants {
     static let PEOPLE_URL = "people/"
     static let STARSHIPS_URL = "starships/"
     static let SPECIES_URL = "species/"
+    static let PLANETS_URL = "planets/"
     
     // Variable names
     static let PAGE_PARAMETER_NAME = "page"

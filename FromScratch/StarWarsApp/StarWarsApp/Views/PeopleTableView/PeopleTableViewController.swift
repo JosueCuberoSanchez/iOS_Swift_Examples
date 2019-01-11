@@ -23,7 +23,7 @@ class PeopleTableViewController: UITableViewController {
         setupAPIClientWithParameters(NetworkingConstants.BASE_URL, NetworkingConstants.PEOPLE_URL)
         setupViewModel()
         setupTableView()
-        setupTableViewBinding()
+        setupTableViewBindings()
     }
     
     /**
@@ -80,14 +80,25 @@ class PeopleTableViewController: UITableViewController {
     /**
      Sets up the table view data by binding itself to the ViewModel peopleList observable.
      */
-    private func setupTableViewBinding() {
+    private func setupTableViewBindings() {
         
+        // Bind the cells to each of the ViewModel peopleList models.
         peopleTableViewModel?.outputs.peopleList?
             .drive(tableView.rx.items(cellIdentifier: UIConstants.PERSON_CELL_IDENTIFIER, cellType: PeopleTableViewCell.self)) { (row, element, cell) in
                 
                 self.customizePersonCell(cell, row, element.name, element.gender.rawValue.capitalizingFirstLetter())
                 self.removeLoadingScreen()
 
+            }
+            .disposed(by: disposeBag)
+        
+        // Observe if the user has tapped on a cell
+        Observable
+            .zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Person.self))
+            .bind { [unowned self] indexPath, model in
+                self.tableView.deselectRow(at: indexPath, animated: true)
+                self.peopleTableViewModel?.currentPerson = Driver.of(model)
+                self.performSegue(withIdentifier: UIConstants.SEE_PERSON_DETAILS_SEGUE_IDENTIFIER, sender: self)
             }
             .disposed(by: disposeBag)
         
@@ -138,6 +149,17 @@ class PeopleTableViewController: UITableViewController {
             rowCount += self.tableView.numberOfRows(inSection: index)
         }
         return rowCount-1
+    }
+    
+    /**
+     Prepares for person detail segue and sets the current person to it's viewModel.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == UIConstants.SEE_PERSON_DETAILS_SEGUE_IDENTIFIER {
+            if let destinationVC = segue.destination as? PersonViewController {
+                destinationVC.personViewModel.inputs.person = peopleTableViewModel?.currentPerson
+            }
+        }
     }
 
     

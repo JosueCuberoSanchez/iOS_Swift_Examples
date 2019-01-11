@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="StarWarsFont.ttf">
+            <string>StarJediSpecialEdition</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Species Table View Controller-->
         <scene sceneID="ASa-2Z-PYi">
@@ -48,6 +53,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Tl9-d8-aN3"/>
+                    <connections>
+                        <segue destination="Jbm-qt-BeP" kind="show" identifier="seeSpecieDetailsSegue" id="MqK-bX-XKp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Koz-Xh-Bts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -115,29 +123,29 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7B-QQ-4Zs">
-                                            <rect key="frame" x="93" y="11" width="123" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="93" y="11" width="164" height="21"/>
+                                            <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcV-uL-zNq">
-                                            <rect key="frame" x="93" y="40" width="114" height="17"/>
+                                            <rect key="frame" x="93" y="40" width="143.5" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="hdp-op-LB5"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starship" translatesAutoresizingMaskIntoConstraints="NO" id="cxX-pT-2XP">
-                                            <rect key="frame" x="16" y="11" width="61" height="52"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r2d2" translatesAutoresizingMaskIntoConstraints="NO" id="cxX-pT-2XP">
+                                            <rect key="frame" x="16" y="9" width="61" height="52"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="naO-iG-Nba"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="cxX-pT-2XP" firstAttribute="top" secondItem="1Iu-sc-Mds" secondAttribute="top" constant="11" id="5dd-Qw-joG"/>
+                                        <constraint firstItem="cxX-pT-2XP" firstAttribute="top" secondItem="1Iu-sc-Mds" secondAttribute="top" constant="9" id="5dd-Qw-joG"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gcV-uL-zNq" secondAttribute="trailing" constant="20" symbolic="YES" id="DBC-Gv-2HN"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="W7B-QQ-4Zs" secondAttribute="trailing" constant="20" symbolic="YES" id="P8C-Mx-Qp8"/>
                                         <constraint firstItem="gcV-uL-zNq" firstAttribute="top" secondItem="W7B-QQ-4Zs" secondAttribute="bottom" constant="8" id="Qaz-7J-iKN"/>
@@ -145,7 +153,7 @@
                                         <constraint firstItem="W7B-QQ-4Zs" firstAttribute="top" secondItem="1Iu-sc-Mds" secondAttribute="topMargin" id="fxR-8C-bqw"/>
                                         <constraint firstItem="gcV-uL-zNq" firstAttribute="leading" secondItem="cxX-pT-2XP" secondAttribute="trailing" constant="16" id="h5N-gE-wXR"/>
                                         <constraint firstItem="gcV-uL-zNq" firstAttribute="top" secondItem="W7B-QQ-4Zs" secondAttribute="bottom" constant="8" id="l4v-9R-PMf"/>
-                                        <constraint firstItem="cxX-pT-2XP" firstAttribute="bottom" secondItem="1Iu-sc-Mds" secondAttribute="bottomMargin" constant="2" id="l7n-fl-lEZ"/>
+                                        <constraint firstItem="cxX-pT-2XP" firstAttribute="bottom" secondItem="1Iu-sc-Mds" secondAttribute="bottomMargin" id="l7n-fl-lEZ"/>
                                         <constraint firstItem="W7B-QQ-4Zs" firstAttribute="leading" secondItem="cxX-pT-2XP" secondAttribute="trailing" constant="16" id="lNl-Cq-rhK"/>
                                         <constraint firstItem="gcV-uL-zNq" firstAttribute="top" secondItem="W7B-QQ-4Zs" secondAttribute="bottom" constant="8" id="sCo-NT-39v"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="gcV-uL-zNq" secondAttribute="bottom" constant="4" id="vfH-tf-krB"/>
@@ -165,6 +173,7 @@
                     <navigationItem key="navigationItem" id="wAO-O0-Q4f"/>
                     <connections>
                         <outlet property="tableView" destination="ASd-K5-cKE" id="byd-yb-mTV"/>
+                        <segue destination="Kep-nq-eyk" kind="show" identifier="seePersonDetailsSegue" id="EX6-Vm-cdX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPP-ZC-iZo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -209,6 +218,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="azh-D8-FFb"/>
+                    <connections>
+                        <segue destination="0Ox-IE-wlt" kind="show" identifier="seeStarshipDetailsSegue" id="Q5a-Ad-wYf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4i-iI-FOF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -300,6 +312,6 @@
         <image name="darth-vader" width="24" height="24"/>
         <image name="death-star" width="24" height="24"/>
         <image name="millennium-falcon" width="24" height="24"/>
-        <image name="starship" width="48" height="48"/>
+        <image name="r2d2" width="48" height="48"/>
     </resources>
 </document>

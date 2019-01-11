@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PeopleResponse: Codable, APIResponseProtocol {
+struct PeopleResponse: Codable, PaginatedAPIResponseProtocol {
   
     var count: Int
     var next: String?

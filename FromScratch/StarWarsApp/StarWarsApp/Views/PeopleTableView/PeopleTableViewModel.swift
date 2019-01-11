@@ -22,6 +22,7 @@ class PeopleTableViewModel {
     var peopleList: Driver<[Person]>?
     var peopleResponse: Observable<PeopleResponse>?
     let itemsRelay = BehaviorRelay<[Person]>(value: [])
+    var currentPerson: Driver<Person>?
     
     var disposeBag = DisposeBag()
     

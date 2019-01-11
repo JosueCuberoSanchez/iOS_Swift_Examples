@@ -29,7 +29,6 @@ final class APIClient {
     func setResourceURLParameters(_ baseURL: String, _ path: String) {
         resource.baseURL = baseURL
         resource.path = path
-        resource.requestURL = RequestURL.CUSTOM_URL
     }
     
     /**
@@ -37,7 +36,6 @@ final class APIClient {
      */
     func setResourceFullURL(_ fullURL: String) {
         resource.fullURL = fullURL
-        resource.requestURL = RequestURL.FULL_URL
     }
     
     /**
@@ -77,11 +75,23 @@ final class APIClient {
             var request: URLRequest;
             
             self.resource.page = page
-            if self.resource.requestURL == RequestURL.CUSTOM_URL {
-                request = self.resource.buildRequestWithParameters()
-            } else {
-                request = self.resource.buildRequestWithFullURL()
-            }
+            request = self.resource.buildRequestWithParameters()
+            
+            return self.requestAPIResource(request: request)
+        }
+    }
+    
+    /**
+     Gets an observable of the API response for the planet resource.
+     
+     - Returns: An observable of type PlanetResponse, received from requestAPIResource.
+     */
+    func getPlanetResponse() -> (_ planetURL: String) -> Observable<PlanetResponse> {
+        return { planetURL in
+            var request: URLRequest;
+            
+            self.resource.fullURL = planetURL
+            request = self.resource.buildRequestWithFullURL()
             
             return self.requestAPIResource(request: request)
         }

@@ -11,7 +11,6 @@ import RxSwift
 
 struct Resource: ResourceProtocol {
     
-    var requestURL: RequestURL?
     var fullURL: String?
     var baseURL: String?
     var path: String?

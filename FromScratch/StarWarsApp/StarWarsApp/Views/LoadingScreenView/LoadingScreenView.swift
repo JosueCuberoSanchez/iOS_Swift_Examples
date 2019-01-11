@@ -21,11 +21,11 @@ class LoadingScreenView: UIView {
      - Parameter height: The frame height
      - Parameter tableView: The table view that will contain this view
      */
-    func setLoadingScreen(_ navBarHeight: CGFloat, _ tableView: UITableView) {
+    func setLoadingScreen(_ navBarHeight: CGFloat, _ view: UIView) {
         
         // Sets the view which contains the loading text and the spinner
-        x = (tableView.frame.width / UIConstants.FRAME_DIVISOR) - (UIConstants.FRAME_WIDTH / UIConstants.FRAME_DIVISOR)
-        y = (tableView.frame.height / UIConstants.FRAME_DIVISOR) - (UIConstants.FRAME_HEIGTH / UIConstants.FRAME_DIVISOR) - navBarHeight
+        x = (view.frame.width / UIConstants.FRAME_DIVISOR) - (UIConstants.FRAME_WIDTH / UIConstants.FRAME_DIVISOR)
+        y = (view.frame.height / UIConstants.FRAME_DIVISOR) - (UIConstants.FRAME_HEIGTH / UIConstants.FRAME_DIVISOR) - navBarHeight
         self.frame = CGRect(x: x!, y: y!, width: UIConstants.FRAME_WIDTH, height: UIConstants.FRAME_HEIGTH)
         
         // Sets loading text
@@ -47,7 +47,7 @@ class LoadingScreenView: UIView {
         self.addSubview(spinner)
         self.addSubview(loadingLabel)
         
-        tableView.addSubview(self)
+        view.addSubview(self)
         
     }
     
