@@ -48,12 +48,14 @@ class PersonViewModel {
      Loads the current person planet and drives it to its corresponding Behavior Relay.
      */
     func loadPersonPlanet(request: @escaping (_ planetURL: String) -> Observable<PlanetResponse>) {
+        
         let sharedRequest = personHomeworldURL.flatMap{ request($0) }.share()
         
         sharedRequest.map { $0.name }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(personHomeworld)
             .disposed(by: disposeBag)
+        
     }
 
 }

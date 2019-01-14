@@ -9,16 +9,34 @@
 import Foundation
 import RxSwift
 
-struct Resource: ResourceProtocol {
+struct Resource {
+    
+    enum Method: String {
+        case GET = "GET"
+    }
     
     var fullURL: String?
     var baseURL: String?
-    var path: String?
-    var page: Int?
+    var resourcePath: String?
+    var resourceIndex: Int?
     
+    private let pageParameterName = "page"
+    private let acceptHeader = "accept"
+    private let applicationJSON = "application/json"
+
     // computed attributes
-    var parameters: [String: String] { return [NetworkingConstants.PAGE_PARAMETER_NAME:String(page!)] }
+    var parameters: [String: String] { return [pageParameterName:String(resourceIndex!)] }
     var method: Method { return .GET }
+    
+    init(_ baseURL: String, _ resourcePath: String, _ resourceIndex: Int) {
+        self.baseURL = baseURL
+        self.resourcePath = resourcePath
+        self.resourceIndex = resourceIndex
+    }
+    
+    init(_ fullURL: String) {
+        self.fullURL = fullURL
+    }
     
     /**
      Builds a URLRequest based on a baseURL, path and parameters.
@@ -28,11 +46,11 @@ struct Resource: ResourceProtocol {
     func buildRequestWithParameters() -> URLRequest {
         
         guard let baseURL = URL(string: baseURL!) else {
-            fatalError(ErrorMessageConstants.BASE_URL_ERROR)
+            fatalError(ErrorsEnum.baseURLError.rawValue)
         }
         
-        guard var components = URLComponents(url: baseURL.appendingPathComponent(path!), resolvingAgainstBaseURL: false) else {
-            fatalError(ErrorMessageConstants.URL_COMPONENTS_ERROR)
+        guard var components = URLComponents(url: baseURL.appendingPathComponent(resourcePath!), resolvingAgainstBaseURL: false) else {
+            fatalError(ErrorsEnum.URLComponentsError.rawValue)
         }
         
         components.queryItems = parameters.map {
@@ -40,7 +58,7 @@ struct Resource: ResourceProtocol {
         }
         
         guard let url = components.url else {
-            fatalError(ErrorMessageConstants.URL_ERROR)
+            fatalError(ErrorsEnum.URLError.rawValue)
         }
         
         return buildURLRequest(url)
@@ -54,7 +72,7 @@ struct Resource: ResourceProtocol {
     func buildRequestWithFullURL() -> URLRequest {
         
         guard let fullURL = URL(string: fullURL!) else {
-            fatalError(ErrorMessageConstants.BASE_URL_ERROR)
+            fatalError(ErrorsEnum.baseURLError.rawValue)
         }
         
         return buildURLRequest(fullURL)
@@ -68,7 +86,7 @@ struct Resource: ResourceProtocol {
     private func buildURLRequest(_ url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.addValue(NetworkingConstants.APPLICATION_JSON, forHTTPHeaderField: NetworkingConstants.ACCEPT)
+        request.addValue(applicationJSON, forHTTPHeaderField: acceptHeader)
         return request
     }
     

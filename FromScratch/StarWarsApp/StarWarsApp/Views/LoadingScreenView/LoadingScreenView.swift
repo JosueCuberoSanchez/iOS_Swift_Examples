@@ -31,7 +31,7 @@ class LoadingScreenView: UIView {
         // Sets loading text
         loadingLabel.textColor = .gray
         loadingLabel.textAlignment = .center
-        loadingLabel.text = UIConstants.LOADING
+        loadingLabel.text = R.string.localizable.loadingMessage()
         loadingLabel.frame =
             CGRect(x: UIConstants.INITIAL_FRAME_ORIGIN, y: UIConstants.INITIAL_FRAME_ORIGIN,
                                     width: UIConstants.LOADING_LABEL_WIDTH, height: UIConstants.LOADING_LABEL_HEIGHT)

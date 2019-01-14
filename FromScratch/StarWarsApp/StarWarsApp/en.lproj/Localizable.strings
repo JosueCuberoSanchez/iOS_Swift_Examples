@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  StarWarsApp
+
+  Created by Josue on 1/14/19.
+  Copyright © 2019 Josue. All rights reserved.
+*/
+
+// Storyboard IDs
+"personViewControllerID" = "personViewController";
+
+// Table cell IDs
+"personCellID" = "PersonCell";
+
+// Segue IDs
+"seePersonDetailsSegueID" = "personViewController";
+
+// UI Messages
+"loadingMessage" = "Loading...";
+
+// Label texts
+"nameLabel" = "Name: ";
+"genderLabel" = "Gender: ";
+"heightLabel" = "Height: ";
+"homeworldLabel" = "Homeworld: ";
+
+// Image names
+"backGroundImageName" = "background";
+

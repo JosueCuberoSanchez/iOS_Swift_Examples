@@ -17,10 +17,11 @@ class PeopleTableViewController: UITableViewController {
     var peopleTableViewModel: PeopleTableViewModel?
     var loadingScreenView = LoadingScreenView()
     
+    private final let peopleMaxPage = 80
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoadingScreen()
-        setupAPIClientWithParameters(NetworkingConstants.BASE_URL, NetworkingConstants.PEOPLE_URL)
         setupViewModel()
         setupTableView()
         setupTableViewBindings()
@@ -48,20 +49,6 @@ class PeopleTableViewController: UITableViewController {
     }
     
     /**
-     Sets up the API Client with custom parameters that will be used for network requests.
-     */
-    private func setupAPIClientWithParameters(_ baseURL: String, _ path: String) {
-        apiClient.setResourceURLParameters(baseURL, path)
-    }
-    
-    /**
-     Sets up the API Client with custom parameters that will be used for network requests.
-     */
-    private func setupAPIClientWithFullURL(_ fullURL: String) {
-        apiClient.setResourceFullURL(fullURL)
-    }
-    
-    /**
      Sets up the view model passing as a parameter a closure for the API requests.
      */
     private func setupViewModel() {
@@ -84,7 +71,7 @@ class PeopleTableViewController: UITableViewController {
         
         // Bind the cells to each of the ViewModel peopleList models.
         peopleTableViewModel?.outputs.peopleList?
-            .drive(tableView.rx.items(cellIdentifier: UIConstants.PERSON_CELL_IDENTIFIER, cellType: PeopleTableViewCell.self)) { (row, element, cell) in
+            .drive(tableView.rx.items(cellIdentifier: R.string.localizable.personCellID(), cellType: PeopleTableViewCell.self)) { (row, element, cell) in
                 
                 self.customizePersonCell(cell, row, element.name, element.gender.rawValue.capitalizingFirstLetter())
                 self.removeLoadingScreen()
@@ -93,14 +80,25 @@ class PeopleTableViewController: UITableViewController {
             .disposed(by: disposeBag)
         
         // Observe if the user has tapped on a cell
-        Observable
+        /*Observable
             .zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Person.self))
             .bind { [unowned self] indexPath, model in
                 self.tableView.deselectRow(at: indexPath, animated: true)
                 self.peopleTableViewModel?.currentPerson = Driver.of(model)
                 self.performSegue(withIdentifier: UIConstants.SEE_PERSON_DETAILS_SEGUE_IDENTIFIER, sender: self)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)*/
+        
+        
+        tableView.rx.modelSelected(Person.self).asDriver().drive(onNext: { model in
+            
+            // This way does not show me a black screen on segue
+            let personViewController: PersonViewController =
+                self.storyboard?.instantiateViewController(withIdentifier: R.string.localizable.personViewControllerID()) as! PersonViewController
+            personViewController.setPerson(Driver.of(model))
+            self.navigationController?.pushViewController(personViewController, animated: true)
+            
+        }).disposed(by: disposeBag)
         
     }
     
@@ -132,7 +130,7 @@ class PeopleTableViewController: UITableViewController {
         
         let rowCount = getAllRowCount()
         
-        guard (rowCount == indexPath.row && rowCount < NetworkingConstants.PEOPLE_MAX_PAGE) else { return }
+        guard (rowCount == indexPath.row && rowCount < peopleMaxPage) else { return }
         
         showLoadingScreen()
         peopleTableViewModel?.inputs.nextPageTrigger.accept(())
@@ -154,13 +152,13 @@ class PeopleTableViewController: UITableViewController {
     /**
      Prepares for person detail segue and sets the current person to it's viewModel.
      */
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == UIConstants.SEE_PERSON_DETAILS_SEGUE_IDENTIFIER {
             if let destinationVC = segue.destination as? PersonViewController {
                 destinationVC.personViewModel.inputs.person = peopleTableViewModel?.currentPerson
             }
         }
-    }
+    }*/
 
     
 }

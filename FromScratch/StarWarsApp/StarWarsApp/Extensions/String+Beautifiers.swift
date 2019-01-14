@@ -25,7 +25,7 @@ extension String {
      - Returns: Complete name label.
      */
     func addingNameLabel() -> String {
-        return "\(UIConstants.NAME_LABEL)\(self)"
+        return "\(R.string.localizable.nameLabel())\(self)"
     }
     
     /**
@@ -34,7 +34,7 @@ extension String {
      - Returns: Complete gender label.
      */
     func addingGenderLabel() -> String {
-        return "\(UIConstants.GENDER_LABEL)\(self)"
+        return "\(R.string.localizable.genderLabel())\(self)"
     }
     
     /**
@@ -43,7 +43,7 @@ extension String {
      - Returns: Complete height label.
      */
     func addingHeightLabel() -> String {
-        return "\(UIConstants.HEIGHT_LABEL)\(self) ft"
+        return "\(R.string.localizable.heightLabel())\(self) ft"
     }
     
     /**
@@ -52,6 +52,6 @@ extension String {
      - Returns: Complete homeworld label.
      */
     func addingHomeworldLabel() -> String {
-        return "\(UIConstants.HOMEWORLD_LABEL)\(self)"
+        return "\(R.string.localizable.homeworldLabel())\(self)"
     }
 }

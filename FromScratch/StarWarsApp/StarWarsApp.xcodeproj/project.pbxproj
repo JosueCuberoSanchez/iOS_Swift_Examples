@@ -27,21 +27,21 @@
 		CA12BA4421E3AC7100DF6CC5 /* StarshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4321E3AC7100DF6CC5 /* StarshipViewController.swift */; };
 		CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4621E3AC8600DF6CC5 /* SpecieViewController.swift */; };
 		CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4821E3AC9400DF6CC5 /* SpecieViewModel.swift */; };
-		CA83D53A21E7AF0F00EBC98C /* ViewModelTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53921E7AF0F00EBC98C /* ViewModelTypeProtocol.swift */; };
 		CA83D53E21E7FDE900EBC98C /* PlanetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */; };
 		CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */; };
 		CAA3881D21E8F6A600332328 /* StarJediSpecialEdition.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */; };
 		CAC816C121E3EECF00EB3D8D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC816C021E3EECF00EB3D8D /* Images.xcassets */; };
 		CAC816C321E3FC9F00EB3D8D /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C221E3FC9F00EB3D8D /* PeopleTableViewCell.swift */; };
-		CAC816C521E404CF00EB3D8D /* NetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C421E404CF00EB3D8D /* NetworkingConstants.swift */; };
-		CAC816C721E4177400EB3D8D /* ResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C621E4177400EB3D8D /* ResourceProtocol.swift */; };
 		CAC816C921E41BD800EB3D8D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C821E41BD700EB3D8D /* Resource.swift */; };
 		CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816CE21E4EB6700EB3D8D /* APIClient.swift */; };
 		CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */; };
 		CAC816DB21E636D000EB3D8D /* String+Beautifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816DA21E636D000EB3D8D /* String+Beautifiers.swift */; };
-		CAC816DE21E63A7400EB3D8D /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816DD21E63A7400EB3D8D /* UIConstants.swift */; };
-		CAC816E321E6437400EB3D8D /* ErrorMessagesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E221E6437400EB3D8D /* ErrorMessagesConstants.swift */; };
 		CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */; };
+		CAF3A08221ECD22E00B33AB5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAF3A08021ECD22E00B33AB5 /* Localizable.strings */; };
+		CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08421ECD66000B33AB5 /* R.generated.swift */; };
+		CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08621ECDEE700B33AB5 /* Typography.swift */; };
+		CAF3A08921ECDF7D00B33AB5 /* ErrorsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08821ECDF7D00B33AB5 /* ErrorsEnum.swift */; };
+		CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,21 +69,22 @@
 		CA12BA4321E3AC7100DF6CC5 /* StarshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipViewController.swift; sourceTree = "<group>"; };
 		CA12BA4621E3AC8600DF6CC5 /* SpecieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewController.swift; sourceTree = "<group>"; };
 		CA12BA4821E3AC9400DF6CC5 /* SpecieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewModel.swift; sourceTree = "<group>"; };
-		CA83D53921E7AF0F00EBC98C /* ViewModelTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTypeProtocol.swift; sourceTree = "<group>"; };
 		CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetResponse.swift; sourceTree = "<group>"; };
 		CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedAPIResponseProtocol.swift; sourceTree = "<group>"; };
 		CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = StarJediSpecialEdition.ttf; path = "../../../../../../../../Downloads/boba-fonts_starjedi-special-edition/StarJediSpecialEdition.ttf"; sourceTree = "<group>"; };
 		CAC816C021E3EECF00EB3D8D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CAC816C221E3FC9F00EB3D8D /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
-		CAC816C421E404CF00EB3D8D /* NetworkingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConstants.swift; sourceTree = "<group>"; };
-		CAC816C621E4177400EB3D8D /* ResourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceProtocol.swift; sourceTree = "<group>"; };
 		CAC816C821E41BD700EB3D8D /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		CAC816CE21E4EB6700EB3D8D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResponse.swift; sourceTree = "<group>"; };
 		CAC816DA21E636D000EB3D8D /* String+Beautifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Beautifiers.swift"; sourceTree = "<group>"; };
-		CAC816DD21E63A7400EB3D8D /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
-		CAC816E221E6437400EB3D8D /* ErrorMessagesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessagesConstants.swift; sourceTree = "<group>"; };
 		CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
+		CAF3A07C21ECD04600B33AB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		CAF3A08121ECD22E00B33AB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		CAF3A08421ECD66000B33AB5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		CAF3A08621ECDEE700B33AB5 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		CAF3A08821ECDF7D00B33AB5 /* ErrorsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsEnum.swift; sourceTree = "<group>"; };
+		CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +137,8 @@
 		CA12BA0A21E39CA400DF6CC5 /* StarWarsApp */ = {
 			isa = PBXGroup;
 			children = (
+				CAF3A07F21ECD20900B33AB5 /* en.lproj */,
+				CAF3A07E21ECD1A800B33AB5 /* Base.lproj */,
 				CAC816E421E6454600EB3D8D /* Protocols */,
 				CA12BA2321E39DA600DF6CC5 /* Supporting files */,
 				CA12BA2221E39D9500DF6CC5 /* Helpers */,
@@ -143,9 +146,9 @@
 				CA12BA1F21E39D6300DF6CC5 /* Extensions */,
 				CA12BA1E21E39D5C00DF6CC5 /* Views */,
 				CA12BA1D21E39D5700DF6CC5 /* Models */,
-				CA12BA0F21E39CA400DF6CC5 /* Main.storyboard */,
-				CA12BA1421E39CA500DF6CC5 /* LaunchScreen.storyboard */,
 				CA12BA1721E39CA500DF6CC5 /* Info.plist */,
+				CA12BA1421E39CA500DF6CC5 /* LaunchScreen.storyboard */,
+				CAF3A08421ECD66000B33AB5 /* R.generated.swift */,
 			);
 			path = StarWarsApp;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 		CA12BA2121E39D8500DF6CC5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				CAC816CE21E4EB6700EB3D8D /* APIClient.swift */,
 				CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -275,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */,
+				CAF3A08621ECDEE700B33AB5 /* Typography.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -301,9 +306,8 @@
 		CAC816DC21E63A2D00EB3D8D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				CAC816C421E404CF00EB3D8D /* NetworkingConstants.swift */,
-				CAC816DD21E63A7400EB3D8D /* UIConstants.swift */,
-				CAC816E221E6437400EB3D8D /* ErrorMessagesConstants.swift */,
+				CAF3A08821ECDF7D00B33AB5 /* ErrorsEnum.swift */,
+				CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -311,7 +315,6 @@
 		CAC816DF21E63B4500EB3D8D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				CAC816CE21E4EB6700EB3D8D /* APIClient.swift */,
 				CAC816C821E41BD700EB3D8D /* Resource.swift */,
 			);
 			path = Networking;
@@ -320,8 +323,6 @@
 		CAC816E421E6454600EB3D8D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				CAC816C621E4177400EB3D8D /* ResourceProtocol.swift */,
-				CA83D53921E7AF0F00EBC98C /* ViewModelTypeProtocol.swift */,
 				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */,
 			);
 			path = Protocols;
@@ -335,6 +336,23 @@
 			path = LoadingScreenView;
 			sourceTree = "<group>";
 		};
+		CAF3A07E21ECD1A800B33AB5 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				CA12BA0F21E39CA400DF6CC5 /* Main.storyboard */,
+			);
+			name = Base.lproj;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		CAF3A07F21ECD20900B33AB5 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				CAF3A08021ECD22E00B33AB5 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -343,6 +361,7 @@
 			buildConfigurationList = CA12BA1A21E39CA500DF6CC5 /* Build configuration list for PBXNativeTarget "StarWarsApp" */;
 			buildPhases = (
 				D4FF33E656023893D631F60D /* [CP] Check Pods Manifest.lock */,
+				CAF3A08321ECD39700B33AB5 /* ShellScript */,
 				CA12BA0421E39CA400DF6CC5 /* Sources */,
 				CA12BA0521E39CA400DF6CC5 /* Frameworks */,
 				CA12BA0621E39CA400DF6CC5 /* Resources */,
@@ -395,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAF3A08221ECD22E00B33AB5 /* Localizable.strings in Resources */,
 				CAC816C121E3EECF00EB3D8D /* Images.xcassets in Resources */,
 				CA12BA1621E39CA500DF6CC5 /* LaunchScreen.storyboard in Resources */,
 				CAA3881D21E8F6A600332328 /* StarJediSpecialEdition.ttf in Resources */,
@@ -405,6 +425,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CAF3A08321ECD39700B33AB5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(TEMP_DIR)/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/R.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		CE5F7E7AC08C3F2AF3FE5572 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +453,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsApp/Pods-StarWarsApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -422,6 +462,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -461,19 +502,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA12BA3321E3ABE400DF6CC5 /* StarshipsTableViewController.swift in Sources */,
-				CAC816C521E404CF00EB3D8D /* NetworkingConstants.swift in Sources */,
+				CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */,
+				CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */,
 				CA12BA3521E3AC0100DF6CC5 /* StarshipsTableViewModel.swift in Sources */,
 				CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */,
 				CA12BA3A21E3AC2000DF6CC5 /* SpeciesTableViewController.swift in Sources */,
+				CAF3A08921ECDF7D00B33AB5 /* ErrorsEnum.swift in Sources */,
 				CA12BA2921E3A8AB00DF6CC5 /* Specie.swift in Sources */,
 				CA12BA3F21E3AC4F00DF6CC5 /* PersonViewModel.swift in Sources */,
 				CA12BA2E21E3AB1100DF6CC5 /* PeopleTableViewModel.swift in Sources */,
-				CAC816C721E4177400EB3D8D /* ResourceProtocol.swift in Sources */,
-				CA83D53A21E7AF0F00EBC98C /* ViewModelTypeProtocol.swift in Sources */,
 				CAC816C921E41BD800EB3D8D /* Resource.swift in Sources */,
-				CAC816E321E6437400EB3D8D /* ErrorMessagesConstants.swift in Sources */,
 				CA12BA2521E3A4A400DF6CC5 /* Person.swift in Sources */,
-				CAC816DE21E63A7400EB3D8D /* UIConstants.swift in Sources */,
+				CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */,
 				CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */,
 				CA83D53E21E7FDE900EBC98C /* PlanetResponse.swift in Sources */,
 				CA12BA3821E3AC1600DF6CC5 /* SpeciesTableViewModel.swift in Sources */,
@@ -500,6 +540,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CA12BA1021E39CA400DF6CC5 /* Base */,
+				CAF3A07C21ECD04600B33AB5 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -510,6 +551,14 @@
 				CA12BA1521E39CA500DF6CC5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CAF3A08021ECD22E00B33AB5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAF3A08121ECD22E00B33AB5 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
