@@ -89,7 +89,7 @@ class PeopleTableViewController: UITableViewController {
                 self?.storyboard?.instantiateViewController(withIdentifier: R.string.localizable.personViewControllerID()) as! PersonViewController
             personViewController.setPerson(model)
             self?.navigationController?.pushViewController(personViewController, animated: true)*/
-            
+
             let personViewController = PersonViewController(model)
             self?.navigationController?.pushViewController(personViewController, animated: true)
             

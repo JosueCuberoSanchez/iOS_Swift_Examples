@@ -79,33 +79,36 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
         
         // Image
         NSLayoutConstraint.activate([
-            personImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            personImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 180),
-            personImageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -50)
+            personImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            personImageView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 180),
+            personImageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -50),
+            // Conflicting constraints
+            //personImageView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 50),
+            //personImageView.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 50)
         ])
         
         // Name
         NSLayoutConstraint.activate([
-            nameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: genderLabel.topAnchor, constant: -32)
         ])
         
         // Gender
         NSLayoutConstraint.activate([
-            genderLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            genderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             genderLabel.bottomAnchor.constraint(equalTo: heightLabel.topAnchor, constant: -32)
         ])
         
         // Height
         NSLayoutConstraint.activate([
-            heightLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            heightLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             heightLabel.bottomAnchor.constraint(equalTo: homeworldLabel.topAnchor, constant: -32)
         ])
         
         // Homeworld
         NSLayoutConstraint.activate([
-            homeworldLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            //homeworldLabel.bottomAnchor.constraint(greaterThanOrEqualTo: self.view.bottomAnchor, constant: 1)
+            homeworldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            homeworldLabel.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: -500)
         ])
         
         self.personImageView = personImageView
@@ -120,19 +123,18 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
         Sets the background image with all its properties
      */
     private func customizeView() {
-        let background = UIImage(named: R.string.localizable.backGroundImageName())
         
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        let image = UIImage(named: R.string.localizable.backGroundImageName())
+        
+        let imageView = UIImageView(frame: view.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.autoresizesSubviews = false
-        imageView.image = background
-        imageView.alpha = UIConstants.BACKGROUND_IMAGE_ALPHA
-        imageView.center = view.center
+        imageView.image = image
+
         view.addSubview(imageView)
         view.sendSubviewToBack(imageView)
-        
     }
     
     /**

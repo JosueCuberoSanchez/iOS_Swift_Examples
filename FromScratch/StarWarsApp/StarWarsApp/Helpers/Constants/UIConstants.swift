@@ -26,7 +26,4 @@ struct UIConstants {
     static let LOADING_LABEL_WIDTH = 140
     static let LOADING_LABEL_HEIGHT = 30
     
-    // Image alphas
-    static let BACKGROUND_IMAGE_ALPHA: CGFloat = 0.5
-    
 }
