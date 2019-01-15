@@ -35,13 +35,13 @@
 		CAC816C921E41BD800EB3D8D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C821E41BD700EB3D8D /* Resource.swift */; };
 		CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816CE21E4EB6700EB3D8D /* APIClient.swift */; };
 		CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */; };
-		CAC816DB21E636D000EB3D8D /* String+Beautifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816DA21E636D000EB3D8D /* String+Beautifiers.swift */; };
 		CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */; };
 		CAF3A08221ECD22E00B33AB5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAF3A08021ECD22E00B33AB5 /* Localizable.strings */; };
 		CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08421ECD66000B33AB5 /* R.generated.swift */; };
 		CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08621ECDEE700B33AB5 /* Typography.swift */; };
 		CAF3A08921ECDF7D00B33AB5 /* ErrorsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08821ECDF7D00B33AB5 /* ErrorsEnum.swift */; };
 		CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */; };
+		CAF3A08D21ED202100B33AB5 /* DetailViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08C21ED202100B33AB5 /* DetailViewControllerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +77,6 @@
 		CAC816C821E41BD700EB3D8D /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		CAC816CE21E4EB6700EB3D8D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResponse.swift; sourceTree = "<group>"; };
-		CAC816DA21E636D000EB3D8D /* String+Beautifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Beautifiers.swift"; sourceTree = "<group>"; };
 		CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
 		CAF3A07C21ECD04600B33AB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		CAF3A08121ECD22E00B33AB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		CAF3A08621ECDEE700B33AB5 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		CAF3A08821ECDF7D00B33AB5 /* ErrorsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsEnum.swift; sourceTree = "<group>"; };
 		CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		CAF3A08C21ED202100B33AB5 /* DetailViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +143,6 @@
 				CA12BA2321E39DA600DF6CC5 /* Supporting files */,
 				CA12BA2221E39D9500DF6CC5 /* Helpers */,
 				CA12BA2121E39D8500DF6CC5 /* Application */,
-				CA12BA1F21E39D6300DF6CC5 /* Extensions */,
 				CA12BA1E21E39D5C00DF6CC5 /* Views */,
 				CA12BA1D21E39D5700DF6CC5 /* Models */,
 				CA12BA1721E39CA500DF6CC5 /* Info.plist */,
@@ -175,14 +174,6 @@
 				CA12BA3B21E3AC2600DF6CC5 /* PersonView */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		CA12BA1F21E39D6300DF6CC5 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				CAC816DA21E636D000EB3D8D /* String+Beautifiers.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CA12BA2121E39D8500DF6CC5 /* Application */ = {
@@ -324,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */,
+				CAF3A08C21ED202100B33AB5 /* DetailViewControllerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -522,8 +514,8 @@
 				CA12BA3D21E3AC4300DF6CC5 /* PersonViewController.swift in Sources */,
 				CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */,
 				CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */,
+				CAF3A08D21ED202100B33AB5 /* DetailViewControllerProtocol.swift in Sources */,
 				CA12BA3021E3AB5500DF6CC5 /* PeopleTableViewController.swift in Sources */,
-				CAC816DB21E636D000EB3D8D /* String+Beautifiers.swift in Sources */,
 				CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */,
 				CA12BA0E21E39CA400DF6CC5 /* MainTabViewController.swift in Sources */,
 				CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */,

@@ -10,16 +10,7 @@ import UIKit
 
 class PeopleTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var personNameLabel: UILabel!
     @IBOutlet weak var personGenderLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
 }

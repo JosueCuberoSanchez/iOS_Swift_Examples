@@ -15,10 +15,16 @@ struct Resource {
         case GET = "GET"
     }
     
-    var fullURL: String?
-    var baseURL: String?
+    enum RequestType {
+        case parametrized
+        case nonParametrized
+    }
+    
+    let baseURL = "https://swapi.co/api/"
     var resourcePath: String?
     var resourceIndex: Int?
+    var requestType: RequestType?
+    
     
     private let pageParameterName = "page"
     private let acceptHeader = "accept"
@@ -28,14 +34,8 @@ struct Resource {
     var parameters: [String: String] { return [pageParameterName:String(resourceIndex!)] }
     var method: Method { return .GET }
     
-    init(_ baseURL: String, _ resourcePath: String, _ resourceIndex: Int) {
-        self.baseURL = baseURL
+    init(_ resourcePath: String) {
         self.resourcePath = resourcePath
-        self.resourceIndex = resourceIndex
-    }
-    
-    init(_ fullURL: String) {
-        self.fullURL = fullURL
     }
     
     /**
@@ -43,18 +43,24 @@ struct Resource {
      
      - Returns: The built URL request.
      */
-    func buildRequestWithParameters() -> URLRequest {
+    mutating func buildRequest() -> URLRequest {
         
-        guard let baseURL = URL(string: baseURL!) else {
+        guard let baseURL = URL(string: baseURL) else {
             fatalError(ErrorsEnum.baseURLError.rawValue)
+        }
+        
+        if requestType == RequestType.nonParametrized {
+            resourcePath = resourcePath! + String(resourceIndex!)
         }
         
         guard var components = URLComponents(url: baseURL.appendingPathComponent(resourcePath!), resolvingAgainstBaseURL: false) else {
             fatalError(ErrorsEnum.URLComponentsError.rawValue)
         }
         
-        components.queryItems = parameters.map {
-            URLQueryItem(name: String($0), value: String($1))
+        if requestType == RequestType.parametrized {
+            components.queryItems = parameters.map {
+                URLQueryItem(name: String($0), value: String($1))
+            }
         }
         
         guard let url = components.url else {
@@ -62,20 +68,6 @@ struct Resource {
         }
         
         return buildURLRequest(url)
-    }
-    
-    /**
-     Builds a URLRequest based on just a full URL of the resource.
-     
-     - Returns: The built URL request.
-     */
-    func buildRequestWithFullURL() -> URLRequest {
-        
-        guard let fullURL = URL(string: fullURL!) else {
-            fatalError(ErrorsEnum.baseURLError.rawValue)
-        }
-        
-        return buildURLRequest(fullURL)
     }
     
     /**

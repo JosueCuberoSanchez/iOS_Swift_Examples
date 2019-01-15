@@ -23,18 +23,5 @@ struct Person: Codable {
     let gender: Gender
     let homeworld: String
     
-    init(name: String, height: String, gender: Gender, homeworld: String) {
-        self.name = name
-        self.height = height
-        self.gender = gender
-        self.homeworld = homeworld
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case height = "height"
-        case gender = "gender"
-        case homeworld = "homeworld"
-    }
 }
 

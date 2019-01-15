@@ -15,13 +15,6 @@ struct PeopleResponse: Codable, PaginatedAPIResponseProtocol {
     var previous: String?
     let people: [Person]
     
-    init(count: Int, next: String, previous: String, people: [Person]) {
-        self.count = count
-        self.next = next
-        self.previous = previous
-        self.people = people
-    }
-    
     enum CodingKeys: String, CodingKey {
         case count = "count"
         case next = "next"

@@ -15,12 +15,5 @@ struct Specie: Codable {
     let averageHeight: Int
     let homeworld: String
     let language: String
-    
-    init(name: String, classification: String, averageHeight: Int, homeworld: String, language: String) {
-        self.name = name
-        self.classification = classification
-        self.averageHeight = averageHeight
-        self.homeworld = homeworld
-        self.language = language
-    }
+
 }

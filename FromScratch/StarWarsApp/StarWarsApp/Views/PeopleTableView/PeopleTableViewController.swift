@@ -14,15 +14,21 @@ class PeopleTableViewController: UITableViewController {
     
     let disposeBag = DisposeBag()
     let apiClient = APIClient()
-    var peopleTableViewModel: PeopleTableViewModel?
+    var peopleTableViewModel: PeopleTableViewModel
     var loadingScreenView = LoadingScreenView()
     
     private final let peopleMaxPage = 80
+    private final let peopleResource = "people/"
+    
+    required init?(coder aDecoder: NSCoder) {
+        let resource = Resource(peopleResource)
+        peopleTableViewModel = PeopleTableViewModel(request: apiClient.getResponse(resource))
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoadingScreen()
-        setupViewModel()
         setupTableView()
         setupTableViewBindings()
     }
@@ -32,27 +38,6 @@ class PeopleTableViewController: UITableViewController {
      */
     private func setLoadingScreen() {
         loadingScreenView.setLoadingScreen((navigationController?.navigationBar.frame.height)!, tableView)
-    }
-    
-    /**
-     Hides the loading screen when the data is fetched.
-     */
-    private func removeLoadingScreen() {
-        loadingScreenView.removeLoadingScreen()
-    }
-    
-    /**
-     Shows the loading screen when more data is being fetched.
-     */
-    private func showLoadingScreen() {
-        loadingScreenView.showLoadingScreen()
-    }
-    
-    /**
-     Sets up the view model passing as a parameter a closure for the API requests.
-     */
-    private func setupViewModel() {
-        peopleTableViewModel = PeopleTableViewModel(request: apiClient.getPeopleResponse())
     }
     
     /**
@@ -70,33 +55,22 @@ class PeopleTableViewController: UITableViewController {
     private func setupTableViewBindings() {
         
         // Bind the cells to each of the ViewModel peopleList models.
-        peopleTableViewModel?.outputs.peopleList?
-            .drive(tableView.rx.items(cellIdentifier: R.string.localizable.personCellID(), cellType: PeopleTableViewCell.self)) { (row, element, cell) in
+        peopleTableViewModel.peopleList?
+            .drive(tableView.rx.items(cellIdentifier: R.string.localizable.personCellID(), cellType: PeopleTableViewCell.self)) { [ weak self ] (row, element, cell) in
                 
-                self.customizePersonCell(cell, row, element.name, element.gender.rawValue.capitalizingFirstLetter())
-                self.removeLoadingScreen()
+                self?.customizePersonCell(cell, row, element.name, element.gender.rawValue)
+                self?.loadingScreenView.removeLoadingScreen()
 
             }
             .disposed(by: disposeBag)
         
-        // Observe if the user has tapped on a cell
-        /*Observable
-            .zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Person.self))
-            .bind { [unowned self] indexPath, model in
-                self.tableView.deselectRow(at: indexPath, animated: true)
-                self.peopleTableViewModel?.currentPerson = Driver.of(model)
-                self.performSegue(withIdentifier: UIConstants.SEE_PERSON_DETAILS_SEGUE_IDENTIFIER, sender: self)
-            }
-            .disposed(by: disposeBag)*/
-        
-        
-        tableView.rx.modelSelected(Person.self).asDriver().drive(onNext: { model in
+        tableView.rx.modelSelected(Person.self).asDriver().drive(onNext: { [ weak self ] model in
             
             // This way does not show me a black screen on segue
             let personViewController: PersonViewController =
-                self.storyboard?.instantiateViewController(withIdentifier: R.string.localizable.personViewControllerID()) as! PersonViewController
+                self?.storyboard?.instantiateViewController(withIdentifier: R.string.localizable.personViewControllerID()) as! PersonViewController
             personViewController.setPerson(Driver.of(model))
-            self.navigationController?.pushViewController(personViewController, animated: true)
+            self?.navigationController?.pushViewController(personViewController, animated: true)
             
         }).disposed(by: disposeBag)
         
@@ -132,8 +106,8 @@ class PeopleTableViewController: UITableViewController {
         
         guard (rowCount == indexPath.row && rowCount < peopleMaxPage) else { return }
         
-        showLoadingScreen()
-        peopleTableViewModel?.inputs.nextPageTrigger.accept(())
+        loadingScreenView.showLoadingScreen()
+        peopleTableViewModel.nextPageTrigger.accept(())
         
     }
     
@@ -148,17 +122,5 @@ class PeopleTableViewController: UITableViewController {
         }
         return rowCount-1
     }
-    
-    /**
-     Prepares for person detail segue and sets the current person to it's viewModel.
-     */
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == UIConstants.SEE_PERSON_DETAILS_SEGUE_IDENTIFIER {
-            if let destinationVC = segue.destination as? PersonViewController {
-                destinationVC.personViewModel.inputs.person = peopleTableViewModel?.currentPerson
-            }
-        }
-    }*/
-
     
 }

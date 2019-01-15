@@ -11,15 +11,8 @@ import RxSwift
 
 final class APIClient {
     
-    enum Response<T> {
-        case success(T)
-        case error(Error)
-    }
-    
     private let session: URLSession
     
-    private final let baseURL = "https://swapi.co/api/"
-    private final let peoplePath = "people/"
     private final let planetsPath = "planets/"
     
     init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
@@ -32,7 +25,11 @@ final class APIClient {
      - Parameter request: the URLRequest containing the url and the policy.
      - Returns: An observable of type T (ex: PeopleResponse)
      */
-    private func requestAPIResource<T: Codable>(request: URLRequest) -> Observable<T> {
+    private func requestAPIResource<T: Codable>(_ resource: Resource) -> Observable<T> {
+        
+        var finalResource = resource
+        let request = finalResource.buildRequest()
+        
         return Observable<T>.create { observer in
             let task = self.session.dataTask(with: request) { (data, response, error) in
                 do {
@@ -54,34 +51,16 @@ final class APIClient {
     }
     
     /**
-     Gets an observable of the API response for the people resource.
+     Gets an observable of the API response for the given resource.
      
      - Returns: An observable of type PeopleResponse, received from requestAPIResource.
      */
-    func getPeopleResponse() -> (_ page: Int) -> Observable<PeopleResponse> {
-        
-        return { page in
-            var request: URLRequest;
-            let resource = Resource(self.baseURL, self.peoplePath, page)
-            request = resource.buildRequestWithParameters()
-            
-            return self.requestAPIResource(request: request)
-        }
-    }
-    
-    /**
-     Gets an observable of the API response for the planet resource.
-     
-     - Returns: An observable of type PlanetResponse, received from requestAPIResource.
-     */
-    func getPlanetResponse() -> (_ planetURL: String) -> Observable<PlanetResponse> {
-        return { planetURL in
-            var request: URLRequest;
-            
-            let resource = Resource(planetURL)
-            request = resource.buildRequestWithFullURL()
-            
-            return self.requestAPIResource(request: request)
+    func getResponse<T: Codable>(_ resource: Resource) -> (_ index: Int, _ requestType: Resource.RequestType) -> Observable<T> {
+        return { index, requestType in
+            var finalResource = resource
+            finalResource.resourceIndex = index
+            finalResource.requestType = requestType
+            return self.requestAPIResource(finalResource)
         }
     }
     

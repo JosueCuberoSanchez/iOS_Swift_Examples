@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 class MainTabViewController: UITabBarController {
+    
+    let apiClient = APIClient()
 
     override func viewDidLoad() { super.viewDidLoad() }
-
+    
 }

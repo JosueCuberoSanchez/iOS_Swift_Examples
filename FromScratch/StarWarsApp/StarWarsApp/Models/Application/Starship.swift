@@ -16,11 +16,4 @@ struct Starship: Codable {
     let passengers: Int
     let starshipClass: String
     
-    init(name: String, manufacturer: String, length: Double, passengers: Int, starshipClass: String) {
-        self.name = name
-        self.manufacturer = manufacturer
-        self.length = length
-        self.passengers = passengers
-        self.starshipClass = starshipClass
-    }
 }

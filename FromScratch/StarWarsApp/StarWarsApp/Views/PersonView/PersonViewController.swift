@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PersonViewController: UIViewController {
+class PersonViewController: UIViewController, DetailViewControllerProtocol {
     
     let apiClient = APIClient()
     var personViewModel = PersonViewModel()
@@ -22,6 +22,8 @@ class PersonViewController: UIViewController {
     var genderLabel: UILabel!
     var heightLabel: UILabel!
     var homeworldLabel: UILabel!
+    
+    private final let planetsResource = "planets/"
     
     
     override func loadView() {
@@ -64,19 +66,32 @@ class PersonViewController: UIViewController {
         NSLayoutConstraint.activate([
             personImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             personImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 180),
-            personImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 140),
-            personImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -140),
             personImageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -50)
         ])
         
         // Name
         NSLayoutConstraint.activate([
             nameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            nameLabel.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 50),
-            nameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 90),
-            nameLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -90),
-            //personImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -32)
-            ])
+            nameLabel.bottomAnchor.constraint(equalTo: genderLabel.topAnchor, constant: -32)
+        ])
+        
+        // Gender
+        NSLayoutConstraint.activate([
+            genderLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            genderLabel.bottomAnchor.constraint(equalTo: heightLabel.topAnchor, constant: -32)
+        ])
+        
+        // Height
+        NSLayoutConstraint.activate([
+            heightLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            heightLabel.bottomAnchor.constraint(equalTo: homeworldLabel.topAnchor, constant: -32)
+        ])
+        
+        // Homeworld
+        NSLayoutConstraint.activate([
+            homeworldLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            //homeworldLabel.bottomAnchor.constraint(greaterThanOrEqualTo: self.view.bottomAnchor, constant: 1)
+        ])
         
         self.personImageView = personImageView
         self.nameLabel = nameLabel
@@ -114,7 +129,8 @@ class PersonViewController: UIViewController {
      */
     private func setupViewModel() {
         personViewModel.setOutputs()
-        personViewModel.loadPersonPlanet(request: apiClient.getPlanetResponse())
+        let resource = Resource(planetsResource)
+        personViewModel.loadPersonPlanet(request: apiClient.getResponse(resource))
     }
     
     /**
@@ -139,32 +155,33 @@ class PersonViewController: UIViewController {
      */
     private func setupBindings() {
         /// Name
-        personViewModel.outputs.personName
+        personViewModel.personName?
             .asObservable()
             .map { $0.addingNameLabel() }
             .bind(to:nameLabel.rx.text)
             .disposed(by:disposeBag)
         
         /// Gender
-        personViewModel.outputs.personGender
+        personViewModel.personGender?
             .asObservable()
             .map { $0.addingGenderLabel() }
             .bind(to:genderLabel.rx.text)
             .disposed(by:disposeBag)
         
         /// Height
-        personViewModel.outputs.personHeight
+        personViewModel.personHeight?
             .asObservable()
             .map { $0.addingHeightLabel() }
             .bind(to:heightLabel.rx.text)
             .disposed(by:disposeBag)
         
         /// Homeworld
-        personViewModel.outputs.personHomeworld
+        personViewModel.personHomeworld?
             .asObservable()
             .map { $0.addingHomeworldLabel() }
             .bind(to:homeworldLabel.rx.text)
             .disposed(by:disposeBag)
+            
     }
 
 }

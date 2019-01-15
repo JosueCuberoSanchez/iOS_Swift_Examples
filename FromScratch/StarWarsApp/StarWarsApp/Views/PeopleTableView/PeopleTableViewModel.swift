@@ -12,10 +12,6 @@ import RxCocoa
 
 class PeopleTableViewModel {
     
-    // Input and output
-    public var inputs: PeopleTableViewModel { return self }
-    public var outputs: PeopleTableViewModel { return self }
-    
     var pagination = BehaviorRelay<Int>(value: 1)
     var nextPageTrigger: BehaviorRelay<Void> = BehaviorRelay<Void>(value: ())
 
@@ -25,13 +21,13 @@ class PeopleTableViewModel {
     
     var disposeBag = DisposeBag()
     
-    init(request: @escaping (_ page: Int) -> Observable<PeopleResponse>) {
+    init(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<PeopleResponse>) {
         loadPeople(request: request)
     }
     
-    func loadPeople(request: @escaping (_ page: Int) -> Observable<PeopleResponse>) {
+    func loadPeople(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<PeopleResponse>) {
         
-        let sharedRequest = pagination.flatMap{ request($0) }.share()
+        let sharedRequest = pagination.flatMap{ request($0,Resource.RequestType.parametrized) }.share()
         
         sharedRequest.map { $0.people }
             .withLatestFrom(itemsRelay) { $1 + $0 }

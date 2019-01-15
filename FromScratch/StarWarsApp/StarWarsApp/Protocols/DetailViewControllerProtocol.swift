@@ -1,23 +1,18 @@
 //
-//  String+Beautifiers.swift
+//  ViewControllerProtocol.swift
 //  StarWarsApp
 //
-//  Created by Josue on 1/9/19.
+//  Created by Josue on 1/14/19.
 //  Copyright © 2019 Josue. All rights reserved.
 //
 
 import Foundation
 
+protocol DetailViewControllerProtocol {
+    // TODO: Add variables and methods that all the 3 details view controllers will have
+}
+
 extension String {
-    
-    /**
-     Capitalized the first letter on a String.
-     
-     - Returns: The built URL request.
-     */
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + self.lowercased().dropFirst()
-    }
     
     /**
      Add the name label to the current String.
