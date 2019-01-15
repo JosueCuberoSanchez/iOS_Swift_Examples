@@ -12,32 +12,50 @@ import RxCocoa
 
 class PeopleTableViewController: UITableViewController {
     
-    let disposeBag = DisposeBag()
-    let apiClient = APIClient()
+    let apiClient: APIClient
     var peopleTableViewModel: PeopleTableViewModel
+    let disposeBag = DisposeBag()
     var loadingScreenView = LoadingScreenView()
     
     private final let peopleMaxPage = 80
     private final let peopleResource = "people/"
     
     required init?(coder aDecoder: NSCoder) {
+        
+        // Get app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        apiClient = appDelegate.apiClient
+        
+        // Setup view model
         let resource = Resource(peopleResource)
         peopleTableViewModel = PeopleTableViewModel(request: apiClient.getResponse(resource))
+        
         super.init(coder: aDecoder)
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        setupLoadingScreen()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLoadingScreen()
+        
         setupTableView()
         setupTableViewBindings()
     }
     
-    /**
-     Sets a loading screen as subview of the tableView while the data is being fetched.
-     */
-    private func setLoadingScreen() {
-        loadingScreenView.setLoadingScreen((navigationController?.navigationBar.frame.height)!, tableView)
+    private func setupLoadingScreen() {
+                
+        self.view.addSubview(loadingScreenView)
+        
+        NSLayoutConstraint.activate([
+            loadingScreenView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            loadingScreenView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
+        
+        loadingScreenView.showLoadingScreen()
     }
     
     /**
@@ -59,7 +77,7 @@ class PeopleTableViewController: UITableViewController {
             .drive(tableView.rx.items(cellIdentifier: R.string.localizable.personCellID(), cellType: PeopleTableViewCell.self)) { [ weak self ] (row, element, cell) in
                 
                 self?.customizePersonCell(cell, row, element.name, element.gender.rawValue)
-                self?.loadingScreenView.removeLoadingScreen()
+                self?.loadingScreenView.hideLoadingScreen()
 
             }
             .disposed(by: disposeBag)
@@ -67,12 +85,21 @@ class PeopleTableViewController: UITableViewController {
         tableView.rx.modelSelected(Person.self).asDriver().drive(onNext: { [ weak self ] model in
             
             // This way does not show me a black screen on segue
-            let personViewController: PersonViewController =
+            /*let personViewController: PersonViewController =
                 self?.storyboard?.instantiateViewController(withIdentifier: R.string.localizable.personViewControllerID()) as! PersonViewController
-            personViewController.setPerson(Driver.of(model))
+            personViewController.setPerson(model)
+            self?.navigationController?.pushViewController(personViewController, animated: true)*/
+            
+            let personViewController = PersonViewController(model)
             self?.navigationController?.pushViewController(personViewController, animated: true)
             
         }).disposed(by: disposeBag)
+        
+        tableView.rx.reachedBottom.asObservable()
+            .debounce(0.1, scheduler: MainScheduler.instance)
+            .subscribe(onNext:{
+                self.peopleTableViewModel.nextPageTrigger.accept(())
+            }).disposed(by: disposeBag)
         
     }
     
@@ -98,20 +125,6 @@ class PeopleTableViewController: UITableViewController {
     }
     
     /**
-     Detects if the user has scrolled all the way down and triggers a ViewModel event to fetch more data.
-     */
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        let rowCount = getAllRowCount()
-        
-        guard (rowCount == indexPath.row && rowCount < peopleMaxPage) else { return }
-        
-        loadingScreenView.showLoadingScreen()
-        peopleTableViewModel.nextPageTrigger.accept(())
-        
-    }
-    
-    /**
      Gets the number of rows in the table view.
      - Returns: The number of rows in the table view.
      */
@@ -123,4 +136,23 @@ class PeopleTableViewController: UITableViewController {
         return rowCount-1
     }
     
+}
+
+extension Reactive where Base: UIScrollView {
+    var reachedBottom: ControlEvent<Void> {
+        let observable = contentOffset
+            .flatMap { [weak base] contentOffset -> Observable<Void> in
+                guard let scrollView = base else {
+                    return Observable.empty()
+                }
+                
+                let visibleHeight = scrollView.frame.height - scrollView.contentInset.top - scrollView.contentInset.bottom
+                let y = contentOffset.y + scrollView.contentInset.top
+                let threshold = max(0.0, scrollView.contentSize.height - visibleHeight)
+                
+                return y > threshold ? Observable.just(()) : Observable.empty()
+        }
+        
+        return ControlEvent(events: observable)
+    }
 }

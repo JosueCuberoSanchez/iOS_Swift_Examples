@@ -12,9 +12,9 @@ import RxCocoa
 
 class PersonViewController: UIViewController, DetailViewControllerProtocol {
     
-    let apiClient = APIClient()
-    var personViewModel = PersonViewModel()
-    var disposeBag = DisposeBag()
+    let apiClient: APIClient
+    var personViewModel: PersonViewModel
+    let disposeBag = DisposeBag()
     
     // subviews
     var personImageView: UIImageView!
@@ -25,19 +25,34 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
     
     private final let planetsResource = "planets/"
     
+    init(_ person: Person) {
+        
+        // Get API Client
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        apiClient = appDelegate.apiClient
+        
+        // Initialize VM
+        let resource = Resource(planetsResource)
+        personViewModel = PersonViewModel(apiClient.getResponse(resource), person)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Segue performed by storyboard, should be programatically")
+    }
     
     override func loadView() {
         super.loadView()
 
         setupSubviews()
+        customizeView()
+        customizeSubviews()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customizeView()
-        setupViewModel()
-        customizeSubviews()
         setupBindings()
     }
     
@@ -100,10 +115,6 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
         self.homeworldLabel = homeworldLabel
     }
     
-    func setPerson(_ person: Driver<Person>) {
-        personViewModel.person = person
-    }
-    
     /**
      Customize this viewController view
         Sets the background image with all its properties
@@ -123,15 +134,6 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
         view.sendSubviewToBack(imageView)
         
     }
-
-    /**
-     Sets up the view model passing as a parameter a closure for the API requests.
-     */
-    private func setupViewModel() {
-        personViewModel.setOutputs()
-        let resource = Resource(planetsResource)
-        personViewModel.loadPersonPlanet(request: apiClient.getResponse(resource))
-    }
     
     /**
      Customizes the style, properties, positions and constraints of the viewController view subviews.
@@ -144,10 +146,10 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
      Sets the Star Wars font for the UILabels.
      */
     private func setLabelFonts() {
-        nameLabel.setFontStyle(.label)
-        genderLabel.setFontStyle(.label)
-        heightLabel.setFontStyle(.label)
-        homeworldLabel.setFontStyle(.label)
+        nameLabel.setFontStyleFor(.label)
+        genderLabel.setFontStyleFor(.label)
+        heightLabel.setFontStyleFor(.label)
+        homeworldLabel.setFontStyleFor(.label)
     }
     
     /**
@@ -181,7 +183,6 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
             .map { $0.addingHomeworldLabel() }
             .bind(to:homeworldLabel.rx.text)
             .disposed(by:disposeBag)
-            
     }
 
 }

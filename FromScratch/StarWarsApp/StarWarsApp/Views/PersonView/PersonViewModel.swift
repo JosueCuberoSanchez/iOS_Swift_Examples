@@ -13,49 +13,32 @@ import RxSwift
 class PersonViewModel {
     
     // Inputs
-    var person: Driver<Person>?
+    var personDriver: Driver<Person>
+    var planetResponse: Observable<PlanetResponse>
     
     // Outputs
     var personName: Driver<String>?
     var personHeight: Driver<String>?
     var personGender: Driver<String>?
     var personHomeworld: Driver<String>?
-    var personHomeworldURL = BehaviorRelay<String>(value: "")
-    
-    let itemRelay = BehaviorRelay<String>(value: "")
-    
+    var personHomeworldURL =  BehaviorRelay<String>(value: "")
+        
     var disposeBag = DisposeBag()
     
-    /**
-     Get the current person values and set them to their corresponding Behaviour Relays, so the ViewController can bind its labels to them.
-     */
-    func setOutputs() {
+    init(_ request: @escaping (_ planetIndex: Int, _ requestType: Resource.RequestType) -> Observable<PlanetResponse>, _ person: Person) {
         
-        person?.asObservable().subscribe({ [weak self] in
-            if let person = $0.element {
-                self?.personName = Driver.of(person.name)
-                self?.personHeight = Driver.of(person.height)
-                self?.personGender = Driver.of(person.gender.rawValue)
-                self?.personHomeworldURL.accept(person.homeworld)
-            }
-        }).disposed(by: disposeBag)
+        // Asign personDriver
+        personDriver = Driver.of(person)
         
-    }
-    
-    /**
-     Loads the current person planet and drives it to its corresponding Behavior Relay.
-     */
-    func loadPersonPlanet(request: @escaping (_ planetIndex: Int, _ requestType: Resource.RequestType) -> Observable<PlanetResponse>) {
+        // Map homeworld driver
+        personDriver.map{ $0.homeworld }.drive(personHomeworldURL).disposed(by: disposeBag) // Assign to personHomeworldURL the URL of the planet as a String
+        self.planetResponse = personHomeworldURL.flatMap{ request($0.resourceIndex , Resource.RequestType.nonParametrized) } // Get a planetResponse
         
-        let sharedRequest = personHomeworldURL.flatMap{ request($0.resourceIndex,Resource.RequestType.nonParametrized) }.share()
-        
-        sharedRequest.map { $0.name }
-            .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(itemRelay)
-            .disposed(by: disposeBag)
-        
-        personHomeworld = itemRelay.asDriver()
-        
+        // Map each Driver to the corresponding person attribute
+        self.personName = personDriver.map{ $0.name }
+        self.personGender = personDriver.map{ $0.gender.rawValue }
+        self.personHeight = personDriver.map{ $0.height }
+        self.personHomeworld = planetResponse.map{ $0.name }.asDriver(onErrorJustReturn: "")
     }
 
 }

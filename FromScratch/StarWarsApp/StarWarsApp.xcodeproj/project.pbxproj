@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AC483E05568E9CF716D3B142 /* Pods_StarWarsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5A9CE53F17CDC831CBD827 /* Pods_StarWarsApp.framework */; };
 		CA12BA0C21E39CA400DF6CC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */; };
-		CA12BA0E21E39CA400DF6CC5 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA0D21E39CA400DF6CC5 /* MainTabViewController.swift */; };
 		CA12BA1121E39CA400DF6CC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA12BA0F21E39CA400DF6CC5 /* Main.storyboard */; };
 		CA12BA1621E39CA500DF6CC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA12BA1421E39CA500DF6CC5 /* LaunchScreen.storyboard */; };
 		CA12BA2521E3A4A400DF6CC5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA2421E3A4A400DF6CC5 /* Person.swift */; };
@@ -50,7 +49,6 @@
 		8A5A9CE53F17CDC831CBD827 /* Pods_StarWarsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWarsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA12BA0821E39CA400DF6CC5 /* StarWarsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWarsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CA12BA0D21E39CA400DF6CC5 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		CA12BA1021E39CA400DF6CC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA12BA1521E39CA500DF6CC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA12BA1721E39CA500DF6CC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 				CA12BA3621E3AC0600DF6CC5 /* SpeciesTableView */,
 				CA12BA3121E3AB6200DF6CC5 /* StarshipsTableView */,
 				CA12BA2A21E3A92000DF6CC5 /* PeopleTableView */,
-				CA12BA4C21E3B16500DF6CC5 /* TabBarView */,
 				CA12BA4521E3AC7400DF6CC5 /* SpecieView */,
 				CA12BA4021E3AC5400DF6CC5 /* StarshipView */,
 				CA12BA3B21E3AC2600DF6CC5 /* PersonView */,
@@ -256,14 +253,6 @@
 				CA12BA4821E3AC9400DF6CC5 /* SpecieViewModel.swift */,
 			);
 			path = SpecieView;
-			sourceTree = "<group>";
-		};
-		CA12BA4C21E3B16500DF6CC5 /* TabBarView */ = {
-			isa = PBXGroup;
-			children = (
-				CA12BA0D21E39CA400DF6CC5 /* MainTabViewController.swift */,
-			);
-			path = TabBarView;
 			sourceTree = "<group>";
 		};
 		CAA3881B21E8F5D500332328 /* Fonts */ = {
@@ -517,7 +506,6 @@
 				CAF3A08D21ED202100B33AB5 /* DetailViewControllerProtocol.swift in Sources */,
 				CA12BA3021E3AB5500DF6CC5 /* PeopleTableViewController.swift in Sources */,
 				CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */,
-				CA12BA0E21E39CA400DF6CC5 /* MainTabViewController.swift in Sources */,
 				CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */,
 				CA12BA0C21E39CA400DF6CC5 /* AppDelegate.swift in Sources */,
 				CA12BA2721E3A77100DF6CC5 /* Starship.swift in Sources */,

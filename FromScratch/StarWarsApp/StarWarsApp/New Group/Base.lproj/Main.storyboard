@@ -122,17 +122,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7B-QQ-4Zs">
-                                            <rect key="frame" x="93" y="11" width="164" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Character name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7B-QQ-4Zs">
+                                            <rect key="frame" x="93" y="11" width="164" height="17"/>
                                             <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcV-uL-zNq">
-                                            <rect key="frame" x="93" y="40" width="143.5" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="17" id="hdp-op-LB5"/>
-                                            </constraints>
+                                            <rect key="frame" x="93" y="36" width="143.5" height="21"/>
                                             <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -152,10 +149,8 @@
                                         <constraint firstItem="cxX-pT-2XP" firstAttribute="leading" secondItem="1Iu-sc-Mds" secondAttribute="leadingMargin" id="a38-cT-tFE"/>
                                         <constraint firstItem="W7B-QQ-4Zs" firstAttribute="top" secondItem="1Iu-sc-Mds" secondAttribute="topMargin" id="fxR-8C-bqw"/>
                                         <constraint firstItem="gcV-uL-zNq" firstAttribute="leading" secondItem="cxX-pT-2XP" secondAttribute="trailing" constant="16" id="h5N-gE-wXR"/>
-                                        <constraint firstItem="gcV-uL-zNq" firstAttribute="top" secondItem="W7B-QQ-4Zs" secondAttribute="bottom" constant="8" id="l4v-9R-PMf"/>
                                         <constraint firstItem="cxX-pT-2XP" firstAttribute="bottom" secondItem="1Iu-sc-Mds" secondAttribute="bottomMargin" id="l7n-fl-lEZ"/>
                                         <constraint firstItem="W7B-QQ-4Zs" firstAttribute="leading" secondItem="cxX-pT-2XP" secondAttribute="trailing" constant="16" id="lNl-Cq-rhK"/>
-                                        <constraint firstItem="gcV-uL-zNq" firstAttribute="top" secondItem="W7B-QQ-4Zs" secondAttribute="bottom" constant="8" id="sCo-NT-39v"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="gcV-uL-zNq" secondAttribute="bottom" constant="4" id="vfH-tf-krB"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -226,10 +221,10 @@
             </objects>
             <point key="canvasLocation" x="1361" y="-116"/>
         </scene>
-        <!--Main Tab View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="W4n-Fb-E3u">
             <objects>
-                <tabBarController id="xbD-CR-WGV" customClass="MainTabViewController" customModule="StarWarsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="xbD-CR-WGV" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="par-nn-BQL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

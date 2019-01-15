@@ -33,7 +33,7 @@ extension Typography {
 
 extension UILabel {
 
-    func setFontStyle(_ typography: Typography) {
+    func setFontStyleFor(_ typography: Typography) {
         self.font = typography.fontStyle
         self.adjustsFontForContentSizeCategory = true
     }
