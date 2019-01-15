@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  StarWarsApp
-
-  Created by Josue on 1/14/19.
-  Copyright © 2019 Josue. All rights reserved.
-*/
+/*
+ Localizable.strings
+ StarWarsApp
+ 
+ Created by Josue on 1/14/19.
+ Copyright © 2019 Josue. All rights reserved.
+ */
 
 // Storyboard IDs
 "personViewControllerID" = "personViewController";
@@ -26,4 +26,3 @@
 
 // Image names
 "backGroundImageName" = "background";
-
