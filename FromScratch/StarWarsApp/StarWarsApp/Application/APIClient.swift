@@ -23,21 +23,20 @@ final class APIClient {
      - Parameter request: the URLRequest containing the url and the policy.
      - Returns: An observable of type T (ex: PeopleResponse)
      */
-    private func requestAPIResource<T: Codable>(_ resource: Resource) -> Observable<T> {
+    private func requestAPIResource<T: Codable>(_ resource: Resource) -> Observable<Response<T>> {
         
         var finalResource = resource
         let request = finalResource.buildRequest()
         
-        return Observable<T>.create { observer in
+        return Observable<Response<T>>.create { observer in
             let task = self.session.dataTask(with: request) { (data, response, error) in
                 do {
                     let model: T = try JSONDecoder().decode(T.self, from: data ?? Data())
-                    observer.onNext(model)
-                } catch let error {
-                    observer.onError(error)
+                    observer.onNext(.Success(model))
+                } catch let error as NSError {
+                    observer.onNext(.Failure(error))
                 }
                 observer.onCompleted()
-                
             }
             
             task.resume()
@@ -53,7 +52,7 @@ final class APIClient {
      
      - Returns: An observable of type PeopleResponse, received from requestAPIResource.
      */
-    func getResponse<T: Codable>(_ resource: Resource) -> (_ index: Int, _ requestType: Resource.RequestType) -> Observable<T> {
+    func getResponse<T: Codable>(_ resource: Resource) -> (_ index: Int, _ requestType: Resource.RequestType) -> Observable<Response<T>> {
         return { index, requestType in
             var finalResource = resource
             finalResource.resourceIndex = index

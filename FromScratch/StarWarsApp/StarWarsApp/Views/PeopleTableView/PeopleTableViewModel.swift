@@ -21,11 +21,13 @@ class PeopleTableViewModel {
     
     private let disposeBag = DisposeBag()
     
-    init(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<PeopleResponse>) {
+    init(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<Response<PeopleResponse>>) {
         
         let sharedRequest = pagination.flatMap{ request($0,Resource.RequestType.parametrized) }.share() // get the response
+        let response = sharedRequest.map{ $0 } // this returns Observable<Response<PeopleResponse>>
+        let peopleResponse = response.map{ $0 } // this returns PeopleResponse
         
-        sharedRequest.map { $0.people } // map people array to items relay
+        peopleResponse.map { try $0.unwrap().people } // map people array to items relay
             .withLatestFrom(itemsRelay) { $1 + $0 }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(itemsRelay)
