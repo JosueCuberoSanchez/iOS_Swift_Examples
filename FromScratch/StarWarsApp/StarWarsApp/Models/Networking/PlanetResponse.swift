@@ -10,15 +10,15 @@ import Foundation
 
 struct PlanetResponse: Codable {
     
-    let name: String
+    let population: String
+    let gravity: String
+    let diameter: String
     let rotationPeriod: String
     let orbitalPeriod: String
-    let diameter: String
+    let name: String
     let climate: String
-    let gravity: String
     let terrain: String
     let surfaceWater: String
-    let population: String
     let residents: [String]
     
     enum CodingKeys: String, CodingKey {
@@ -33,4 +33,5 @@ struct PlanetResponse: Codable {
         case population = "population"
         case residents = "residents"
     }
+    
 }

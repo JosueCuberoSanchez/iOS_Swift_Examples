@@ -12,10 +12,10 @@ import RxCocoa
 
 class PeopleTableViewController: UITableViewController {
     
-    let apiClient: APIClient
-    var peopleTableViewModel: PeopleTableViewModel
-    let disposeBag = DisposeBag()
-    var loadingScreenView = LoadingScreenView()
+    private let apiClient: APIClient
+    private let peopleTableViewModel: PeopleTableViewModel
+    private let disposeBag = DisposeBag()
+    private var loadingScreenView = LoadingScreenView()
     
     private final let peopleMaxPage = 80
     private final let peopleResource = "people/"
@@ -46,20 +46,23 @@ class PeopleTableViewController: UITableViewController {
         setupTableViewBindings()
     }
     
+    /**
+     Sets up the loading screen.
+     */
     private func setupLoadingScreen() {
                 
-        self.view.addSubview(loadingScreenView)
+        view.addSubview(loadingScreenView)
         
         NSLayoutConstraint.activate([
-            loadingScreenView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            loadingScreenView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            loadingScreenView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingScreenView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
         
         loadingScreenView.showLoadingScreen()
     }
     
     /**
-     Sets up the table view.
+     Sets up the table view delegates and data source.
      */
     private func setupTableView() {
         tableView.dataSource = nil
@@ -75,25 +78,15 @@ class PeopleTableViewController: UITableViewController {
         // Bind the cells to each of the ViewModel peopleList models.
         peopleTableViewModel.peopleList?
             .drive(tableView.rx.items(cellIdentifier: R.string.localizable.personCellID(), cellType: PeopleTableViewCell.self)) { [ weak self ] (row, element, cell) in
-                
                 self?.customizePersonCell(cell, row, element.name, element.gender.rawValue)
                 self?.loadingScreenView.hideLoadingScreen()
-
             }
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(Person.self).asDriver().drive(onNext: { [ weak self ] model in
-            
-            // This way does not show me a black screen on segue
-            /*let personViewController: PersonViewController =
-                self?.storyboard?.instantiateViewController(withIdentifier: R.string.localizable.personViewControllerID()) as! PersonViewController
-            personViewController.setPerson(model)
-            self?.navigationController?.pushViewController(personViewController, animated: true)*/
-
-            let personViewController = PersonViewController(model)
-            self?.navigationController?.pushViewController(personViewController, animated: true)
-            
-        }).disposed(by: disposeBag)
+        tableView.rx.modelSelected(Person.self).asDriver()
+            .drive(onNext: { [ weak self ] model in
+                self?.navigationController?.pushViewController(PersonViewController(model), animated: true)
+            }).disposed(by: disposeBag)
         
         tableView.rx.reachedBottom.asObservable()
             .debounce(0.1, scheduler: MainScheduler.instance)
@@ -124,20 +117,10 @@ class PeopleTableViewController: UITableViewController {
         
     }
     
-    /**
-     Gets the number of rows in the table view.
-     - Returns: The number of rows in the table view.
-     */
-    func getAllRowCount() -> Int{
-        var rowCount = 0
-        for index in 0...self.tableView.numberOfSections-1{
-            rowCount += self.tableView.numberOfRows(inSection: index)
-        }
-        return rowCount-1
-    }
-    
 }
 
+// Taken from: https://github.com/tryswift/RxPagination/blob/master/Pagination/UIScrollView%2BRx.swift
+// Detects when user has reached the bottom of the table view's scroll view
 extension Reactive where Base: UIScrollView {
     var reachedBottom: ControlEvent<Void> {
         let observable = contentOffset

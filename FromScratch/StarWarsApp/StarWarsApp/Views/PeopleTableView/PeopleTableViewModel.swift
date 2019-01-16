@@ -12,29 +12,27 @@ import RxCocoa
 
 class PeopleTableViewModel {
     
-    var pagination = BehaviorRelay<Int>(value: 1)
-    var nextPageTrigger: BehaviorRelay<Void> = BehaviorRelay<Void>(value: ())
+    // Pagination helpers
+    private var pagination = BehaviorRelay<Int>(value: 1)
+    var nextPageTrigger = BehaviorRelay<Void>(value: ())
 
     var peopleList: Driver<[Person]>?
-    var peopleResponse: Observable<PeopleResponse>?
-    let itemsRelay = BehaviorRelay<[Person]>(value: [])
+    private var itemsRelay = BehaviorRelay<[Person]>(value: [])
     
-    var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     init(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<PeopleResponse>) {
-        loadPeople(request: request)
-    }
-    
-    func loadPeople(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<PeopleResponse>) {
         
-        let sharedRequest = pagination.flatMap{ request($0,Resource.RequestType.parametrized) }.share()
+        let sharedRequest = pagination.flatMap{ request($0,Resource.RequestType.parametrized) }.share() // get the response
         
-        sharedRequest.map { $0.people }
+        sharedRequest.map { $0.people } // map people array to items relay
             .withLatestFrom(itemsRelay) { $1 + $0 }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(itemsRelay)
             .disposed(by: disposeBag)
         
+        // trigger for next page loads, triggers the first time because it has a value already.
+        // next triggers are made by the view controller, and pagination changes (+1) making the shared request trigger the next page load.
         nextPageTrigger.skip(1)
             .withLatestFrom(pagination) { $1 + 1 }
             .asDriver(onErrorDriveWith: Driver.empty())
@@ -42,6 +40,7 @@ class PeopleTableViewModel {
             .disposed(by: disposeBag)
         
         peopleList = itemsRelay.asDriver()
+        
     }
     
 }

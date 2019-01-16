@@ -25,4 +25,5 @@
 "homeworldLabel" = "Homeworld: ";
 
 // Image names
-"backGroundImageName" = "background";
+"backGroundImageName" = "backgroundImage";
+

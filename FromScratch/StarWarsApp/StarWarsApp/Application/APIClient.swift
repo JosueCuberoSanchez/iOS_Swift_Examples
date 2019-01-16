@@ -13,8 +13,6 @@ final class APIClient {
     
     private let session: URLSession
     
-    private final let planetsPath = "planets/"
-    
     init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
         session = URLSession(configuration: URLSessionConfiguration.default)
     }

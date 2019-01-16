@@ -13,4 +13,5 @@ enum ErrorsEnum: String {
     case URLComponentsError = "Unable to create URL components"
     case URLError = "Could not get URL"
     case fontLoadError = "Could not load font"
+    case nsCoderInitError = "NS Coder init fatal error"
 }

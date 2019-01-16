@@ -18,10 +18,10 @@ struct Person: Codable {
         case none = "none"
     }
     
-    let name: String
     let height: String
-    let gender: Gender
     let homeworld: String
+    let name: String
+    let gender: Gender
     
 }
 

@@ -11,7 +11,7 @@ import RxSwift
 
 struct Resource {
     
-    enum Method: String {
+    private enum Method: String {
         case GET = "GET"
     }
     
@@ -20,19 +20,26 @@ struct Resource {
         case nonParametrized
     }
     
-    let baseURL = "https://swapi.co/api/"
+    // Resource variables
     var resourcePath: String?
     var resourceIndex: Int?
     var requestType: RequestType?
     
-    
+    // Networking constants
+    private let baseURL = "https://swapi.co/api/"
+    private let cachableResources = ["people/","starships/","species/"]
+    private let cachableResourcesRange = 0 ... 5
     private let pageParameterName = "page"
     private let acceptHeader = "accept"
     private let applicationJSON = "application/json"
 
     // computed attributes
-    var parameters: [String: String] { return [pageParameterName:String(resourceIndex!)] }
-    var method: Method { return .GET }
+    private var parameters: [String: String] {
+        return [pageParameterName:String(resourceIndex!)]
+    }
+    private var method: Method {
+        return .GET
+    }
     
     init(_ resourcePath: String) {
         self.resourcePath = resourcePath
@@ -67,7 +74,8 @@ struct Resource {
             fatalError(ErrorsEnum.URLError.rawValue)
         }
         
-        return buildURLRequest(url)
+        let cachable = cachableResources.contains(resourcePath!) && cachableResourcesRange ~= resourceIndex!
+        return buildURLRequest(url,cachable)
     }
     
     /**
@@ -75,10 +83,17 @@ struct Resource {
      
      - Returns: The built URL request.
      */
-    private func buildURLRequest(_ url: URL) -> URLRequest {
+    private func buildURLRequest(_ url: URL, _ cachable: Bool) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        request.httpShouldHandleCookies = false
+        request.httpShouldUsePipelining = true
         request.addValue(applicationJSON, forHTTPHeaderField: acceptHeader)
+        
+        if cachable {
+            request.cachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
+        }
+        
         return request
     }
     

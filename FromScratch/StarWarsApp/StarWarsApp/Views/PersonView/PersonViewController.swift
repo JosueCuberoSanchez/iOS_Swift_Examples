@@ -10,28 +10,35 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PersonViewController: UIViewController, DetailViewControllerProtocol {
+class PersonViewController: UIViewController, UIScrollViewDelegate, DetailViewControllerProtocol {
     
-    let apiClient: APIClient
-    var personViewModel: PersonViewModel
-    let disposeBag = DisposeBag()
+    private let apiClient: APIClient
+    private let personViewModel: PersonViewModel
+    private let disposeBag = DisposeBag()
     
-    // subviews
-    var personImageView: UIImageView!
-    var nameLabel: UILabel!
-    var genderLabel: UILabel!
-    var heightLabel: UILabel!
-    var homeworldLabel: UILabel!
+    // Subviews
+    private var scrollView: UIScrollView!
+    private var personImageView: UIImageView!
+    private var nameLabel: UILabel!
+    private var genderLabel: UILabel!
+    private var heightLabel: UILabel!
+    private var homeworldLabel: UILabel!
+    private var backgroundImageView: UIImageView!
     
+    // Networking constants
     private final let planetsResource = "planets/"
+    
+    // Dynamic constraints
+    private var portraitImageViewTopAnchorConstant: [NSLayoutConstraint]!
+    private var landscapeImageViewTopAnchorConstant: [NSLayoutConstraint]!
     
     init(_ person: Person) {
         
-        // Get API Client
+        // Get API Client from App Delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         apiClient = appDelegate.apiClient
         
-        // Initialize VM
+        // Initialize ViewModel
         let resource = Resource(planetsResource)
         personViewModel = PersonViewModel(apiClient.getResponse(resource), person)
         
@@ -39,109 +46,107 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Segue performed by storyboard, should be programatically")
+        fatalError(ErrorsEnum.nsCoderInitError.rawValue)
     }
     
     override func loadView() {
-        super.loadView()
-
+        super.loadView()    
         setupSubviews()
-        customizeView()
-        customizeSubviews()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupBindings()
     }
     
-    func setupSubviews() {
+    override func viewDidLayoutSubviews() {
+        scrollView.delegate = self
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateDynamicViewConstraints()
+    }
+    
+    /**
+     Initialized and sets up all the required subviews.
+     */
+    private func setupSubviews() {
         
-        let personImageView = UIImageView(image: #imageLiteral(resourceName: "bb8"))
-        let nameLabel = UILabel(frame: CGRect.zero)
-        let genderLabel = UILabel(frame: CGRect.zero)
-        let heightLabel = UILabel(frame: CGRect.zero)
-        let homeworldLabel = UILabel(frame: CGRect.zero)
+        // Views
+        initializeSubviews()
+        enableAutolayoutForSubviews()
+        setupBackgroundImageView()
+        addSubviewsToView()
+        setupScrollView()
+        setLabelFonts()
         
+        // Constraints
+        initializeDynamicViewConstraints()
+        updateDynamicViewConstraints()
+        activateStaticViewConstraints()
+        
+    }
+    
+    /**
+     Initializes the subviews
+     */
+    private func initializeSubviews() {
+        scrollView = UIScrollView()
+        personImageView = UIImageView(image: #imageLiteral(resourceName: "bb8"))
+        nameLabel = UILabel()
+        genderLabel = UILabel()
+        heightLabel = UILabel()
+        homeworldLabel = UILabel()
+        backgroundImageView = UIImageView()
+    }
+    
+    /**
+     Enables autolayout support for the subviews
+     */
+    private func enableAutolayoutForSubviews() {
         personImageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         genderLabel.translatesAutoresizingMaskIntoConstraints = false
         heightLabel.translatesAutoresizingMaskIntoConstraints = false
         homeworldLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    /**
+     Sets up the background image view.
+     */
+    private func setupBackgroundImageView() {
+        scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        backgroundImageView.image = UIImage(named: R.string.localizable.backGroundImageName())
+    }
+    
+    /**
+     Adds the subviews to the view.
+     */
+    private func addSubviewsToView() {
+        view = scrollView
         view.addSubview(personImageView)
         view.addSubview(nameLabel)
         view.addSubview(genderLabel)
         view.addSubview(heightLabel)
         view.addSubview(homeworldLabel)
-        
-        // Image
-        NSLayoutConstraint.activate([
-            personImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            personImageView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 180),
-            personImageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -50),
-            // Conflicting constraints
-            //personImageView.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 50),
-            //personImageView.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 50)
-        ])
-        
-        // Name
-        NSLayoutConstraint.activate([
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameLabel.bottomAnchor.constraint(equalTo: genderLabel.topAnchor, constant: -32)
-        ])
-        
-        // Gender
-        NSLayoutConstraint.activate([
-            genderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            genderLabel.bottomAnchor.constraint(equalTo: heightLabel.topAnchor, constant: -32)
-        ])
-        
-        // Height
-        NSLayoutConstraint.activate([
-            heightLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            heightLabel.bottomAnchor.constraint(equalTo: homeworldLabel.topAnchor, constant: -32)
-        ])
-        
-        // Homeworld
-        NSLayoutConstraint.activate([
-            homeworldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            homeworldLabel.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: -500)
-        ])
-        
-        self.personImageView = personImageView
-        self.nameLabel = nameLabel
-        self.genderLabel = genderLabel
-        self.heightLabel = heightLabel
-        self.homeworldLabel = homeworldLabel
+        view.addSubview(backgroundImageView)
+        view.sendSubviewToBack(backgroundImageView)
     }
     
     /**
-     Customize this viewController view
-        Sets the background image with all its properties
+     Sets up the scroll view properties (size, scrollable)
      */
-    private func customizeView() {
-        
-        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        
-        let image = UIImage(named: R.string.localizable.backGroundImageName())
-        
-        let imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = image
-
-        view.addSubview(imageView)
-        view.sendSubviewToBack(imageView)
-    }
-    
-    /**
-     Customizes the style, properties, positions and constraints of the viewController view subviews.
-     */
-    private func customizeSubviews() {
-        setLabelFonts()
+    private func setupScrollView() {
+        if UIDevice.current.orientation.isLandscape {
+            scrollView.contentSize = CGSize(width: view.frame.size.width, height: view.frame.size.height)
+        } else {
+            scrollView.contentSize = CGSize(width: view.frame.size.height, height: view.frame.size.width)
+        }
+        scrollView.isScrollEnabled = true
     }
     
     /**
@@ -152,6 +157,74 @@ class PersonViewController: UIViewController, DetailViewControllerProtocol {
         genderLabel.setFontStyleFor(.label)
         heightLabel.setFontStyleFor(.label)
         homeworldLabel.setFontStyleFor(.label)
+    }
+    
+    /**
+     Initializes the dynamic view constraints (Dynamic on orientation changes).
+     */
+    private func initializeDynamicViewConstraints() {
+        portraitImageViewTopAnchorConstant = [
+            personImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            personImageView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor, constant: 180),
+            personImageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -50),
+        ]
+        landscapeImageViewTopAnchorConstant = [
+            personImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            personImageView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor, constant: 30),
+            personImageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -50),
+        ]
+    }
+    
+    /**
+     Updates the dynamic views according to the current orientation.
+     */
+    private func updateDynamicViewConstraints() {
+        
+        if UIDevice.current.orientation.isLandscape {
+            NSLayoutConstraint.activate(landscapeImageViewTopAnchorConstant)
+            NSLayoutConstraint.deactivate(portraitImageViewTopAnchorConstant)
+        } else {
+            NSLayoutConstraint.activate(portraitImageViewTopAnchorConstant)
+            NSLayoutConstraint.deactivate(landscapeImageViewTopAnchorConstant)
+        }
+        
+    }
+    
+    /**
+     Active the constraints for the static views.
+     */
+    private func activateStaticViewConstraints() {
+        // Name
+        NSLayoutConstraint.activate([
+            nameLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: genderLabel.topAnchor, constant: -32)
+        ])
+        
+        // Gender
+        NSLayoutConstraint.activate([
+            genderLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            genderLabel.bottomAnchor.constraint(equalTo: heightLabel.topAnchor, constant: -32)
+        ])
+        
+        // Height
+        NSLayoutConstraint.activate([
+            heightLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            heightLabel.bottomAnchor.constraint(equalTo: homeworldLabel.topAnchor, constant: -32)
+        ])
+        
+        // Homeworld
+        NSLayoutConstraint.activate([
+            homeworldLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            homeworldLabel.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: -30)
+        ])
+        
+        // Background image
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor),
+        ])
     }
     
     /**

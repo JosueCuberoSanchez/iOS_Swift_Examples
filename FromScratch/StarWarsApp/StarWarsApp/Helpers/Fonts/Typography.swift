@@ -17,15 +17,15 @@ extension Typography {
     
     var fontHeight: CGFloat  {
         switch self {
-        case .label:
-            return UIFont.labelFontSize
+            case .label:
+                return UIFont.labelFontSize
         }
     }
     
     var fontStyle: UIFont? {
         switch self {
-        case .label:
-            return R.font.starJediSpecialEdition(size: fontHeight)
+            case .label:
+                return R.font.starJediSpecialEdition(size: fontHeight)
         }
     }
     
@@ -34,8 +34,8 @@ extension Typography {
 extension UILabel {
 
     func setFontStyleFor(_ typography: Typography) {
-        self.font = typography.fontStyle
-        self.adjustsFontForContentSizeCategory = true
+        font = typography.fontStyle
+        adjustsFontForContentSizeCategory = true
     }
     
 }

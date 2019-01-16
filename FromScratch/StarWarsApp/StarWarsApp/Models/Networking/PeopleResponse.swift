@@ -21,4 +21,5 @@ struct PeopleResponse: Codable, PaginatedAPIResponseProtocol {
         case previous = "previous"
         case people = "results"
     }
+    
 }

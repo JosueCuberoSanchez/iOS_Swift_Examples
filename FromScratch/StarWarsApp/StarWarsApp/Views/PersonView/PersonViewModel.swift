@@ -14,14 +14,14 @@ class PersonViewModel {
     
     // Inputs
     var personDriver: Driver<Person>
-    var planetResponse: Observable<PlanetResponse>
+    private var planetResponse: Observable<PlanetResponse>
     
     // Outputs
     var personName: Driver<String>?
     var personHeight: Driver<String>?
     var personGender: Driver<String>?
     var personHomeworld: Driver<String>?
-    var personHomeworldURL =  BehaviorRelay<String>(value: "")
+    private var personHomeworldURL =  BehaviorRelay<String>(value: "")
         
     var disposeBag = DisposeBag()
     
@@ -32,13 +32,13 @@ class PersonViewModel {
         
         // Map homeworld driver
         personDriver.map{ $0.homeworld }.drive(personHomeworldURL).disposed(by: disposeBag) // Assign to personHomeworldURL the URL of the planet as a String
-        self.planetResponse = personHomeworldURL.flatMap{ request($0.resourceIndex , Resource.RequestType.nonParametrized) } // Get a planetResponse
+        planetResponse = personHomeworldURL.flatMap{ request($0.resourceIndex , Resource.RequestType.nonParametrized) } // Get a planetResponse
         
         // Map each Driver to the corresponding person attribute
-        self.personName = personDriver.map{ $0.name }
-        self.personGender = personDriver.map{ $0.gender.rawValue }
-        self.personHeight = personDriver.map{ $0.height }
-        self.personHomeworld = planetResponse.map{ $0.name }.asDriver(onErrorJustReturn: "")
+        personName = personDriver.map{ $0.name }
+        personGender = personDriver.map{ $0.gender.rawValue }
+        personHeight = personDriver.map{ $0.height }
+        personHomeworld = planetResponse.map{ $0.name }.asDriver(onErrorJustReturn: "Undefined")
     }
 
 }
@@ -46,9 +46,7 @@ class PersonViewModel {
 extension String {
     
     var resourceIndex: Int {
-        let planet = self.dropLast()
-        let fileArray = planet.components(separatedBy: "/")
-        return Int(fileArray.last!)!
+        return Int(self.dropLast().components(separatedBy: "/").last!)!
     }
     
 }
