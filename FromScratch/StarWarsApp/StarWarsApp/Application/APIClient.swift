@@ -32,9 +32,9 @@ final class APIClient {
             let task = self.session.dataTask(with: request) { (data, response, error) in
                 do {
                     let model: T = try JSONDecoder().decode(T.self, from: data ?? Data())
-                    observer.onNext(.Success(model))
+                    observer.onNext(.success(model))
                 } catch let error as NSError {
-                    observer.onNext(.Failure(error))
+                    observer.onNext(.failure(error))
                 }
                 observer.onCompleted()
             }

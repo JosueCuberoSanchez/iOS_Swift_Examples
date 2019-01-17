@@ -9,17 +9,6 @@
 import Foundation
 
 enum Response<T> {
-    case Success(T)
-    case Failure(NSError)
-}
-
-extension Response {
-    func unwrap() throws -> T {
-        switch self {
-            case .Success(let value):
-                return value
-            case .Failure(let error):
-                throw error
-        }
-    }
+    case success(T)
+    case failure(NSError)
 }

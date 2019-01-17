@@ -24,10 +24,16 @@ class PeopleTableViewModel {
     init(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<Response<PeopleResponse>>) {
         
         let sharedRequest = pagination.flatMap{ request($0,Resource.RequestType.parametrized) }.share() // get the response
-        let response = sharedRequest.map{ $0 } // this returns Observable<Response<PeopleResponse>>
-        let peopleResponse = response.map{ $0 } // this returns PeopleResponse
+        let peopleResponse = sharedRequest.flatMap{ response -> Observable<PeopleResponse> in
+            switch response {
+            case .success(let peopleResponse):
+                return Observable.of(peopleResponse)
+            case .failure:
+                return Observable.empty()
+            }
+        }
         
-        peopleResponse.map { try $0.unwrap().people } // map people array to items relay
+        peopleResponse.map { $0.people } // map people array to items relay
             .withLatestFrom(itemsRelay) { $1 + $0 }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(itemsRelay)

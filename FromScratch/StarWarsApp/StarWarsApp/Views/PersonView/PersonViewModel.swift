@@ -30,23 +30,22 @@ class PersonViewModel {
         personDriver = Driver.of(person)
         
         // Map homeworld driver
-        
-        /*let sharedRequest = pagination.flatMap{ request($0,Resource.RequestType.parametrized) }.share() // get the response
-        let response = sharedRequest.map{ $0 } // this returns Observable<Response<PeopleResponse>>
-        let peopleResponse = response.map{ $0 } // this returns PeopleResponse
-        
-        peopleResponse.map { try $0.unwrap().people } // map people array to items relay*/
-        
         personDriver.map{ $0.homeworld }.drive(personHomeworldURL).disposed(by: disposeBag) // Assign to personHomeworldURL the URL of the planet as a String
-        let sharedRequest = personHomeworldURL.flatMap{ request($0.resourceIndex , Resource.RequestType.nonParametrized) }.share()
-        let response = sharedRequest.map{ $0 } // this returns Observable<Response<PlanetResponse>>
-        let planetResponse = response.map{ $0 } // this returns PeopleResponse
+        let sharedRequest = personHomeworldURL.flatMap{ request($0.resourceIndex , Resource.RequestType.nonParametrized) }.share() // Observable<Response<PlanetResponse>>
+        let planetResponse = sharedRequest.flatMap{ response -> Observable<PlanetResponse> in
+            switch response {
+            case .success(let planet):
+                return Observable.of(planet)
+            case .failure:
+                return Observable.empty()
+            }
+        }
         
         // Map each Driver to the corresponding person attribute
         personName = personDriver.map{ $0.name }
         personGender = personDriver.map{ $0.gender.rawValue }
         personHeight = personDriver.map{ $0.height }
-        personHomeworld = planetResponse.map{ try $0.unwrap().name }.asDriver(onErrorJustReturn: "Undefined")
+        personHomeworld = planetResponse.map{ $0.name }.asDriver(onErrorJustReturn: "Undefined")
     }
 
 }
