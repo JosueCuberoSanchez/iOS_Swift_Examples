@@ -80,6 +80,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, DetailViewCo
         addSubviewsToView()
         setupScrollView()
         setLabelFonts()
+        setSubviewsOpaqueness()
         
         // Constraints
         initializeDynamicViewConstraints()
@@ -157,6 +158,15 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, DetailViewCo
         genderLabel.setFontStyleFor(.label)
         heightLabel.setFontStyleFor(.label)
         homeworldLabel.setFontStyleFor(.label)
+    }
+    
+    /**
+     Sets the subviews opaqueness in order to increase drawing performamce.
+     */
+    private func setSubviewsOpaqueness() {
+        personImageView.isOpaque = true
+        backgroundImageView.isOpaque = true
+        // others are opaque by default
     }
     
     /**

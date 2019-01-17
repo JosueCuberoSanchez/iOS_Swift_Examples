@@ -99,7 +99,7 @@
 		CA752CA221F0CF1800B4C3F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetResponse.swift; sourceTree = "<group>"; };
 		CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedAPIResponseProtocol.swift; sourceTree = "<group>"; };
-		CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = StarJediSpecialEdition.ttf; path = "../../../../../../../../Downloads/boba-fonts_starjedi-special-edition/StarJediSpecialEdition.ttf"; sourceTree = "<group>"; };
+		CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarJediSpecialEdition.ttf; sourceTree = "<group>"; };
 		CAA828AE21EE79A900027BAD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAA828C221EE7D5400027BAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
