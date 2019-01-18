@@ -6,15 +6,6 @@
  Copyright © 2019 Josue. All rights reserved.
  */
 
-// Storyboard IDs
-"personViewControllerID" = "personViewController";
-
-// Table cell IDs
-"personCellID" = "PersonCell";
-
-// Segue IDs
-"seePersonDetailsSegueID" = "personViewController";
-
 // UI Messages
 "loadingMessage" = "Loading...";
 
@@ -23,7 +14,3 @@
 "genderLabel" = "Gender: ";
 "heightLabel" = "Height: ";
 "homeworldLabel" = "Homeworld: ";
-
-// Image names
-"backGroundImageName" = "backgroundImage";
-

@@ -12,6 +12,7 @@ import RxSwift
 final class APIClient {
     
     private let session: URLSession
+    private final let baseURL = "https://swapi.co/api/"
     
     init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
         session = URLSession(configuration: URLSessionConfiguration.default)
@@ -23,42 +24,79 @@ final class APIClient {
      - Parameter request: the URLRequest containing the url and the policy.
      - Returns: An observable of type T (ex: PeopleResponse)
      */
-    private func requestAPIResource<T: Codable>(_ resource: Resource) -> Observable<Response<T>> {
+    func requestAPIResource<T: Codable>(_ resource: ResourceProtocol) -> Observable<Response<T>> {
         
-        var finalResource = resource
-        let request = finalResource.buildRequest()
+        var request: URLRequest
+        do {
+            request = try buildRequest(resource)
+        } catch(let error) {
+            print(error)
+            return Observable.empty()
+        }
         
-        return Observable<Response<T>>.create { observer in
-            let task = self.session.dataTask(with: request) { (data, response, error) in
-                do {
-                    let model: T = try JSONDecoder().decode(T.self, from: data ?? Data())
-                    observer.onNext(.success(model))
-                } catch let error as NSError {
-                    observer.onNext(.failure(error))
+        
+        
+        return Observable<Response<T>>.create { [weak self] observer in
+            
+            let task = self?.session.dataTask(with: request) { (data, response, error) in
+                print(request.url)
+                if let error = error {
+                    observer.onNext(.failure(error as NSError))
+                } else {
+                    guard let data = data else {
+                        return
+                    }
+                    
+                    do {
+                        let model: T = try JSONDecoder().decode(T.self, from: data)
+                        observer.onNext(.success(model))
+                    } catch {
+                        observer.onNext(.failure(error as NSError))
+                    }
                 }
                 observer.onCompleted()
             }
             
-            task.resume()
+            task?.resume()
             
             return Disposables.create {
-                task.cancel()
+                task?.cancel()
             }
         }
     }
     
     /**
-     Gets an observable of the API response for the given resource.
+     Builds a URLRequest based on a baseURL, path and parameters.
      
-     - Returns: An observable of type PeopleResponse, received from requestAPIResource.
+     - Returns: The built URL request.
      */
-    func getResponse<T: Codable>(_ resource: Resource) -> (_ index: Int, _ requestType: Resource.RequestType) -> Observable<Response<T>> {
-        return { index, requestType in
-            var finalResource = resource
-            finalResource.resourceIndex = index
-            finalResource.requestType = requestType
-            return self.requestAPIResource(finalResource)
+    func buildRequest(_ resource: ResourceProtocol) throws -> URLRequest {
+        
+        guard let baseURL = URL(string: baseURL) else {
+            throw ApplicationError.invalidURL(url: self.baseURL)
         }
+        
+        guard var components = URLComponents(url: baseURL.appendingPathComponent(resource.fullResourcePath), resolvingAgainstBaseURL: false) else {
+            throw ApplicationError.invalidURL(url: self.baseURL+resource.fullResourcePath)
+        }
+        
+        let parameters = resource.parameters
+        if parameters != [:] {
+            components.queryItems = parameters.map {
+                URLQueryItem(name: String($0), value: String($1))
+            }
+        }
+        
+        guard let url = components.url else {
+            throw ApplicationError.invalidURLComponents
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = resource.method.rawValue
+        request.httpShouldHandleCookies = false
+        request.httpShouldUsePipelining = true
+        request.addValue("application/json", forHTTPHeaderField: "accept")
+        return request
     }
     
 }

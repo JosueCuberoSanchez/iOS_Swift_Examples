@@ -22,7 +22,7 @@ extension Typography {
         }
     }
     
-    var fontStyle: UIFont? {
+    var font: UIFont? {
         switch self {
             case .label:
                 return R.font.starJediSpecialEdition(size: fontHeight)
@@ -33,8 +33,8 @@ extension Typography {
 
 extension UILabel {
 
-    func setFontStyleFor(_ typography: Typography) {
-        font = typography.fontStyle
+    func setTypography(_ typography: Typography) {
+        font = typography.font
         adjustsFontForContentSizeCategory = true
     }
     

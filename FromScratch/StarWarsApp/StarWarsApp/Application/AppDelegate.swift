@@ -12,10 +12,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let apiClient = APIClient()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let apiClient = APIClient()
+        
+        if let tab = window?.rootViewController as? UITabBarController {
+            for child in tab.viewControllers ?? [] {
+                for nav in child.children {
+                    if let top = nav as? APIClientInyectionProtocol {
+                        top.setAPIClient(apiClient: apiClient)
+                    }
+                }
+            }
+        }
+        
         return true
     }
 

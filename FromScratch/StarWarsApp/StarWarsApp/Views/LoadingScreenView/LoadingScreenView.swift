@@ -10,8 +10,8 @@ import UIKit
 
 class LoadingScreenView: UIView {
     
-    var spinner: UIActivityIndicatorView!
-    var loadingLabel: UILabel!
+    var spinner = UIActivityIndicatorView()
+    var loadingLabel = UILabel()
     
     
     override init(frame: CGRect) {
@@ -20,72 +20,39 @@ class LoadingScreenView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError(ErrorsEnum.nsCoderInitError.rawValue)
+        fatalError(ErrorEnum.nsCoderInitError.rawValue)
     }
     
     /**
      Initialized and sets up all the required subviews.
      */
     private func setupView() {
-        initializeSubviews()
-        enableAutolayoutForSubviews()
-        customizeSubviews()
-        addSubviewsToView()
-        activateStaticViewConstraints()
-        showLoadingScreen()
-    }
-    
-    /**
-     Initializes the subviews
-     */
-    private func initializeSubviews() {
-        spinner = UIActivityIndicatorView()
-        loadingLabel = UILabel()
-    }
-    
-    /**
-     Enables autolayout support for the subviews
-     */
-    private func enableAutolayoutForSubviews() {
+        
         self.translatesAutoresizingMaskIntoConstraints = false
+        
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    /**
-     Adds the subviews to the view.
-     */
-    private func addSubviewsToView() {
         self.addSubview(spinner)
+        spinner.style = .gray
+
+        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(loadingLabel)
-    }
-    
-    /**
-     Customizes the subviews properties.
-     */
-    private func customizeSubviews() {
         loadingLabel.textColor = .gray
         loadingLabel.textAlignment = .center
         loadingLabel.text = R.string.localizable.loadingMessage()
-        spinner.style = .gray
-    }
-    
-    /**
-     Active the constraints for the static views.
-     */
-    private func activateStaticViewConstraints() {
-        // Spinner
-        NSLayoutConstraint.activate([
-            spinner.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            spinner.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -10),
-            spinner.trailingAnchor.constraint(equalTo: loadingLabel.leadingAnchor, constant: -5)
-        ])
         
-        // Label
         NSLayoutConstraint.activate([
-            loadingLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            loadingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10)
+            spinner.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            spinner.topAnchor.constraint(equalTo: self.topAnchor),
+            spinner.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
+        NSLayoutConstraint.activate([
+            loadingLabel.leadingAnchor.constraint(equalTo: spinner.trailingAnchor, constant: 5),
+            loadingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            loadingLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            loadingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+
+        showLoadingScreen()
     }
     
     /**

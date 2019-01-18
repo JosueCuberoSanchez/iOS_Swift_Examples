@@ -12,18 +12,25 @@ import RxCocoa
 
 class PeopleTableViewModel {
     
-    // Pagination helpers
-    private var pagination = BehaviorRelay<Int>(value: 1)
-    var nextPageTrigger = BehaviorRelay<Void>(value: ())
-
-    var peopleList: Driver<[Person]>?
-    private var itemsRelay = BehaviorRelay<[Person]>(value: [])
-    
     private let disposeBag = DisposeBag()
     
-    init(request: @escaping (_ page: Int, _ requestType: Resource.RequestType) -> Observable<Response<PeopleResponse>>) {
+    // Pagination helpers
+    private var pagination = BehaviorRelay<Int>(value: 1)
+    private var activityIndicator = ActivityIndicator()
+    var nextPageTrigger = PublishSubject<Void>()
+    
+    private var itemsRelay = BehaviorRelay<[Person]>(value: [])
+    
+    // Outputs
+    let peopleList: Driver<[Person]>
+    
+    init(request: @escaping (_ page: Int) -> Observable<Response<PeopleResponse>>) {
         
-        let sharedRequest = pagination.flatMap{ request($0,Resource.RequestType.parametrized) }.share() // get the response
+        peopleList = itemsRelay.asDriver()
+        
+        // cuando este request comienza es por que el trigger lo dejo pasar por estar en F, entonces el track cambia el AI de F a V, para no dejar pasar a nadie mas.
+        let sharedRequest = pagination.flatMap{ [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
+        // cuando este request termina, el track activity se encargar de hacerle decrement al activity indicator, pasando de V a F
         let peopleResponse = sharedRequest.flatMap{ response -> Observable<PeopleResponse> in
             switch response {
             case .success(let peopleResponse):
@@ -41,13 +48,14 @@ class PeopleTableViewModel {
         
         // trigger for next page loads, triggers the first time because it has a value already.
         // next triggers are made by the view controller, and pagination changes (+1) making the shared request trigger the next page load.
-        nextPageTrigger.skip(1)
+        nextPageTrigger
+            .withLatestFrom(activityIndicator)
+            .filter { !$0 }
             .withLatestFrom(pagination) { $1 + 1 }
+            .filter { $0 < 10 }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(pagination)
             .disposed(by: disposeBag)
-        
-        peopleList = itemsRelay.asDriver()
         
     }
     
