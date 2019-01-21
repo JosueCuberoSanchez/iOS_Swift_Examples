@@ -9,11 +9,9 @@
 import Foundation
 
 struct Starship: Codable {
-    
     let passengers: Int
     let length: Double
     let name: String
     let manufacturer: String
     let starshipClass: String
-    
 }

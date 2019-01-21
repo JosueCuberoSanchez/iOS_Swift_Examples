@@ -1,0 +1,13 @@
+excluded: 
+  - Pods
+  - R.generated.swift
+  - StarWarsApp/Helpers/Reactive/ActivityIndicator.swift
+type_name:
+ excluded:
+  - T
+  - E
+  - t
+ min_length: 3 # only warning
+ max_length: # warning and error
+    warning: 60
+    error: 100

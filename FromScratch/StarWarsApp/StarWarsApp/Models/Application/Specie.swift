@@ -9,11 +9,9 @@
 import Foundation
 
 struct Specie: Codable {
-    
     let averageHeight: Int
     let language: String
     let homeworld: String
     let name: String
     let classification: String
-
 }

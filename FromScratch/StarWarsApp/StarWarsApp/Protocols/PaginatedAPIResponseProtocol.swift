@@ -12,9 +12,9 @@ import Foundation
  Protocol for the SWAPI paginated response model
  */
 protocol PaginatedAPIResponseProtocol: Codable {
-    
+
     var count: Int {get set}
     var next: String? {get set}
     var previous: String? {get set}
-    
+
 }

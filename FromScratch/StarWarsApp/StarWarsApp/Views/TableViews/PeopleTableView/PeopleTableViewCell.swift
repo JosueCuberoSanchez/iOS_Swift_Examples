@@ -9,8 +9,8 @@
 import UIKit
 
 class PeopleTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var personNameLabel: UILabel!
     @IBOutlet weak var personGenderLabel: UILabel!
-    
+
 }

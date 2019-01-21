@@ -9,7 +9,7 @@
 import Foundation
 
 struct Person: Codable {
-    
+
     enum Gender: String, Codable {
         case male = "male"
         case female = "female"
@@ -17,16 +17,17 @@ struct Person: Codable {
         case hermaphrodite = "hermaphrodite"
         case none = "none"
     }
-    
+
     let height: String
     let homeworld: String
     let name: String
     let gender: Gender
-    
+
 }
 
 extension Person: Equatable {
-    static func == (p1: Person, p2: Person) -> Bool {
-        return p1.gender == p2.gender && p1.height == p2.height && p1.homeworld == p2.homeworld && p1.name == p2.name
+    static func == (person1: Person, person2: Person) -> Bool {
+        return person1.gender == person2.gender && person1.height == person2.height &&
+            person1.homeworld == person2.homeworld && person1.name == person2.name
     }
 }

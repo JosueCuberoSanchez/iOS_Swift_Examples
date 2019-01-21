@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 struct UIConstants {
-    
+
     // Colors
-    static let EVEN_CELL_COLOR = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    static let ODD_CELL_COLOR = #colorLiteral(red: 0.9639316307, green: 0.9639316307, blue: 0.9639316307, alpha: 1)
-    
+    static let evenCellColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    static let oddCellColor = #colorLiteral(red: 0.9639316307, green: 0.9639316307, blue: 0.9639316307, alpha: 1)
+
 }

@@ -11,6 +11,6 @@ import Foundation
 protocol ResponseProtocol {
     associatedtype T
     func unwrapSuccess() throws -> T
-    func unwrapError()-> NSError?
+    func unwrapError() -> Error?
     var isSuccessful: Bool { get }
 }

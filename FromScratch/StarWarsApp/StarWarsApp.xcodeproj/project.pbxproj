@@ -479,6 +479,7 @@
 				CA12BA0521E39CA400DF6CC5 /* Frameworks */,
 				CA12BA0621E39CA400DF6CC5 /* Resources */,
 				CE5F7E7AC08C3F2AF3FE5572 /* [CP] Embed Pods Frameworks */,
+				CACC021F21F67247004A33C6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -652,6 +653,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsApp-StarWarsAppTests/Pods-StarWarsApp-StarWarsAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CACC021F21F67247004A33C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		CAF3A08321ECD39700B33AB5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

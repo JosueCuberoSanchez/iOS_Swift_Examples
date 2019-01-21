@@ -14,21 +14,21 @@ enum Typography {
 }
 
 extension Typography {
-    
-    var fontHeight: CGFloat  {
+
+    var fontHeight: CGFloat {
         switch self {
-            case .label:
-                return UIFont.labelFontSize
+        case .label:
+            return UIFont.labelFontSize
         }
     }
-    
+
     var font: UIFont? {
         switch self {
-            case .label:
+        case .label:
                 return R.font.starJediSpecialEdition(size: fontHeight)
         }
     }
-    
+
 }
 
 extension UILabel {
@@ -40,5 +40,5 @@ extension UILabel {
         font = typography.font
         adjustsFontForContentSizeCategory = true
     }
-    
+
 }

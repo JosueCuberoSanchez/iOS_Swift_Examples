@@ -9,27 +9,27 @@
 import Foundation
 
 struct PeopleAPI: ResourceProtocol {
-    
+
     init(_ index: Int) {
         self.index = index
     }
-    
+
     var path = "people/"
     var index: Int?
-    
+
     var fullResourcePath: String {
         return path
     }
-    
+
     var parameters: [String: String] {
         guard let index = index else {
             return [:]
         }
-        return ["page":String(index)]
+        return ["page": String(index)]
     }
-    
+
     var method: Method {
         return .GET
     }
-    
+
 }

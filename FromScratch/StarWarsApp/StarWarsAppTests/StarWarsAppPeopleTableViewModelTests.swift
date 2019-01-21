@@ -15,18 +15,18 @@ import RxCocoa
 @testable import StarWarsApp
 
 class StarWarsAppPeopleTableViewModelTests: XCTestCase {
-    
+
     private var peopleTableViewModel: PeopleTableViewModel!
-    
+
     private var peopleList: [Person]!
     private var peopleListAfertAnotherFetch: [Person]!
-    
+
     override func setUp() {
         super.setUp()
         mockupPeopleList()
         mockupPeopleTableViewModel()
     }
-    
+
     private func mockupPeopleList() {
         let person1 = Person(height: "1", homeworld: "1", name: "1", gender: Person.Gender.female)
         let person2 = Person(height: "2", homeworld: "2", name: "2", gender: Person.Gender.male)
@@ -41,7 +41,7 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
         peopleList = [person1, person2, person3, person4, person5, person6, person7, person8, person9, person10]
         peopleListAfertAnotherFetch = peopleList + peopleList
     }
-    
+
     private func mockPeopleResponse() -> (_ index: Int) -> Observable<Response<PeopleResponse>> {
         return { index in
             let peopleResponse = PeopleResponse(count: 0, next: "", previous: "", people: self.peopleList)
@@ -49,25 +49,26 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
             return Observable.of(response)
         }
     }
-    
+
     private func mockupPeopleTableViewModel() {
         peopleTableViewModel = PeopleTableViewModel(request: mockPeopleResponse())
     }
-    
+
     // Drivers
     func testPeopleListDriver() {
         //XCTAssertEqual(try! peopleTableViewModel.peopleList?.asObservable().toBlocking().first(), peopleList!)
     }
-    
+
     // Drivers
     func testPeopleListDriverAfterAnotherFetch() {
         //peopleTableViewModel.nextPageTrigger)
-        //XCTAssertEqual(try! peopleTableViewModel.peopleList?.asObservable().toBlocking().first(), peopleListAfertAnotherFetch)
+        //XCTAssertEqual(try! peopleTableViewModel.peopleList?.
+        //asObservable().toBlocking().first(), peopleListAfertAnotherFetch)
     }
-    
+
     override func tearDown() {
         peopleTableViewModel = nil
         super.tearDown()
     }
-    
+
 }

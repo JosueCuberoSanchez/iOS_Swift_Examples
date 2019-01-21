@@ -13,5 +13,6 @@ enum ApplicationError: Error {
     case invalidURLComponents
     case invalidRequest
     case server(message: String)
+    case badStatusCode(statusCode: Int)
     case decoding
 }

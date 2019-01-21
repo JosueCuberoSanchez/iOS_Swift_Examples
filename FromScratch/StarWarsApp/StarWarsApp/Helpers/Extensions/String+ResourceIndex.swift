@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    
+
     /**
      Gets the index of a url resource. Ex: https://swapi.com/planets/12 -> 12
      */
@@ -19,5 +19,5 @@ extension String {
         }
         return Int(index)
     }
-    
+
 }

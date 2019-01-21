@@ -9,27 +9,26 @@
 import UIKit
 
 class LoadingScreenView: UIView {
-    
+
     var spinner = UIActivityIndicatorView()
     var loadingLabel = UILabel()
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("NS Coder init fatal error.")
     }
-    
+
     /**
      Initialized and sets up all the required subviews.
      */
     private func setupView() {
-        
+
         self.translatesAutoresizingMaskIntoConstraints = false
-        
+
         spinner.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(spinner)
         spinner.style = .gray
@@ -39,22 +38,22 @@ class LoadingScreenView: UIView {
         loadingLabel.textColor = .gray
         loadingLabel.textAlignment = .center
         loadingLabel.text = R.string.localizable.loadingMessage()
-        
+
         NSLayoutConstraint.activate([
             spinner.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             spinner.topAnchor.constraint(equalTo: self.topAnchor),
-            spinner.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            spinner.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         NSLayoutConstraint.activate([
             loadingLabel.leadingAnchor.constraint(equalTo: spinner.trailingAnchor, constant: 5),
             loadingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             loadingLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            loadingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            loadingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
 
         showLoadingScreen()
     }
-    
+
     /**
      Hides the loading screen
      */
@@ -63,7 +62,7 @@ class LoadingScreenView: UIView {
         spinner.isHidden = true
         loadingLabel.isHidden = true
     }
-    
+
     /**
      Shows the loading screen
      */
@@ -72,5 +71,5 @@ class LoadingScreenView: UIView {
         spinner.isHidden = false
         loadingLabel.isHidden = false
     }
-    
+
 }

@@ -11,36 +11,40 @@ import RxSwift
 import RxCocoa
 
 class PeopleTableViewModel {
-    
+
     private let disposeBag = DisposeBag()
-    
+
     // Pagination helpers
     private var pagination = BehaviorRelay<Int>(value: 1)
     private var activityIndicator = ActivityIndicator()
     var nextPageTrigger = PublishSubject<Void>()
-    
+
     private var itemsRelay = BehaviorRelay<[Person]>(value: [])
-    
+
     // Outputs
     let peopleList: Driver<[Person]>
-    
+
     init(request: @escaping (_ page: Int) -> Observable<Response<PeopleResponse>>) {
-        
+
         peopleList = itemsRelay.asDriver()
-        
-        // cuando este request comienza es por que el trigger lo dejo pasar por estar en F, entonces el track cambia el AI de F a V, para no dejar pasar a nadie mas.
-        let sharedRequest = pagination.flatMap{ [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
-        // cuando este request termina, el track activity se encargar de hacerle decrement al activity indicator, pasando de V a F
+
+        /* cuando este request comienza es por que el trigger lo dejo pasar por estar en F, 
+        entonces el track cambia el AI de F a V, para no dejar pasar a nadie mas.*/
+        let sharedRequest =
+            pagination.flatMap { [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
+        /* cuando este request termina, el track activity se encargar de hacerle decrement 
+        al activity indicator, pasando de V a F*/
         let peopleResponse = sharedRequest.mapSuccess()
-        
+
         peopleResponse.map { $0.people } // map people array to items relay
             .withLatestFrom(itemsRelay) { $1 + $0 }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(itemsRelay)
             .disposed(by: disposeBag)
-        
-        // trigger for next page loads, triggers the first time because it has a value already.
-        // next triggers are made by the view controller, and pagination changes (+1) making the shared request trigger the next page load.
+
+        /* trigger for next page loads, triggers the first time because it has a value already.
+           next triggers are made by the view controller, and pagination changes (+1) making 
+            the shared request trigger the next page load.*/
         nextPageTrigger
             .withLatestFrom(activityIndicator)
             .filter { !$0 }
@@ -49,7 +53,7 @@ class PeopleTableViewModel {
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(pagination)
             .disposed(by: disposeBag)
-        
+
     }
-    
+
 }
