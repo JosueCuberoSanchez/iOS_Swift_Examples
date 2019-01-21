@@ -10,6 +10,9 @@ import Foundation
 
 extension String {
     
+    /**
+     Gets the index of a url resource. Ex: https://swapi.com/planets/12 -> 12
+     */
     var resourceIndex: Int? {
         guard let index = self.dropLast().components(separatedBy: "/").last else {
             return nil

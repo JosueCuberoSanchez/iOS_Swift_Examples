@@ -33,6 +33,9 @@ extension Typography {
 
 extension UILabel {
 
+    /**
+     Sets the typography for a given font type.
+     */
     func setTypography(_ typography: Typography) {
         font = typography.font
         adjustsFontForContentSizeCategory = true

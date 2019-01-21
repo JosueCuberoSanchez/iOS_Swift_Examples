@@ -30,14 +30,7 @@ class PersonViewModel {
         
         // Map homeworld driver
         let sharedRequest = personDriver.asObservable().flatMap{ request($0.homeworld.resourceIndex!) }.share() // Observable<Response<PlanetResponse>>
-        let planetResponse = sharedRequest.flatMap{ response -> Observable<PlanetResponse> in
-            switch response {
-            case .success(let planet):
-                return Observable.of(planet)
-            case .failure:
-                return Observable.empty()
-            }
-        }
+        let planetResponse = sharedRequest.mapSuccess()
         
         // Map each Driver to the corresponding person attribute
         personName = personDriver.map{ $0.name }

@@ -41,7 +41,7 @@ final class APIClient {
             let task = self?.session.dataTask(with: request) { (data, response, error) in
                 print(request.url)
                 if let error = error {
-                    observer.onNext(.failure(error as NSError))
+                    observer.onNext(.failure(ApplicationError.server(message: error.localizedDescription) as NSError))
                 } else {
                     guard let data = data else {
                         return
@@ -51,7 +51,7 @@ final class APIClient {
                         let model: T = try JSONDecoder().decode(T.self, from: data)
                         observer.onNext(.success(model))
                     } catch {
-                        observer.onNext(.failure(error as NSError))
+                        observer.onNext(.failure(ApplicationError.decoding as NSError))
                     }
                 }
                 observer.onCompleted()

@@ -15,10 +15,10 @@ enum Method: String {
 
 protocol ResourceProtocol {
     
-    // Resource variables
     var path: String { get set }
     var index: Int? { get set }
     var fullResourcePath: String { get }
     var method: Method { get }
     var parameters: [String: String] { get }
+    
 }

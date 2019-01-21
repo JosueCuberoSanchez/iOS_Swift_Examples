@@ -31,14 +31,7 @@ class PeopleTableViewModel {
         // cuando este request comienza es por que el trigger lo dejo pasar por estar en F, entonces el track cambia el AI de F a V, para no dejar pasar a nadie mas.
         let sharedRequest = pagination.flatMap{ [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
         // cuando este request termina, el track activity se encargar de hacerle decrement al activity indicator, pasando de V a F
-        let peopleResponse = sharedRequest.flatMap{ response -> Observable<PeopleResponse> in
-            switch response {
-            case .success(let peopleResponse):
-                return Observable.of(peopleResponse)
-            case .failure:
-                return Observable.empty()
-            }
-        }
+        let peopleResponse = sharedRequest.mapSuccess()
         
         peopleResponse.map { $0.people } // map people array to items relay
             .withLatestFrom(itemsRelay) { $1 + $0 }

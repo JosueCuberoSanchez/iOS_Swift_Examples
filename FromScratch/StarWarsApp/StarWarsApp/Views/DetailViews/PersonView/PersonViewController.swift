@@ -37,7 +37,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError(ErrorEnum.nsCoderInitError.rawValue)
+        fatalError("NS Coder init fatal error.")
     }
     
     override func viewDidLoad() {

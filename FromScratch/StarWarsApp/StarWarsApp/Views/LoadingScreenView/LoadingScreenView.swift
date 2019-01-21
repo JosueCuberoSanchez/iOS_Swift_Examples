@@ -20,7 +20,7 @@ class LoadingScreenView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError(ErrorEnum.nsCoderInitError.rawValue)
+        fatalError("NS Coder init fatal error.")
     }
     
     /**

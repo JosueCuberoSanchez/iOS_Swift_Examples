@@ -49,9 +49,9 @@
 		CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816CE21E4EB6700EB3D8D /* APIClient.swift */; };
 		CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */; };
 		CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */; };
+		CACC021E21F65481004A33C6 /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC021D21F65481004A33C6 /* ResponseProtocol.swift */; };
 		CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08421ECD66000B33AB5 /* R.generated.swift */; };
 		CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08621ECDEE700B33AB5 /* Typography.swift */; };
-		CAF3A08921ECDF7D00B33AB5 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08821ECDF7D00B33AB5 /* ErrorEnum.swift */; };
 		CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */; };
 		D049A06A4BD4198509CDA036 /* Pods_StarWarsApp_StarWarsAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09AA9FFE807ACC36EE7F6DE6 /* Pods_StarWarsApp_StarWarsAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -125,9 +125,9 @@
 		CAC816CE21E4EB6700EB3D8D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResponse.swift; sourceTree = "<group>"; };
 		CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
+		CACC021D21F65481004A33C6 /* ResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProtocol.swift; sourceTree = "<group>"; };
 		CAF3A08421ECD66000B33AB5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CAF3A08621ECDEE700B33AB5 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
-		CAF3A08821ECDF7D00B33AB5 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
 		CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		E9A8C9231DBE11944A6D021A /* Pods-StarWarsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWarsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarWarsAppTests/Pods-StarWarsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		F7F3992551FB35F2185195E5 /* Pods_StarWarsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWarsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -433,7 +433,6 @@
 		CAC816DC21E63A2D00EB3D8D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				CAF3A08821ECDF7D00B33AB5 /* ErrorEnum.swift */,
 				CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */,
 				CA752CB221F2252700B4C3F3 /* ApplicationError.swift */,
 			);
@@ -445,6 +444,7 @@
 			children = (
 				CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */,
 				CA752C8821EFCB7800B4C3F3 /* Response.swift */,
+				CACC021D21F65481004A33C6 /* ResponseProtocol.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -741,7 +741,6 @@
 				CA752CB121F21FA300B4C3F3 /* PlanetAPI.swift in Sources */,
 				CA752CB921F239C700B4C3F3 /* Reactive+ScrollViewBottomReached.swift in Sources */,
 				CA12BA3A21E3AC2000DF6CC5 /* SpeciesTableViewController.swift in Sources */,
-				CAF3A08921ECDF7D00B33AB5 /* ErrorEnum.swift in Sources */,
 				CA12BA3F21E3AC4F00DF6CC5 /* PersonViewModel.swift in Sources */,
 				CA12BA2E21E3AB1100DF6CC5 /* PeopleTableViewModel.swift in Sources */,
 				CAC816C921E41BD800EB3D8D /* ResourceProtocol.swift in Sources */,
@@ -763,6 +762,7 @@
 				CA12BA3021E3AB5500DF6CC5 /* PeopleTableViewController.swift in Sources */,
 				CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */,
 				CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */,
+				CACC021E21F65481004A33C6 /* ResponseProtocol.swift in Sources */,
 				CA12BA0C21E39CA400DF6CC5 /* AppDelegate.swift in Sources */,
 				CA12BA2721E3A77100DF6CC5 /* Starship.swift in Sources */,
 				CAC816C321E3FC9F00EB3D8D /* PeopleTableViewCell.swift in Sources */,
