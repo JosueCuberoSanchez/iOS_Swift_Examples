@@ -14,39 +14,48 @@ extension PersonViewController {
     override func loadView() {
         super.loadView()
         
+        // For the effect of only-landscape scroll I had to use frames, as constraints will always be updating and I don't want that.
         if UIDevice.current.orientation.isLandscape {
             scrollView.contentSize = CGSize(width: view.frame.size.width, height: view.frame.size.height)
         } else {
             scrollView.contentSize = CGSize(width: view.frame.size.height, height: view.frame.size.width)
         }
+        scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view = scrollView
         
-        personImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(personImageView)
-        
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.setTypography(.label)
-        view.addSubview(nameLabel)
-        
-        genderLabel.translatesAutoresizingMaskIntoConstraints = false
-        genderLabel.setTypography(.label)
-        view.addSubview(genderLabel)
-        
-        heightLabel.translatesAutoresizingMaskIntoConstraints = false
-        heightLabel.setTypography(.label)
-        view.addSubview(heightLabel)
-        
-        homeworldLabel.translatesAutoresizingMaskIntoConstraints = false
-        homeworldLabel.setTypography(.label)
-        view.addSubview(homeworldLabel)
-        
-        scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.clipsToBounds = true
         backgroundImageView.image = #imageLiteral(resourceName: "backgroundImage")
-        view.addSubview(backgroundImageView)
-        view.sendSubviewToBack(backgroundImageView)
+        scrollView.addSubview(backgroundImageView)
+        scrollView.sendSubviewToBack(backgroundImageView)
+        
+        // Background image
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+        
+        personImageView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(personImageView)
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.setTypography(.label)
+        scrollView.addSubview(nameLabel)
+        
+        genderLabel.translatesAutoresizingMaskIntoConstraints = false
+        genderLabel.setTypography(.label)
+        scrollView.addSubview(genderLabel)
+        
+        heightLabel.translatesAutoresizingMaskIntoConstraints = false
+        heightLabel.setTypography(.label)
+        scrollView.addSubview(heightLabel)
+        
+        homeworldLabel.translatesAutoresizingMaskIntoConstraints = false
+        homeworldLabel.setTypography(.label)
+        scrollView.addSubview(homeworldLabel)
         
         portraitImageViewTopAnchorConstraints = [
             personImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
@@ -54,7 +63,7 @@ extension PersonViewController {
         ]
         landscapeImageViewTopAnchorConstraints = [
             personImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            personImageView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor, constant: 30),
+            personImageView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor, constant: 50),
         ]
         
         updateDynamicViewConstraints()
@@ -63,32 +72,24 @@ extension PersonViewController {
         NSLayoutConstraint.activate([
             nameLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             nameLabel.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 50),
-            ])
+        ])
         
         // Gender
         NSLayoutConstraint.activate([
             genderLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             genderLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 32)
-            ])
+        ])
         
         // Height
         NSLayoutConstraint.activate([
             heightLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             heightLabel.topAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 32)
-            ])
+        ])
         
         // Homeworld
         NSLayoutConstraint.activate([
             homeworldLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             homeworldLabel.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 32)
-            ])
-        
-        // Background image
-        NSLayoutConstraint.activate([
-            backgroundImageView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
-            backgroundImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            backgroundImageView.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor),
         ])
         
     }
