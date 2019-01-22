@@ -20,7 +20,7 @@ class SpeciesTableViewController: UITableViewController {
     override func loadView() {
         super.loadView()
 
-        setupLoadingScreen()
+        setupLoadingScreen(loadingScreenView)
     }
 
     override func viewDidLoad() {
@@ -48,8 +48,8 @@ class SpeciesTableViewController: UITableViewController {
 
         speciesTableViewModel?.specieList
             // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "SpecieCell", cellType: SpeciesTableViewCell.self)) { [ weak self ] (row, element, cell) in
-                self?.customizeSpeciesCell(cell, row, element.name, element.classification)
+            .drive(tableView.rx.items(cellIdentifier: "SpecieCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
+                self?.customizeCell(cell, row, element.name, element.classification)
                 self?.loadingScreenView.hideLoadingScreen()
             }
             .disposed(by: disposeBag)

@@ -20,7 +20,7 @@ class PeopleTableViewController: UITableViewController {
     override func loadView() {
         super.loadView()
 
-        setupLoadingScreen()
+        setupLoadingScreen(loadingScreenView)
     }
 
     override func viewDidLoad() {
@@ -48,10 +48,10 @@ class PeopleTableViewController: UITableViewController {
 
         peopleTableViewModel?.peopleList
             // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "PersonCell", cellType: PeopleTableViewCell.self)) { [ weak self ] (row, element, cell) in
-                    self?.customizePersonCell(cell, row, element.name, element.gender.rawValue)
+            .drive(tableView.rx.items(cellIdentifier: "PersonCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
+                    self?.customizeCell(cell, row, element.name, element.gender.rawValue)
                     self?.loadingScreenView.hideLoadingScreen()
-                }
+            }
             .disposed(by: disposeBag)
 
         tableView.rx.modelSelected(Person.self).asDriver()

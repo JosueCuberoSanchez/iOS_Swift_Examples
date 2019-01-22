@@ -18,6 +18,7 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
 
     // Subviews
     var scrollView = UIScrollView()
+    var contentView = UIView()
     var starshipImageView = UIImageView(image: #imageLiteral(resourceName: "death-star-d"))
     var nameLabel = UILabel()
     var manufacturerLabel = UILabel()

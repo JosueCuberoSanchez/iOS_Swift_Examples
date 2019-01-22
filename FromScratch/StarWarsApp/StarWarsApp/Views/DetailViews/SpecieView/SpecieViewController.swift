@@ -18,6 +18,7 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
 
     // Subviews
     var scrollView = UIScrollView()
+    var contentView = UIView()
     var specieImageView = UIImageView(image: #imageLiteral(resourceName: "rebel-alliance"))
     var nameLabel = UILabel()
     var classificationLabel = UILabel()

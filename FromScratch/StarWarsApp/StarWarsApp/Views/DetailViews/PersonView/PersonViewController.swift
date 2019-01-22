@@ -18,6 +18,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
 
     // Subviews
     var scrollView = UIScrollView()
+    var contentView = UIView()
     var personImageView = UIImageView(image: #imageLiteral(resourceName: "bb8"))
     var nameLabel = UILabel()
     var genderLabel = UILabel()

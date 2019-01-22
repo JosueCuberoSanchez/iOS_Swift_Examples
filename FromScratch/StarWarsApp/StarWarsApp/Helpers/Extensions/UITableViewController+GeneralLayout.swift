@@ -1,20 +1,20 @@
 //
-//  PeopleTableViewController+Layout.swift
+//  UITableViewController+CustomCell.swift
 //  StarWarsApp
 //
-//  Created by Josue on 1/18/19.
+//  Created by Josue on 1/22/19.
 //  Copyright © 2019 Josue. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-extension StarshipsTableViewController {
+extension UITableViewController {
 
     /**
      Sets up the loading screen.
      */
-    func setupLoadingScreen() {
+    func setupLoadingScreen(_ loadingScreenView: LoadingScreenView) {
 
         view.addSubview(loadingScreenView)
 
@@ -29,11 +29,10 @@ extension StarshipsTableViewController {
      Customize each PersonCell with the corresponding data and style
      - Parameter cell: The cell that will be modified
      - Parameter row: The cell row number
-     - Parameter starshipName: The starship name that will go on the cell starshipNameLabel
-     - Parameter starshipManufacturer: The starship manufacturer that will go on the cell starshipManufacturerLabel
+     - Parameter name: The name that will go on the nameLabel
+     - Parameter detail: The detail that will go on the detailLabel
      */
-    func customizeStarshipCell(_ cell: StarshipsTableViewCell, _ row: Int,
-                               _ starshipName: String, _ starshipManufacturer: String) {
+    func customizeCell(_ cell: TableViewCell, _ row: Int, _ name: String, _ detail: String) {
 
         if row % 2 == 0 {
             cell.backgroundColor = UIConstants.evenCellColor
@@ -42,8 +41,9 @@ extension StarshipsTableViewController {
         }
 
         cell.accessoryType = .disclosureIndicator
-        cell.starshipNameLabel.text = starshipName
-        cell.starshipManufacturerLabel.text = starshipManufacturer
+        cell.nameLabel.text = name
+        cell.detailLabel.text = detail
 
     }
+
 }

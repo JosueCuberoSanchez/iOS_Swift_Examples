@@ -20,7 +20,7 @@ class StarshipsTableViewController: UITableViewController {
     override func loadView() {
         super.loadView()
 
-        setupLoadingScreen()
+        setupLoadingScreen(loadingScreenView)
     }
 
     override func viewDidLoad() {
@@ -48,8 +48,8 @@ class StarshipsTableViewController: UITableViewController {
 
         starshipsTableViewModel?.starshipList
             // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "StarshipCell", cellType: StarshipsTableViewCell.self)) { [ weak self ] (row, element, cell) in
-                self?.customizeStarshipCell(cell, row, element.name, element.manufacturer)
+            .drive(tableView.rx.items(cellIdentifier: "StarshipCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
+                self?.customizeCell(cell, row, element.name, element.manufacturer)
                 self?.loadingScreenView.hideLoadingScreen()
             }
             .disposed(by: disposeBag)
