@@ -24,27 +24,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpecieCell" id="mcb-iZ-aoG">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpecieCell" rowHeight="72" id="Xwq-MS-Hfo" customClass="SpeciesTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mcb-iZ-aoG" id="lBg-QR-XtA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xwq-MS-Hfo" id="Pwa-cG-jkW">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Species" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72L-ZW-CpQ">
-                                            <rect key="frame" x="16" y="11" width="343" height="22"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Specie name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBI-7r-e4Z">
+                                            <rect key="frame" x="93" y="11" width="119" height="17"/>
+                                            <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specie classification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S61-mK-x3F">
+                                            <rect key="frame" x="93" y="36" width="162" height="21"/>
+                                            <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r2d2" translatesAutoresizingMaskIntoConstraints="NO" id="hTb-rg-LkG">
+                                            <rect key="frame" x="16" y="9" width="61" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="61" id="Wut-Ue-6hB"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="72L-ZW-CpQ" firstAttribute="leading" secondItem="lBg-QR-XtA" secondAttribute="leadingMargin" id="Uqd-0x-ZWI"/>
-                                        <constraint firstItem="72L-ZW-CpQ" firstAttribute="top" secondItem="lBg-QR-XtA" secondAttribute="topMargin" id="rV3-Pj-P4c"/>
-                                        <constraint firstItem="72L-ZW-CpQ" firstAttribute="bottom" secondItem="lBg-QR-XtA" secondAttribute="bottomMargin" id="rwN-D0-P1z"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="72L-ZW-CpQ" secondAttribute="trailing" id="xO1-dF-Gf2"/>
+                                        <constraint firstItem="S61-mK-x3F" firstAttribute="leading" secondItem="hTb-rg-LkG" secondAttribute="trailing" constant="16" id="4fN-WH-XHA"/>
+                                        <constraint firstItem="hTb-rg-LkG" firstAttribute="leading" secondItem="Pwa-cG-jkW" secondAttribute="leadingMargin" id="4fy-vZ-hbX"/>
+                                        <constraint firstItem="vBI-7r-e4Z" firstAttribute="top" secondItem="Pwa-cG-jkW" secondAttribute="topMargin" id="5vj-Dl-H1C"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vBI-7r-e4Z" secondAttribute="trailing" constant="20" symbolic="YES" id="FhU-Gl-GqJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="S61-mK-x3F" secondAttribute="bottom" constant="4" id="GuL-sQ-SbM"/>
+                                        <constraint firstItem="vBI-7r-e4Z" firstAttribute="leading" secondItem="hTb-rg-LkG" secondAttribute="trailing" constant="16" id="Hje-Le-zIs"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S61-mK-x3F" secondAttribute="trailing" constant="20" symbolic="YES" id="KSQ-3g-xVb"/>
+                                        <constraint firstItem="hTb-rg-LkG" firstAttribute="bottom" secondItem="Pwa-cG-jkW" secondAttribute="bottomMargin" id="RDs-8n-j8c"/>
+                                        <constraint firstItem="hTb-rg-LkG" firstAttribute="top" secondItem="Pwa-cG-jkW" secondAttribute="top" constant="9" id="cJz-me-6Ja"/>
+                                        <constraint firstItem="S61-mK-x3F" firstAttribute="top" secondItem="vBI-7r-e4Z" secondAttribute="bottom" constant="8" id="q7h-gF-hdr"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="specieClassificationLabel" destination="S61-mK-x3F" id="39a-hU-zrO"/>
+                                    <outlet property="specieNameLabel" destination="vBI-7r-e4Z" id="4vv-Xu-EAr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -184,27 +206,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StarshipCell" id="cox-9a-ttU">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StarshipCell" rowHeight="72" id="bPD-jt-UYJ" customClass="StarshipsTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cox-9a-ttU" id="o1d-HT-A68">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPD-jt-UYJ" id="gu9-iz-7fp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starships" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTS-hD-SWd">
-                                            <rect key="frame" x="16" y="11" width="343" height="22"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Starship name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Q-hh-b5a">
+                                            <rect key="frame" x="93" y="11" width="142" height="17"/>
+                                            <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starship manufacturer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAV-tt-45Q">
+                                            <rect key="frame" x="93" y="36" width="183" height="21"/>
+                                            <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starship" translatesAutoresizingMaskIntoConstraints="NO" id="rD2-3M-c4i">
+                                            <rect key="frame" x="16" y="9" width="61" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="61" id="oJZ-oq-3u4"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="ZTS-hD-SWd" secondAttribute="trailing" id="8X4-FD-jmU"/>
-                                        <constraint firstItem="ZTS-hD-SWd" firstAttribute="bottom" secondItem="o1d-HT-A68" secondAttribute="bottomMargin" id="MBl-9A-sbu"/>
-                                        <constraint firstItem="ZTS-hD-SWd" firstAttribute="leading" secondItem="o1d-HT-A68" secondAttribute="leadingMargin" id="XFq-0d-3ii"/>
-                                        <constraint firstItem="ZTS-hD-SWd" firstAttribute="top" secondItem="o1d-HT-A68" secondAttribute="topMargin" id="yAn-yc-2k5"/>
+                                        <constraint firstItem="rD2-3M-c4i" firstAttribute="leading" secondItem="gu9-iz-7fp" secondAttribute="leadingMargin" id="DWN-pT-Kha"/>
+                                        <constraint firstItem="l9Q-hh-b5a" firstAttribute="top" secondItem="gu9-iz-7fp" secondAttribute="topMargin" id="GLF-QG-16N"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dAV-tt-45Q" secondAttribute="bottom" constant="4" id="Imi-6K-13K"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dAV-tt-45Q" secondAttribute="trailing" constant="20" symbolic="YES" id="dRL-zX-8m1"/>
+                                        <constraint firstItem="dAV-tt-45Q" firstAttribute="leading" secondItem="rD2-3M-c4i" secondAttribute="trailing" constant="16" id="hXS-hq-LTi"/>
+                                        <constraint firstItem="dAV-tt-45Q" firstAttribute="top" secondItem="l9Q-hh-b5a" secondAttribute="bottom" constant="8" id="m0C-94-TWN"/>
+                                        <constraint firstItem="rD2-3M-c4i" firstAttribute="top" secondItem="gu9-iz-7fp" secondAttribute="top" constant="9" id="n3g-Xc-oOr"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l9Q-hh-b5a" secondAttribute="trailing" constant="20" symbolic="YES" id="q03-pT-TWk"/>
+                                        <constraint firstItem="l9Q-hh-b5a" firstAttribute="leading" secondItem="rD2-3M-c4i" secondAttribute="trailing" constant="16" id="sXy-MY-uFs"/>
+                                        <constraint firstItem="rD2-3M-c4i" firstAttribute="bottom" secondItem="gu9-iz-7fp" secondAttribute="bottomMargin" id="z4a-uh-B5z"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="starshipManufacturerLabel" destination="dAV-tt-45Q" id="gkM-dG-BTr"/>
+                                    <outlet property="starshipNameLabel" destination="l9Q-hh-b5a" id="eij-qa-dQY"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -308,5 +352,6 @@
         <image name="death-star" width="24" height="24"/>
         <image name="millennium-falcon" width="24" height="24"/>
         <image name="r2d2" width="48" height="48"/>
+        <image name="starship" width="48" height="48"/>
     </resources>
 </document>

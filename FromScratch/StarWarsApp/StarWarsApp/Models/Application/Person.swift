@@ -27,7 +27,8 @@ struct Person: Codable {
 
 extension Person: Equatable {
     static func == (person1: Person, person2: Person) -> Bool {
-        return person1.gender == person2.gender && person1.height == person2.height &&
+        return
+            person1.gender == person2.gender && person1.height == person2.height &&
             person1.homeworld == person2.homeworld && person1.name == person2.name
     }
 }

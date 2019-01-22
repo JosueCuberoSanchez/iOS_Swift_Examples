@@ -17,7 +17,7 @@ class PeopleTableViewModel {
     // Pagination helpers
     private var pagination = BehaviorRelay<Int>(value: 1)
     private var activityIndicator = ActivityIndicator()
-    var nextPageTrigger = PublishSubject<Void>()
+    var nextPageTrigger = PublishRelay<Void>()
 
     private var itemsRelay = BehaviorRelay<[Person]>(value: [])
 

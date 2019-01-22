@@ -9,8 +9,8 @@
 import Foundation
 
 protocol ResponseProtocol {
-    associatedtype T
-    func unwrapSuccess() throws -> T
+    associatedtype Value
+    func unwrapSuccess() throws -> Value
     func unwrapError() -> Error?
     var isSuccessful: Bool { get }
 }

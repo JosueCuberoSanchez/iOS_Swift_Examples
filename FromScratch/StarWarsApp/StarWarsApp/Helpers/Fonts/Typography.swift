@@ -25,7 +25,7 @@ extension Typography {
     var font: UIFont? {
         switch self {
         case .label:
-                return R.font.starJediSpecialEdition(size: fontHeight)
+            return R.font.starJediSpecialEdition(size: fontHeight)
         }
     }
 

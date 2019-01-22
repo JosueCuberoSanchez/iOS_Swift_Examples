@@ -50,6 +50,10 @@
 		CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */; };
 		CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */; };
 		CACC021E21F65481004A33C6 /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC021D21F65481004A33C6 /* ResponseProtocol.swift */; };
+		CACC022121F759C9004A33C6 /* StarshipsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022021F759C9004A33C6 /* StarshipsResponse.swift */; };
+		CACC022321F759E8004A33C6 /* SpeciesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022221F759E8004A33C6 /* SpeciesResponse.swift */; };
+		CACC022521F75BCF004A33C6 /* StarshipsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022421F75BCF004A33C6 /* StarshipsTableViewCell.swift */; };
+		CACC022721F75CFA004A33C6 /* SpeciesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022621F75CFA004A33C6 /* SpeciesTableViewCell.swift */; };
 		CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08421ECD66000B33AB5 /* R.generated.swift */; };
 		CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08621ECDEE700B33AB5 /* Typography.swift */; };
 		CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */; };
@@ -126,6 +130,10 @@
 		CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResponse.swift; sourceTree = "<group>"; };
 		CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
 		CACC021D21F65481004A33C6 /* ResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProtocol.swift; sourceTree = "<group>"; };
+		CACC022021F759C9004A33C6 /* StarshipsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsResponse.swift; sourceTree = "<group>"; };
+		CACC022221F759E8004A33C6 /* SpeciesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesResponse.swift; sourceTree = "<group>"; };
+		CACC022421F75BCF004A33C6 /* StarshipsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsTableViewCell.swift; sourceTree = "<group>"; };
+		CACC022621F75CFA004A33C6 /* SpeciesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesTableViewCell.swift; sourceTree = "<group>"; };
 		CAF3A08421ECD66000B33AB5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CAF3A08621ECDEE700B33AB5 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
@@ -209,9 +217,7 @@
 		CA12BA0A21E39CA400DF6CC5 /* StarWarsApp */ = {
 			isa = PBXGroup;
 			children = (
-				CAC816E421E6454600EB3D8D /* Protocols */,
 				CAA828BE21EE7D1A00027BAD /* Resources */,
-				CA12BA2321E39DA600DF6CC5 /* Supporting files */,
 				CA12BA2221E39D9500DF6CC5 /* Helpers */,
 				CA12BA2121E39D8500DF6CC5 /* Application */,
 				CA12BA1E21E39D5C00DF6CC5 /* Views */,
@@ -247,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				CAC816CE21E4EB6700EB3D8D /* APIClient.swift */,
+				CA752CAC21F1322C00B4C3F3 /* APIClientInyectionProtocol.swift */,
 				CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -255,6 +262,7 @@
 		CA12BA2221E39D9500DF6CC5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CA12BA2321E39DA600DF6CC5 /* Supporting files */,
 				CA752CBA21F25AD900B4C3F3 /* Reactive */,
 				CA752CB721F2398700B4C3F3 /* Extensions */,
 				CAA3881B21E8F5D500332328 /* Fonts */,
@@ -289,6 +297,7 @@
 			children = (
 				CA12BA3221E3ABE400DF6CC5 /* StarshipsTableViewController.swift */,
 				CA12BA3421E3AC0100DF6CC5 /* StarshipsTableViewModel.swift */,
+				CACC022421F75BCF004A33C6 /* StarshipsTableViewCell.swift */,
 			);
 			path = StarshipsTableView;
 			sourceTree = "<group>";
@@ -298,6 +307,7 @@
 			children = (
 				CA12BA3721E3AC1600DF6CC5 /* SpeciesTableViewModel.swift */,
 				CA12BA3921E3AC2000DF6CC5 /* SpeciesTableViewController.swift */,
+				CACC022621F75CFA004A33C6 /* SpeciesTableViewCell.swift */,
 			);
 			path = SpeciesTableView;
 			sourceTree = "<group>";
@@ -426,6 +436,8 @@
 			children = (
 				CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */,
 				CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */,
+				CACC022021F759C9004A33C6 /* StarshipsResponse.swift */,
+				CACC022221F759E8004A33C6 /* SpeciesResponse.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -442,20 +454,12 @@
 		CAC816DF21E63B4500EB3D8D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */,
+				CACC021D21F65481004A33C6 /* ResponseProtocol.swift */,
 				CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */,
 				CA752C8821EFCB7800B4C3F3 /* Response.swift */,
-				CACC021D21F65481004A33C6 /* ResponseProtocol.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		CAC816E421E6454600EB3D8D /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */,
-				CA752CAC21F1322C00B4C3F3 /* APIClientInyectionProtocol.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		CAC816E721E67D2800EB3D8D /* LoadingScreenView */ = {
@@ -630,7 +634,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsApp-StarWarsAppTests/Pods-StarWarsApp-StarWarsAppTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-StarWarsApp-StarWarsAppTests/Pods-StarWarsApp-StarWarsAppTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -651,7 +655,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsApp-StarWarsAppTests/Pods-StarWarsApp-StarWarsAppTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StarWarsApp-StarWarsAppTests/Pods-StarWarsApp-StarWarsAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CACC021F21F67247004A33C6 /* ShellScript */ = {
@@ -698,7 +702,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsApp/Pods-StarWarsApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-StarWarsApp/Pods-StarWarsApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -715,7 +719,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StarWarsApp/Pods-StarWarsApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StarWarsApp/Pods-StarWarsApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D4FF33E656023893D631F60D /* [CP] Check Pods Manifest.lock */ = {
@@ -751,12 +755,14 @@
 				CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */,
 				CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */,
 				CA752CAD21F1322D00B4C3F3 /* APIClientInyectionProtocol.swift in Sources */,
+				CACC022321F759E8004A33C6 /* SpeciesResponse.swift in Sources */,
 				CA12BA3521E3AC0100DF6CC5 /* StarshipsTableViewModel.swift in Sources */,
 				CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */,
 				CA752CC421F285ED00B4C3F3 /* PeopleTableViewController+Layout.swift in Sources */,
 				CA12BA2921E3A8AB00DF6CC5 /* Specie.swift in Sources */,
 				CA12BA2521E3A4A400DF6CC5 /* Person.swift in Sources */,
 				CA752CB121F21FA300B4C3F3 /* PlanetAPI.swift in Sources */,
+				CACC022521F75BCF004A33C6 /* StarshipsTableViewCell.swift in Sources */,
 				CA752CB921F239C700B4C3F3 /* Reactive+ScrollViewBottomReached.swift in Sources */,
 				CA12BA3A21E3AC2000DF6CC5 /* SpeciesTableViewController.swift in Sources */,
 				CA12BA3F21E3AC4F00DF6CC5 /* PersonViewModel.swift in Sources */,
@@ -765,6 +771,7 @@
 				CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */,
 				CA752CBC21F25BC600B4C3F3 /* ActivityIndicator.swift in Sources */,
 				CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */,
+				CACC022121F759C9004A33C6 /* StarshipsResponse.swift in Sources */,
 				CA83D53E21E7FDE900EBC98C /* PlanetResponse.swift in Sources */,
 				CA752CC221F27F3C00B4C3F3 /* String+ResourceIndex.swift in Sources */,
 				CA12BA3821E3AC1600DF6CC5 /* SpeciesTableViewModel.swift in Sources */,
@@ -777,6 +784,7 @@
 				CA752CC621F286C500B4C3F3 /* PersonViewController+Layout.swift in Sources */,
 				CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */,
 				CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */,
+				CACC022721F75CFA004A33C6 /* SpeciesTableViewCell.swift in Sources */,
 				CA12BA3021E3AB5500DF6CC5 /* PeopleTableViewController.swift in Sources */,
 				CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */,
 				CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */,
@@ -958,6 +966,8 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(inherited)",
+					"$(SRCROOT)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.StarWarsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -978,6 +988,8 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"$(inherited)",
+					"$(SRCROOT)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.StarWarsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -998,6 +1010,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(SRCROOT)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.StarWarsAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1019,6 +1032,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(SRCROOT)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.StarWarsAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

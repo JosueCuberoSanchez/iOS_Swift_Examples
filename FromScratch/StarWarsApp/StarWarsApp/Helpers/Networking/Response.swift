@@ -9,8 +9,8 @@
 import Foundation
 import RxSwift
 
-enum Response<T> {
-    case success(T)
+enum Response<Value> {
+    case success(Value)
     case failure(Error)
 }
 
@@ -19,7 +19,7 @@ extension Response: ResponseProtocol {
     /**
      Gets the data from the Response, if it's an error throw it.
      */
-    func unwrapSuccess() throws -> T {
+    func unwrapSuccess() throws -> Value {
         switch self {
         case .success(let model):
             return model
@@ -59,7 +59,7 @@ extension ObservableType where E: ResponseProtocol {
     /**
      Gets the successful data from the response.
      */
-    func mapSuccess() -> Observable<E.T> {
+    func mapSuccess() -> Observable<E.Value> {
         return filter { $0.isSuccessful }.map { try $0.unwrapSuccess() }
     }
 

@@ -60,8 +60,8 @@ class PeopleTableViewController: UITableViewController {
                 self?.navigationController?.pushViewController(PersonViewController(model, (self?.apiClient)!), animated: true)
             }).disposed(by: disposeBag)
 
-        tableView.rx.reachedBottom.asDriver()
-            .drive(peopleTableViewModel.nextPageTrigger)
+        tableView.rx.reachedBottom
+            .bind(to: peopleTableViewModel.nextPageTrigger)
             .disposed(by: disposeBag)
 
     }
