@@ -11,6 +11,12 @@ import UIKit
 
 extension UIViewController {
 
+    /**
+     Sets up the detail view hierarchy.
+     - Parameter scrollView: The scroll view that will go inside the parent view.
+     - Parameter contentView: The content view that will go inside the scroll view.
+     - Parameter backgroundImageView: The image view that will go inside the scroll view.
+     */
     func setupViewHierarchy(_ scrollView: UIScrollView, _ contentView: UIView,
                             _ backgroundImageView: UIImageView) {
 

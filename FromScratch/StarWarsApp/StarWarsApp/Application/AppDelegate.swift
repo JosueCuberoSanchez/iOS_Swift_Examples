@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let tab = window?.rootViewController as? UITabBarController {
             for child in tab.viewControllers ?? [] {
                 for nav in child.children {
-                    if let top = nav as? APIClientInyectionProtocol {
+                    if let top = nav as? APIClientInjectionProtocol {
                         top.setAPIClient(apiClient: apiClient)
                     }
                 }

@@ -68,7 +68,7 @@ class PeopleTableViewController: UITableViewController {
 
 }
 
-extension PeopleTableViewController: APIClientInyectionProtocol {
+extension PeopleTableViewController: APIClientInjectionProtocol {
     func setAPIClient(apiClient: APIClient) {
         self.apiClient = apiClient
     }

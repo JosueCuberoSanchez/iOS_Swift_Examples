@@ -47,7 +47,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
     }
 
     /**
-     Bind the subviews data to the viewModel's behaviour relays.
+     Bind the subviews data to the viewModel's drivers.
      */
     private func setupBindings() {
         /// Name

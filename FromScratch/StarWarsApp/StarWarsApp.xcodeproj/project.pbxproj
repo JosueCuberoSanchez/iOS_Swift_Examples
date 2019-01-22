@@ -28,7 +28,7 @@
 		CA752C8921EFCB7800B4C3F3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752C8821EFCB7800B4C3F3 /* Response.swift */; };
 		CA752C9121F0C07F00B4C3F3 /* StarWarsAppPersonViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752C9021F0C07F00B4C3F3 /* StarWarsAppPersonViewModelTests.swift */; };
 		CA752CA921F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CA821F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift */; };
-		CA752CAD21F1322D00B4C3F3 /* APIClientInyectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAC21F1322C00B4C3F3 /* APIClientInyectionProtocol.swift */; };
+		CA752CAD21F1322D00B4C3F3 /* APIClientInjectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAC21F1322C00B4C3F3 /* APIClientInjectionProtocol.swift */; };
 		CA752CAF21F21EBF00B4C3F3 /* PeopleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAE21F21EBF00B4C3F3 /* PeopleAPI.swift */; };
 		CA752CB121F21FA300B4C3F3 /* PlanetAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB021F21FA300B4C3F3 /* PlanetAPI.swift */; };
 		CA752CB321F2252700B4C3F3 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB221F2252700B4C3F3 /* ApplicationError.swift */; };
@@ -115,7 +115,7 @@
 		CA752C9221F0C07F00B4C3F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA752C9E21F0CF1800B4C3F3 /* StarWarsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA752CA821F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppPeopleTableViewModelTests.swift; sourceTree = "<group>"; };
-		CA752CAC21F1322C00B4C3F3 /* APIClientInyectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientInyectionProtocol.swift; sourceTree = "<group>"; };
+		CA752CAC21F1322C00B4C3F3 /* APIClientInjectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientInjectionProtocol.swift; sourceTree = "<group>"; };
 		CA752CAE21F21EBF00B4C3F3 /* PeopleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleAPI.swift; sourceTree = "<group>"; };
 		CA752CB021F21FA300B4C3F3 /* PlanetAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetAPI.swift; sourceTree = "<group>"; };
 		CA752CB221F2252700B4C3F3 /* ApplicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				CAC816CE21E4EB6700EB3D8D /* APIClient.swift */,
-				CA752CAC21F1322C00B4C3F3 /* APIClientInyectionProtocol.swift */,
+				CA752CAC21F1322C00B4C3F3 /* APIClientInjectionProtocol.swift */,
 				CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -781,7 +781,7 @@
 				CA12BA3321E3ABE400DF6CC5 /* StarshipsTableViewController.swift in Sources */,
 				CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */,
 				CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */,
-				CA752CAD21F1322D00B4C3F3 /* APIClientInyectionProtocol.swift in Sources */,
+				CA752CAD21F1322D00B4C3F3 /* APIClientInjectionProtocol.swift in Sources */,
 				CAE2B55121F76F2E003E7043 /* StarshipViewController+Layout.swift in Sources */,
 				CACC022321F759E8004A33C6 /* SpeciesResponse.swift in Sources */,
 				CA12BA3521E3AC0100DF6CC5 /* StarshipsTableViewModel.swift in Sources */,

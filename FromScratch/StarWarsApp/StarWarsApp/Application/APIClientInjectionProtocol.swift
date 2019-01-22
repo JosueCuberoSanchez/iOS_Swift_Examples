@@ -8,6 +8,9 @@
 
 import Foundation
 
-protocol APIClientInyectionProtocol {
+/**
+  This protocol is for those classes that need the apiClient to be injected.
+ */
+protocol APIClientInjectionProtocol {
     func setAPIClient(apiClient: APIClient)
 }

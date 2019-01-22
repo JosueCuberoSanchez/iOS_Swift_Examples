@@ -42,7 +42,7 @@ class SpeciesTableViewController: UITableViewController {
     }
 
     /**
-     Sets up the table view data by binding itself to the ViewModel peopleList observable.
+     Sets up the table view data by binding itself to the ViewModel specieList observable.
      */
     private func setupTableViewBindings() {
 
@@ -68,7 +68,7 @@ class SpeciesTableViewController: UITableViewController {
 
 }
 
-extension SpeciesTableViewController: APIClientInyectionProtocol {
+extension SpeciesTableViewController: APIClientInjectionProtocol {
     func setAPIClient(apiClient: APIClient) {
         self.apiClient = apiClient
     }

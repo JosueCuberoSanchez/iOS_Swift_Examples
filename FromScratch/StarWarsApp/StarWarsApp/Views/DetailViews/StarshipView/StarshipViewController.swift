@@ -64,7 +64,7 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
             .bind(to: manufacturerLabel.rx.text)
             .disposed(by: disposeBag)
 
-        /// Lenght
+        /// Length
         starshipViewModel.starshipLength
             .asObservable()
             .map { String(format: "\(R.string.localizable.lengthLabel())%@ ft", $0) }
