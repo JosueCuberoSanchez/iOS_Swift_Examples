@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpecieCell" rowHeight="72" id="Xwq-MS-Hfo" customClass="SpeciesTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpecieCell" rowHeight="72" id="Xwq-MS-Hfo" customClass="SpeciesTableViewCell" customModule="StarWarsApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xwq-MS-Hfo" id="Pwa-cG-jkW">
@@ -43,7 +43,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r2d2" translatesAutoresizingMaskIntoConstraints="NO" id="hTb-rg-LkG">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vader" translatesAutoresizingMaskIntoConstraints="NO" id="hTb-rg-LkG">
                                             <rect key="frame" x="16" y="9" width="61" height="52"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="Wut-Ue-6hB"/>
@@ -206,7 +206,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StarshipCell" rowHeight="72" id="bPD-jt-UYJ" customClass="StarshipsTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StarshipCell" rowHeight="72" id="bPD-jt-UYJ" customClass="StarshipsTableViewCell" customModule="StarWarsApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPD-jt-UYJ" id="gu9-iz-7fp">
@@ -246,8 +246,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="starshipManufacturerLabel" destination="dAV-tt-45Q" id="gkM-dG-BTr"/>
-                                    <outlet property="starshipNameLabel" destination="l9Q-hh-b5a" id="eij-qa-dQY"/>
+                                    <outlet property="starshipManufacturerLabel" destination="dAV-tt-45Q" id="kcZ-sR-oNX"/>
+                                    <outlet property="starshipNameLabel" destination="l9Q-hh-b5a" id="PeO-Q9-rF6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -353,5 +353,6 @@
         <image name="millennium-falcon" width="24" height="24"/>
         <image name="r2d2" width="48" height="48"/>
         <image name="starship" width="48" height="48"/>
+        <image name="vader" width="48" height="48"/>
     </resources>
 </document>

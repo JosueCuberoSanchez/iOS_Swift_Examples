@@ -13,4 +13,13 @@
 "nameLabel" = "Name: ";
 "genderLabel" = "Gender: ";
 "heightLabel" = "Height: ";
+"averageHeightLabel" = "Average height: ";
+"lengthLabel" = "Length: ";
 "homeworldLabel" = "Homeworld: ";
+"manufacturerLabel" = "Manufacturer: ";
+"passengersLabel" = "Passengers: ";
+"classLabel" = "Class: ";
+"classificationLabel" = "Class: ";
+"languageLabel" = "Language ";
+
+

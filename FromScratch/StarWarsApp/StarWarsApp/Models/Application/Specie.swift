@@ -9,11 +9,21 @@
 import Foundation
 
 struct Specie: Codable {
-    let averageHeight: Int
+
+    let averageHeight: String
     let language: String
     let homeworld: String
     let name: String
     let classification: String
+
+    enum CodingKeys: String, CodingKey {
+        case averageHeight = "average_height"
+        case language = "language"
+        case homeworld = "homeworld"
+        case name = "name"
+        case classification = "classification"
+    }
+
 }
 
 extension Specie: Equatable {

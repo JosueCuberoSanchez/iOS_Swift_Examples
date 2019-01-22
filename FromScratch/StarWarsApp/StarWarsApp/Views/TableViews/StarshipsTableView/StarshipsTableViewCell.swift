@@ -11,6 +11,6 @@ import UIKit
 class StarshipsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var starshipNameLabel: UILabel!
-    @IBOutlet weak var starshipManufacturerLabel: UILabel!
 
+    @IBOutlet weak var starshipManufacturerLabel: UILabel!
 }

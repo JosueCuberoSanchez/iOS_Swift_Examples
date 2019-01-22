@@ -66,7 +66,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
         /// Height
         personViewModel.personHeight
             .asObservable()
-            .map { String(format: "\(R.string.localizable.heightLabel())%@", $0) }
+            .map { String(format: "\(R.string.localizable.heightLabel())%@ ft", $0) }
             .bind(to: heightLabel.rx.text)
             .disposed(by: disposeBag)
 

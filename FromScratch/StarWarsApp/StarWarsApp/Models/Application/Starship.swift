@@ -9,11 +9,21 @@
 import Foundation
 
 struct Starship: Codable {
-    let passengers: Int
-    let length: Double
+
+    let passengers: String
+    let length: String
     let name: String
     let manufacturer: String
     let starshipClass: String
+
+    enum CodingKeys: String, CodingKey {
+        case passengers = "passengers"
+        case length = "length"
+        case name = "name"
+        case manufacturer = "manufacturer"
+        case starshipClass = "starship_class"
+    }
+
 }
 
 extension Starship: Equatable {

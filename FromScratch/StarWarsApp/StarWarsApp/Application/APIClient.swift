@@ -24,7 +24,7 @@ final class APIClient {
      - Parameter request: the URLRequest containing the url and the policy.
      - Returns: An observable of type T (ex: PeopleResponse)
      */
-    func requestAPIResource<T: Codable>(_ resource: ResourceProtocol) -> Observable<Response<T>> {
+    func requestAPIResource<Value: Codable>(_ resource: ResourceProtocol) -> Observable<Response<Value>> {
 
         var request: URLRequest
         do {
@@ -34,10 +34,10 @@ final class APIClient {
             return Observable.empty()
         }
 
-        return Observable<Response<T>>.create { [weak self] observer in
+        return Observable<Response<Value>>.create { [weak self] observer in
 
             let task = self?.session.dataTask(with: request) { (data, response, error) in
-
+                //print(request.url)
                 if let error = error {
                     observer.onNext(.failure(ApplicationError.server(message: error.localizedDescription)))
                 } else {
@@ -49,9 +49,10 @@ final class APIClient {
 
                     if 200 ... 299 ~= httpResponse.statusCode {
                         do {
-                            let model: T = try JSONDecoder().decode(T.self, from: data)
+                            let model: Value = try JSONDecoder().decode(Value.self, from: data)
                             observer.onNext(.success(model))
                         } catch {
+                            print(error)
                             observer.onNext(.failure(ApplicationError.decoding))
                         }
                     } else {
