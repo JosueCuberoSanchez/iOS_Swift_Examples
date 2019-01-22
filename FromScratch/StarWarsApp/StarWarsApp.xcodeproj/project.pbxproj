@@ -63,7 +63,6 @@
 		CAE2B56621F7C334003E7043 /* UIViewController+GeneralStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B56521F7C334003E7043 /* UIViewController+GeneralStyles.swift */; };
 		CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08421ECD66000B33AB5 /* R.generated.swift */; };
 		CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08621ECDEE700B33AB5 /* Typography.swift */; };
-		CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,7 +149,6 @@
 		CAE2B56521F7C334003E7043 /* UIViewController+GeneralStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+GeneralStyles.swift"; sourceTree = "<group>"; };
 		CAF3A08421ECD66000B33AB5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CAF3A08621ECDEE700B33AB5 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
-		CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		E9A8C9231DBE11944A6D021A /* Pods-StarWarsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWarsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarWarsAppTests/Pods-StarWarsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		F7F3992551FB35F2185195E5 /* Pods_StarWarsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWarsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -464,7 +462,6 @@
 		CAC816DC21E63A2D00EB3D8D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				CAF3A08A21ECF32400B33AB5 /* UIConstants.swift */,
 				CA752CB221F2252700B4C3F3 /* ApplicationError.swift */,
 			);
 			path = Constants;
@@ -795,7 +792,6 @@
 				CA12BA3F21E3AC4F00DF6CC5 /* PersonViewModel.swift in Sources */,
 				CA12BA2E21E3AB1100DF6CC5 /* PeopleTableViewModel.swift in Sources */,
 				CAC816C921E41BD800EB3D8D /* ResourceProtocol.swift in Sources */,
-				CAF3A08B21ECF32400B33AB5 /* UIConstants.swift in Sources */,
 				CA752CBC21F25BC600B4C3F3 /* ActivityIndicator.swift in Sources */,
 				CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */,
 				CACC022121F759C9004A33C6 /* StarshipsResponse.swift in Sources */,

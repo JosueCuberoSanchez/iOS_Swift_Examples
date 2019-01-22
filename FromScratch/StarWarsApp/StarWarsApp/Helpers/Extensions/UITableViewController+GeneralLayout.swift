@@ -35,9 +35,9 @@ extension UITableViewController {
     func customizeCell(_ cell: TableViewCell, _ row: Int, _ name: String, _ detail: String) {
 
         if row % 2 == 0 {
-            cell.backgroundColor = UIConstants.evenCellColor
+            cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         } else {
-            cell.backgroundColor = UIConstants.oddCellColor
+            cell.backgroundColor = #colorLiteral(red: 0.9639316307, green: 0.9639316307, blue: 0.9639316307, alpha: 1)
         }
 
         cell.accessoryType = .disclosureIndicator

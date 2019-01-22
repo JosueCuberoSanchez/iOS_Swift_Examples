@@ -32,7 +32,7 @@ class StarshipsTableViewModel {
             pagination.flatMap { [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
         let starshipsResponse = sharedRequest.mapSuccess()
 
-        starshipsResponse.map { $0.starships } 
+        starshipsResponse.map { $0.starships }
             .withLatestFrom(itemsRelay) { $1 + $0 }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(itemsRelay)
