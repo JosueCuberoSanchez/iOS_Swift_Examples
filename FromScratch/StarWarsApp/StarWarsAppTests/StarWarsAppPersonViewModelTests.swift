@@ -32,7 +32,7 @@ class StarWarsAppPersonViewModelTests: XCTestCase {
     }
 
     private func mockPlanetResponse() -> (_ index: Int) -> Observable<Response<PlanetResponse>> {
-        return { index in
+        return { _ in
             let planetResponse =
                 PlanetResponse(population: "", gravity: "", diameter: "", rotationPeriod: "",
                                orbitalPeriod: "", name: self.personHomeworld, climate: "",
@@ -49,36 +49,31 @@ class StarWarsAppPersonViewModelTests: XCTestCase {
 
     // Drivers
     func testPersonNameDriver() {
-        //XCTAssertEqual(try! personViewModel.personName.asObservable().toBlocking().first(), personName)
+        XCTAssertEqual(try personViewModel.personName.asObservable().toBlocking().first(), personName)
     }
 
     func testPersonHeightDriver() {
-        //XCTAssertEqual(try! personViewModel.personHeight.asObservable().toBlocking().first(), personHeight)
+        XCTAssertEqual(try personViewModel.personHeight.asObservable().toBlocking().first(), personHeight)
     }
 
     func testPersonHomeworldDriver() {
-        //XCTAssertEqual(try! personViewModel.personHomeworld.asObservable().toBlocking().first(), personHomeworld)
+        XCTAssertEqual(try personViewModel.personHomeworld.asObservable().toBlocking().first(), personHomeworld)
     }
 
     func testPersonGenderDriver() {
-        //XCTAssertEqual(try! personViewModel.personGender.asObservable().toBlocking().first(), 
-        //Person.Gender.male.rawValue)
-    }
-
-    // Extensions
-    func testPersonHomeworldURLResourceIndex() {
-        //XCTAssertEqual(try! personHomeworldURL.resourceIndex, personHomeworldURLResourceIndex)
+        XCTAssertEqual(try personViewModel.personGender.asObservable().toBlocking().first(),
+        Person.Gender.male.rawValue)
     }
 
     // The next test were just used to test the blocking observable basic operators
     func testFirst() {
-        //let observableToTest = Observable.of(10, 20, 30)
-        //XCTAssertEqual(try! observableToTest.toBlocking().first(), 10)
+        let observableToTest = Observable.of(10, 20, 30)
+        XCTAssertEqual(try observableToTest.toBlocking().first(), 10)
     }
 
     func testLast() {
-        //let observableToTest = Observable.of(10, 20, 30)
-        //XCTAssertEqual(try! observableToTest.toBlocking().last(), 30)
+        let observableToTest = Observable.of(10, 20, 30)
+        XCTAssertEqual(try observableToTest.toBlocking().last(), 30)
     }
 
     func testAsynchronousToArray() {
