@@ -30,8 +30,9 @@ class SpecieViewModel {
         specieDriver = Driver.of(specie)
 
         // Map homeworld driver
-        // Observable<Response<PlanetResponse>>
-        let sharedRequest = specieDriver.asObservable().flatMap { request($0.homeworld.resourceIndex!) }.share()
+        let sharedRequest =
+            specieDriver.asObservable().flatMap { request($0.homeworld?.resourceIndex! ?? 0) }.share()
+            // Droid specie has a null homeworld
         let planetResponse = sharedRequest.mapSuccess()
 
         // Map each Driver to the corresponding person attribute

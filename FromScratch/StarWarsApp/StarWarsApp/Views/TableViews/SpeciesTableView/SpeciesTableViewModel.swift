@@ -32,7 +32,7 @@ class SpeciesTableViewModel {
             pagination.flatMap { [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
         let specieResponse = sharedRequest.mapSuccess()
 
-        specieResponse.map { $0.species } 
+        specieResponse.map { $0.species }
             .withLatestFrom(itemsRelay) { $1 + $0 }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(itemsRelay)

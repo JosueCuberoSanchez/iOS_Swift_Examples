@@ -12,7 +12,7 @@ struct Specie: Codable {
 
     let averageHeight: String
     let language: String
-    let homeworld: String
+    let homeworld: String?
     let name: String
     let classification: String
 
