@@ -21,12 +21,21 @@ class PeopleTableViewModel {
 
     private var itemsRelay = BehaviorRelay<[Person]>(value: [])
 
+    let filterSource = BehaviorRelay<String>(value: "")
+
     // Outputs
     let peopleList: Driver<[Person]>
 
     init(request: @escaping (_ page: Int) -> Observable<Response<PeopleResponse>>) {
 
-        peopleList = itemsRelay.asDriver()
+        peopleList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
+            data.filter { person in
+                if filter == "" {
+                    return true
+                }
+                return person.name.lowercased().contains(filter.lowercased())
+            }
+        }
 
         /* cuando este request comienza es por que el trigger lo dejo pasar por estar en F, 
         entonces el track cambia el AI de F a V, para no dejar pasar a nadie mas.*/

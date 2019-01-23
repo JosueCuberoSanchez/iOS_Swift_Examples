@@ -20,6 +20,7 @@ class StarWarsAppspecieTableViewModelTests: XCTestCase {
 
     private var specieList: [Specie]!
     private var specieListAfertAnotherFetch: [Specie]!
+    private var specieListAfterFilter: [Specie]!
 
     override func setUp() {
         super.setUp()
@@ -36,7 +37,7 @@ class StarWarsAppspecieTableViewModelTests: XCTestCase {
                    name: "Yoda specie", classification: "Unown")
         let specie3 =
             Specie(averageHeight: "1", language: "Yodiano", homeworld: "Naboo",
-                   name: "Yoda specie", classification: "Unown")
+                   name: "Human", classification: "Unown")
         let specie4 =
             Specie(averageHeight: "1", language: "Yodiano", homeworld: "Naboo",
                    name: "Yoda specie", classification: "Unown")
@@ -45,7 +46,7 @@ class StarWarsAppspecieTableViewModelTests: XCTestCase {
                    name: "Yoda specie", classification: "Unown")
         let specie6 =
             Specie(averageHeight: "1", language: "Yodiano", homeworld: "Naboo",
-                   name: "Yoda specie", classification: "Unown")
+                   name: "Human", classification: "Unown")
         let specie7 =
             Specie(averageHeight: "1", language: "Yodiano", homeworld: "Naboo",
                    name: "Yoda specie", classification: "Unown")
@@ -60,6 +61,7 @@ class StarWarsAppspecieTableViewModelTests: XCTestCase {
                    name: "Yoda specie", classification: "Unown")
         specieList = [specie1, specie2, specie3, specie4, specie5, specie6, specie7, specie8, specie9, specie10]
         specieListAfertAnotherFetch = specieList + specieList
+        specieListAfterFilter = [specie3, specie6]
     }
 
     private func mockSpecieResponse() -> (_ index: Int) -> Observable<Response<SpeciesResponse>> {
@@ -79,11 +81,16 @@ class StarWarsAppspecieTableViewModelTests: XCTestCase {
         XCTAssertEqual(try specieTableViewModel.specieList.asObservable().toBlocking().first(), specieList!)
     }
 
-    // Drivers
     func testSpecieListDriverAfterAnotherFetch() {
         specieTableViewModel.nextPageTrigger.accept(())
         XCTAssertEqual(try
             specieTableViewModel.specieList.asObservable().toBlocking().first(), specieListAfertAnotherFetch)
+    }
+
+    func testSpecieListDriverAfterFilter() {
+        specieTableViewModel.filterSource.accept("MAN")
+        XCTAssertEqual(try
+            specieTableViewModel.specieList.asObservable().toBlocking().first(), specieListAfterFilter)
     }
 
     override func tearDown() {

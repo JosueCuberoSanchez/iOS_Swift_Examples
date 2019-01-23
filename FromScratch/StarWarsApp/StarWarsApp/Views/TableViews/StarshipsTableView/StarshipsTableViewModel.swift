@@ -21,12 +21,21 @@ class StarshipsTableViewModel {
 
     private var itemsRelay = BehaviorRelay<[Starship]>(value: [])
 
+    let filterSource = BehaviorRelay<String>(value: "")
+
     // Outputs
     let starshipList: Driver<[Starship]>
 
     init(request: @escaping (_ page: Int) -> Observable<Response<StarshipsResponse>>) {
 
-        starshipList = itemsRelay.asDriver()
+        starshipList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
+            data.filter { starship in
+                if filter == "" {
+                    return true
+                }
+                return starship.name.lowercased().contains(filter.lowercased())
+            }
+        }
 
         let sharedRequest =
             pagination.flatMap { [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()

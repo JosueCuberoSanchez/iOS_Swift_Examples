@@ -20,6 +20,7 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
 
     private var starshipList: [Starship]!
     private var starshipListAfertAnotherFetch: [Starship]!
+    private var starshipListAfterFilter: [Starship]!
 
     override func setUp() {
         super.setUp()
@@ -32,10 +33,10 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
             Starship(passengers: "1", length: "21", name: "Death Star",
                      manufacturer: "Some bad people", starshipClass: "Star")
         let starship2 =
-            Starship(passengers: "2", length: "22", name: "Death Star",
+            Starship(passengers: "2", length: "22", name: "Millenium Falcon",
                      manufacturer: "Some bad people", starshipClass: "Star")
         let starship3 =
-            Starship(passengers: "3", length: "23", name: "Death Star",
+            Starship(passengers: "3", length: "23", name: "Jay Jay the plane",
                      manufacturer: "Some bad people", starshipClass: "Star")
         let starship4 =
             Starship(passengers: "4", length: "24", name: "Death Star",
@@ -62,6 +63,7 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
             [starship1, starship2, starship3, starship4, starship5,
             starship6, starship7, starship8, starship9, starship10]
         starshipListAfertAnotherFetch = starshipList + starshipList
+        starshipListAfterFilter = [starship3]
     }
 
     private func mockStarshipsResponse() -> (_ index: Int) -> Observable<Response<StarshipsResponse>> {
@@ -77,15 +79,20 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
     }
 
     // Drivers
-    func testPeopleListDriver() {
+    func testStarshipListDriver() {
         XCTAssertEqual(try starshipsTableViewModel.starshipList.asObservable().toBlocking().first(), starshipList!)
     }
 
-    // Drivers
-    func testPeopleListDriverAfterAnotherFetch() {
+    func testStarshipListDriverAfterAnotherFetch() {
         starshipsTableViewModel.nextPageTrigger.accept(())
         XCTAssertEqual(try
             starshipsTableViewModel.starshipList.asObservable().toBlocking().first(), starshipListAfertAnotherFetch)
+    }
+
+    func testStarshipListDriverAfterFilter() {
+        starshipsTableViewModel.filterSource.accept("jay")
+        XCTAssertEqual(try
+            starshipsTableViewModel.starshipList.asObservable().toBlocking().first(), starshipListAfterFilter)
     }
 
     override func tearDown() {

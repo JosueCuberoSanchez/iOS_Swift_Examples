@@ -20,6 +20,7 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
 
     private var peopleList: [Person]!
     private var peopleListAfertAnotherFetch: [Person]!
+    private var peopleListAfterFilter: [Person]!
 
     override func setUp() {
         super.setUp()
@@ -40,6 +41,7 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
         let person10 = Person(height: "10", homeworld: "10", name: "10", gender: Person.Gender.female)
         peopleList = [person1, person2, person3, person4, person5, person6, person7, person8, person9, person10]
         peopleListAfertAnotherFetch = peopleList + peopleList
+        peopleListAfterFilter = [person1, person10]
     }
 
     private func mockPeopleResponse() -> (_ index: Int) -> Observable<Response<PeopleResponse>> {
@@ -59,11 +61,16 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
         XCTAssertEqual(try peopleTableViewModel.peopleList.asObservable().toBlocking().first(), peopleList!)
     }
 
-    // Drivers
     func testPeopleListDriverAfterAnotherFetch() {
         peopleTableViewModel.nextPageTrigger.accept(())
         XCTAssertEqual(try
             peopleTableViewModel.peopleList.asObservable().toBlocking().first(), peopleListAfertAnotherFetch)
+    }
+
+    func testPeopleListDriverAfterFilter() {
+        peopleTableViewModel.filterSource.accept("1")
+        XCTAssertEqual(try
+            peopleTableViewModel.peopleList.asObservable().toBlocking().first(), peopleListAfterFilter)
     }
 
     override func tearDown() {

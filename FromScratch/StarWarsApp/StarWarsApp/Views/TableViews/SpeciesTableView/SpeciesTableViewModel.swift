@@ -21,12 +21,21 @@ class SpeciesTableViewModel {
 
     private var itemsRelay = BehaviorRelay<[Specie]>(value: [])
 
+    let filterSource = BehaviorRelay<String>(value: "")
+
     // Outputs
     let specieList: Driver<[Specie]>
 
     init(request: @escaping (_ page: Int) -> Observable<Response<SpeciesResponse>>) {
 
-        specieList = itemsRelay.asDriver()
+        specieList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
+            data.filter { specie in
+                if filter == "" {
+                    return true
+                }
+                return specie.name.lowercased().contains(filter.lowercased())
+            }
+        }
 
         let sharedRequest =
             pagination.flatMap { [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()

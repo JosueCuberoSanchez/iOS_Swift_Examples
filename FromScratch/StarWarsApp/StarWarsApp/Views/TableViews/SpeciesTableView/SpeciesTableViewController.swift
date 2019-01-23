@@ -17,8 +17,6 @@ class SpeciesTableViewController: UITableViewController {
     private let disposeBag = DisposeBag()
     var loadingScreenView = LoadingScreenView()
 
-    // Searching helpers
-    let filterSource = BehaviorRelay<String>(value: "")
     @IBOutlet weak var searchBar: UISearchBar!
 
     override func loadView() {
@@ -50,14 +48,7 @@ class SpeciesTableViewController: UITableViewController {
      */
     private func setupTableViewBindings() {
 
-        Driver.combineLatest(speciesTableViewModel.specieList, filterSource.asDriver()) { data, filter in
-            data.filter { specie in
-                if filter == "" {
-                    return true
-                }
-                return specie.name.contains(filter)
-            }
-        }
+        speciesTableViewModel.specieList
             // swiftlint:disable:next line_length
             .drive(tableView.rx.items(cellIdentifier: "SpecieCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
                 self?.customizeCell(cell, row, element.name, element.classification)
@@ -78,7 +69,7 @@ class SpeciesTableViewController: UITableViewController {
         searchBar.rx.text
             .orEmpty
             .debounce(0.2, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.filterSource.accept($0) })
+            .subscribe(onNext: { self.speciesTableViewModel.filterSource.accept($0) })
             .disposed(by: disposeBag)
 
     }
