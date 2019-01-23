@@ -17,6 +17,10 @@ class StarshipsTableViewController: UITableViewController {
     private let disposeBag = DisposeBag()
     var loadingScreenView = LoadingScreenView()
 
+    // Searching helpers
+    let filterSource = BehaviorRelay<String>(value: "")
+    @IBOutlet weak var searchBar: UISearchBar!
+
     override func loadView() {
         super.loadView()
 
@@ -46,7 +50,14 @@ class StarshipsTableViewController: UITableViewController {
      */
     private func setupTableViewBindings() {
 
-        starshipsTableViewModel?.starshipList
+        Driver.combineLatest(starshipsTableViewModel.starshipList, filterSource.asDriver()) { data, filter in
+            data.filter { starship in
+                if filter == "" {
+                    return true
+                }
+                return starship.name.contains(filter)
+            }
+        }
             // swiftlint:disable:next line_length
             .drive(tableView.rx.items(cellIdentifier: "StarshipCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
                 self?.customizeCell(cell, row, element.name, element.manufacturer)
@@ -62,6 +73,12 @@ class StarshipsTableViewController: UITableViewController {
 
         tableView.rx.reachedBottom
             .bind(to: starshipsTableViewModel.nextPageTrigger)
+            .disposed(by: disposeBag)
+
+        searchBar.rx.text
+            .orEmpty
+            .debounce(0.2, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { self.filterSource.accept($0) })
             .disposed(by: disposeBag)
 
     }

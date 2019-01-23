@@ -23,9 +23,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="AHU-KE-DZH">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpecieCell" rowHeight="72" id="Xwq-MS-Hfo" customClass="TableViewCell" customModule="StarWarsApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xwq-MS-Hfo" id="Pwa-cG-jkW">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -76,6 +81,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Tl9-d8-aN3"/>
                     <connections>
+                        <outlet property="searchBar" destination="AHU-KE-DZH" id="BGz-9v-fmd"/>
                         <segue destination="Jbm-qt-BeP" kind="show" identifier="seeSpecieDetailsSegue" id="MqK-bX-XKp"/>
                     </connections>
                 </tableViewController>
@@ -136,9 +142,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="xa4-kR-6sB">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonCell" rowHeight="72" id="syy-GQ-If6" customClass="TableViewCell" customModule="StarWarsApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="syy-GQ-If6" id="1Iu-sc-Mds">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -189,6 +200,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="wAO-O0-Q4f"/>
                     <connections>
+                        <outlet property="searchBar" destination="xa4-kR-6sB" id="3kE-4a-uaG"/>
                         <outlet property="tableView" destination="ASd-K5-cKE" id="byd-yb-mTV"/>
                         <segue destination="Kep-nq-eyk" kind="show" identifier="seePersonDetailsSegue" id="EX6-Vm-cdX"/>
                     </connections>
@@ -205,9 +217,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="H7P-NA-gr6">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StarshipCell" rowHeight="72" id="bPD-jt-UYJ" customClass="TableViewCell" customModule="StarWarsApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPD-jt-UYJ" id="gu9-iz-7fp">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -258,6 +275,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="azh-D8-FFb"/>
                     <connections>
+                        <outlet property="searchBar" destination="H7P-NA-gr6" id="GEw-Gc-JPi"/>
                         <segue destination="0Ox-IE-wlt" kind="show" identifier="seeStarshipDetailsSegue" id="Q5a-Ad-wYf"/>
                     </connections>
                 </tableViewController>
