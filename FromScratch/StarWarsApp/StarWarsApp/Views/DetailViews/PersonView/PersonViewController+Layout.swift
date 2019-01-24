@@ -16,6 +16,7 @@ extension PersonViewController {
         super.loadView()
 
         setupViewHierarchy(scrollView, contentView, backgroundImageView)
+        scrollView.isScrollEnabled = true
 
         personImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(personImageView)
@@ -79,9 +80,36 @@ extension PersonViewController {
             homeworldLabel.topAnchor.constraint(equalTo: heightLabel.bottomAnchor, constant: 32)
         ])
 
+        // Testing image slider with collection view
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isPagingEnabled = true
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCell")
+        collectionView.collectionViewLayout.invalidateLayout()
+        contentView.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            collectionView.widthAnchor.constraint(equalToConstant: 300),
+            collectionView.heightAnchor.constraint(equalToConstant: 200),
+            collectionView.topAnchor.constraint(equalTo: homeworldLabel.bottomAnchor, constant: 32)
+        ])
+
+        pagingControl.translatesAutoresizingMaskIntoConstraints = false
+        pagingControl.numberOfPages = characterImages.count
+        pagingControl.currentPage = 0
+        pagingControl.pageIndicatorTintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        pagingControl.currentPageIndicatorTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        contentView.addSubview(pagingControl)
+        NSLayoutConstraint.activate([
+            pagingControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            pagingControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 5)
+        ])
+
         // Content view padding
         NSLayoutConstraint.activate([
-            contentView.bottomAnchor.constraint(equalTo: homeworldLabel.bottomAnchor, constant: 50)
+            contentView.bottomAnchor.constraint(equalTo: pagingControl.bottomAnchor, constant: 50)
         ])
 
     }
@@ -99,11 +127,9 @@ extension PersonViewController {
         if UIDevice.current.orientation.isLandscape {
             NSLayoutConstraint.activate(landscapeImageViewTopAnchorConstraints)
             NSLayoutConstraint.deactivate(portraitImageViewTopAnchorConstraints)
-            scrollView.isScrollEnabled = true
         } else {
             NSLayoutConstraint.activate(portraitImageViewTopAnchorConstraints)
             NSLayoutConstraint.deactivate(landscapeImageViewTopAnchorConstraints)
-            scrollView.isScrollEnabled = false
         }
 
     }

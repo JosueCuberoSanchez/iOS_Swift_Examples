@@ -27,6 +27,8 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
     var classLabel = UILabel()
     var backgroundImageView = UIImageView()
 
+    let backgroundImages = [#imageLiteral(resourceName: "backgroundImage"), #imageLiteral(resourceName: "m-falcon"), #imageLiteral(resourceName: "tatooine")]
+
     // Dynamic constraints
     var portraitImageViewTopAnchorConstraints: [NSLayoutConstraint]!
     var landscapeImageViewTopAnchorConstraints: [NSLayoutConstraint]!
@@ -34,7 +36,8 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
     init(_ starship: Starship, _ apiClient: APIClient) {
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
-        starshipViewModel = StarshipViewModel(starship: starship)
+        starshipViewModel =
+            StarshipViewModel(request: { self.apiClient.requestAPIResource(PostAPI()) }, starship: starship)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -83,6 +86,14 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
             .asObservable()
             .map { String(format: "\(R.string.localizable.classLabel())%@", $0) }
             .bind(to: classLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        /// Background image
+        Observable.timer(0, period: 5.0, scheduler: MainScheduler.instance)
+            .map { self.backgroundImages[$0 % self.backgroundImages.count] }
+            .subscribe(onNext: { [weak self] in
+                self?.backgroundImageView.crossDissolveImage($0)
+            })
             .disposed(by: disposeBag)
     }
 

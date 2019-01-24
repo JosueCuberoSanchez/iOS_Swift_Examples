@@ -28,7 +28,7 @@ class PeopleTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         peopleTableViewModel =
-            PeopleTableViewModel(request: { return self.apiClient.requestAPIResource(PeopleAPI($0)) })
+            PeopleTableViewModel(request: { self.apiClient.requestAPIResource(PeopleAPI($0)) })
         loadingScreenView.showLoadingScreen()
         setupTableView()
         setupTableViewBindings()

@@ -28,7 +28,7 @@ class StarshipsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         starshipsTableViewModel =
-            StarshipsTableViewModel(request: { return self.apiClient.requestAPIResource(StarshipsAPI($0)) })
+            StarshipsTableViewModel(request: { self.apiClient.requestAPIResource(StarshipsAPI($0)) })
         loadingScreenView.showLoadingScreen()
         setupTableView()
         setupTableViewBindings()

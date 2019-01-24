@@ -162,7 +162,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcV-uL-zNq">
-                                            <rect key="frame" x="93" y="36" width="143.5" height="21"/>
+                                            <rect key="frame" x="93" y="36" width="144" height="21"/>
                                             <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -281,7 +281,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4i-iI-FOF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361" y="-116"/>
+            <point key="canvasLocation" x="1360.8" y="-116.49175412293854"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="W4n-Fb-E3u">

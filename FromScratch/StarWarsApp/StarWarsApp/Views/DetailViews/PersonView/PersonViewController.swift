@@ -10,7 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PersonViewController: UIViewController, UIScrollViewDelegate {
+// swiftlint:disable:next line_length
+class PersonViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     private var apiClient: APIClient!
     private var personViewModel: PersonViewModel!
@@ -25,6 +26,11 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
     var heightLabel = UILabel()
     var homeworldLabel = UILabel()
     var backgroundImageView = UIImageView()
+    var collectionView: UICollectionView!
+    var pagingControl = UIPageControl()
+
+    let backgroundImages = [#imageLiteral(resourceName: "backgroundImage"), #imageLiteral(resourceName: "m-falcon"), #imageLiteral(resourceName: "tatooine")]
+    let characterImages = [#imageLiteral(resourceName: "resistance"), #imageLiteral(resourceName: "characters"), #imageLiteral(resourceName: "dark-side"), #imageLiteral(resourceName: "robots"), #imageLiteral(resourceName: "jedis")]
 
     // Dynamic constraints
     var portraitImageViewTopAnchorConstraints: [NSLayoutConstraint]!
@@ -34,7 +40,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
         personViewModel =
-            PersonViewModel( request: { return self.apiClient.requestAPIResource(PlanetAPI($0)) }, person: person)
+            PersonViewModel( request: { self.apiClient.requestAPIResource(PlanetAPI($0)) }, person: person)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -43,11 +49,13 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         setupBindings()
     }
 
     /**
-     Bind the subviews data to the viewModel's drivers.
+     Bind the subviews data.
      */
     private func setupBindings() {
         /// Name
@@ -77,6 +85,60 @@ class PersonViewController: UIViewController, UIScrollViewDelegate {
             .map { String(format: "\(R.string.localizable.homeworldLabel())%@", $0) }
             .bind(to: homeworldLabel.rx.text)
             .disposed(by: disposeBag)
+
+        Observable.timer(0, period: 5.0, scheduler: MainScheduler.instance)
+            .map { self.backgroundImages[$0 % self.backgroundImages.count] }
+            .subscribe(onNext: { [weak self] in
+                self?.backgroundImageView.crossDissolveImage($0)
+            })
+            .disposed(by: disposeBag)
+
     }
 
+    // swiftlint:disable:next line_length
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell =
+            collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath as IndexPath)
+        guard let collectionCell = cell as? CollectionViewCell else {
+            return CollectionViewCell()
+        }
+
+        collectionCell.setImage(characterImages[indexPath.row])
+        return collectionCell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return characterImages.count
+    }
+
+    // swiftlint:disable:next line_length
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
+
+    // swiftlint:disable:next line_length
+    private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+    // swiftlint:disable:next line_length
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.height)
+    }
+
+    // swiftlint:disable:next line_length
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    // swiftlint:disable:next line_length
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let page = Int(round(scrollView.contentOffset.x / 320))
+        pagingControl.currentPage = page
+    }
 }

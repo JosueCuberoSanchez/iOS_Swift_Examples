@@ -12,7 +12,7 @@ import RxSwift
 final class APIClient {
 
     private let session: URLSession
-    private final let baseURL = "https://swapi.co/api/"
+    private var baseURL = "https://swapi.co/api/"
 
     init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
         session = URLSession(configuration: URLSessionConfiguration.default)
@@ -78,14 +78,19 @@ final class APIClient {
      */
     func buildRequest(_ resource: ResourceProtocol) throws -> URLRequest {
 
-        guard let baseURL = URL(string: baseURL) else {
-            throw ApplicationError.invalidURL(url: self.baseURL)
+        // this will be just to test post...
+        if resource.fullResourcePath == "posts/" {
+            baseURL = "https://jsonplaceholder.typicode.com"
+        }
+
+        guard let builtURL = URL(string: baseURL) else {
+            throw ApplicationError.invalidURL(url: baseURL)
         }
 
         guard var components =
-            URLComponents(url: baseURL.appendingPathComponent(resource.fullResourcePath),
+            URLComponents(url: builtURL.appendingPathComponent(resource.fullResourcePath),
                           resolvingAgainstBaseURL: false) else {
-            throw ApplicationError.invalidURL(url: self.baseURL+resource.fullResourcePath)
+            throw ApplicationError.invalidURL(url: baseURL+resource.fullResourcePath)
         }
 
         let parameters = resource.parameters
@@ -103,7 +108,14 @@ final class APIClient {
         request.httpMethod = resource.method.rawValue
         request.httpShouldHandleCookies = false
         request.httpShouldUsePipelining = true
-        request.addValue("application/json", forHTTPHeaderField: "accept")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        // this is just to test post
+        if resource.fullResourcePath == "posts/" {
+            let parameters = ["title": "Title", "body": "Body", "userId": "1"]
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
         return request
     }
 

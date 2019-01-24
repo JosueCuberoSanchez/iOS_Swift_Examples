@@ -43,7 +43,6 @@ extension UIViewController {
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.clipsToBounds = true
-        backgroundImageView.image = #imageLiteral(resourceName: "backgroundImage")
         scrollView.addSubview(backgroundImageView)
         scrollView.sendSubviewToBack(backgroundImageView)
 

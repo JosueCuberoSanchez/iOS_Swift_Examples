@@ -27,6 +27,8 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
     var homeworldLabel = UILabel()
     var backgroundImageView = UIImageView()
 
+    let backgroundImages = [#imageLiteral(resourceName: "backgroundImage"), #imageLiteral(resourceName: "m-falcon"), #imageLiteral(resourceName: "tatooine")]
+
     // Dynamic constraints
     var portraitImageViewTopAnchorConstraints: [NSLayoutConstraint]!
     var landscapeImageViewTopAnchorConstraints: [NSLayoutConstraint]!
@@ -35,7 +37,7 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
         specieViewModel =
-            SpecieViewModel( request: { return self.apiClient.requestAPIResource(PlanetAPI($0)) }, specie: specie)
+            SpecieViewModel( request: { self.apiClient.requestAPIResource(PlanetAPI($0)) }, specie: specie)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -84,6 +86,13 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
             .asObservable()
             .map { String(format: "\(R.string.localizable.homeworldLabel())%@", $0) }
             .bind(to: homeworldLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        Observable.timer(0, period: 5.0, scheduler: MainScheduler.instance)
+            .map { self.backgroundImages[$0 % self.backgroundImages.count] }
+            .subscribe(onNext: { [weak self] in
+                self?.backgroundImageView.crossDissolveImage($0)
+            })
             .disposed(by: disposeBag)
     }
 

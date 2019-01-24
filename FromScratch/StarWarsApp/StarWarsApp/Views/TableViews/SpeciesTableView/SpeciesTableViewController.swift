@@ -28,7 +28,7 @@ class SpeciesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         speciesTableViewModel =
-            SpeciesTableViewModel(request: { return self.apiClient.requestAPIResource(SpeciesAPI($0)) })
+            SpeciesTableViewModel(request: { self.apiClient.requestAPIResource(SpeciesAPI($0)) })
         loadingScreenView.showLoadingScreen()
         setupTableView()
         setupTableViewBindings()

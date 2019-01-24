@@ -11,6 +11,7 @@ import RxSwift
 
 enum Method: String {
     case GET
+    case POST
 }
 
 protocol ResourceProtocol {
