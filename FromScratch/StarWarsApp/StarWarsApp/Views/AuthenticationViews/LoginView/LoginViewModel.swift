@@ -45,6 +45,9 @@ class LoginViewModel {
         loginFailure = errorResponse.map { $0 }
     }
 
+    /**
+     Mock a user auth request.
+     */
     private func authenticateUser(_ credentials: Credentials) -> Observable<Response<Credentials>> {
         return Observable.create { observer in
             if credentials.email == "123" && credentials.password == "123" {

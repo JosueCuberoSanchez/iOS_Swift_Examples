@@ -288,6 +288,7 @@
 		CA12BA2121E39D8500DF6CC5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				CA752CB221F2252700B4C3F3 /* ApplicationError.swift */,
 				CAC816CE21E4EB6700EB3D8D /* APIClient.swift */,
 				CA752CAC21F1322C00B4C3F3 /* APIClientInjectionProtocol.swift */,
 				CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */,
@@ -302,7 +303,6 @@
 				CA752CBA21F25AD900B4C3F3 /* Reactive */,
 				CA752CB721F2398700B4C3F3 /* Extensions */,
 				CAA3881B21E8F5D500332328 /* Fonts */,
-				CAC816DC21E63A2D00EB3D8D /* Constants */,
 				CAC816DF21E63B4500EB3D8D /* Networking */,
 			);
 			path = Helpers;
@@ -525,14 +525,6 @@
 				CAC4422021FB691A00D9EEEA /* LoginResponse.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		CAC816DC21E63A2D00EB3D8D /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				CA752CB221F2252700B4C3F3 /* ApplicationError.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		CAC816DF21E63B4500EB3D8D /* Networking */ = {

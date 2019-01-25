@@ -11,6 +11,9 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
 
+    /**
+     Injects the apiClient to each child view.
+     */
     func setAPIClient(apiClient: APIClient) {
         for child in viewControllers ?? [] {
             for nav in child.children {

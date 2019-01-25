@@ -10,7 +10,7 @@ import Foundation
 
 struct PostResponse: Codable {
 
-    var userId: String
+    var userId: Int
     var title: String
     var body: String
     var postId: Int

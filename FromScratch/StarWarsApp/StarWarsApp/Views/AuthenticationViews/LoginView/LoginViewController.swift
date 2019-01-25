@@ -28,24 +28,27 @@ class LoginViewController: UIViewController {
         setupBindings()
     }
 
+    /**
+     Binds the inputs, button and login response.
+     */
     private func setupBindings() {
         emailTextField.rx.text
             .orEmpty
-            .subscribe(onNext: { [weak self] in 
-                self?.loginViewModel.email.accept($0) 
+            .subscribe(onNext: { [weak self] in
+                self?.loginViewModel.email.accept($0)
             })
             .disposed(by: disposeBag)
 
         passwordTextField.rx.text
             .orEmpty
-            .subscribe(onNext: { [weak self] in 
-                self?.loginViewModel.password.accept($0) 
+            .subscribe(onNext: { [weak self] in
+                self?.loginViewModel.password.accept($0)
             })
             .disposed(by: disposeBag)
 
         loginButton.rx.tap
-            .subscribe(onNext: { [weak self] in 
-                self?.loginViewModel.loginTrigger.accept(()) 
+            .subscribe(onNext: { [weak self] in
+                self?.loginViewModel.loginTrigger.accept(())
             })
             .disposed(by: disposeBag)
 

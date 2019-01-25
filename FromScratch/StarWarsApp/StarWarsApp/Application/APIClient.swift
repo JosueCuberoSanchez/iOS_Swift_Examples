@@ -37,7 +37,6 @@ final class APIClient {
         return Observable<Response<Value>>.create { [weak self] observer in
 
             let task = self?.session.dataTask(with: request) { (data, response, error) in
-                //print(request.url)
                 if let error = error {
                     observer.onNext(.failure(ApplicationError.server(message: error.localizedDescription)))
                 } else {
@@ -79,6 +78,7 @@ final class APIClient {
     func buildRequest(_ resource: ResourceProtocol) throws -> URLRequest {
 
         // this will be just to test post...
+        // comparing resource path, because I may use post method to log in into a real auth server...
         if resource.fullResourcePath == "posts/" {
             baseURL = "https://jsonplaceholder.typicode.com"
         }
@@ -112,7 +112,7 @@ final class APIClient {
 
         // this is just to test post
         if resource.fullResourcePath == "posts/" {
-            let parameters = ["title": "Title", "body": "Body", "userId": "1"]
+            let parameters: [String: Any] = ["title": "Title", "body": "Body", "userId": 1]
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }

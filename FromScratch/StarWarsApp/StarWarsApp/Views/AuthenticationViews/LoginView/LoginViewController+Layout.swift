@@ -145,6 +145,9 @@ extension LoginViewController {
         ])
     }
 
+    /**
+     Set the text fields border to red when credentials are wrong.
+     */
     func setErrorBordersForInputFields() {
         emailTextField.layer.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         passwordTextField.layer.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
