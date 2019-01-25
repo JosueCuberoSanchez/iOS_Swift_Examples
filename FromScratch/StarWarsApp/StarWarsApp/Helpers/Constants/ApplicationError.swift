@@ -15,4 +15,5 @@ enum ApplicationError: Error {
     case server(message: String)
     case badStatusCode(statusCode: Int)
     case decoding
+    case invalidCredentials
 }

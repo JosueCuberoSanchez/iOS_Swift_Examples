@@ -48,6 +48,13 @@
 		CAA828AF21EE79A900027BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828AE21EE79A900027BAD /* Main.storyboard */; };
 		CAA828B121EE79CA00027BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */; };
 		CAA828C321EE7D5400027BAD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAA828C121EE7D5400027BAD /* Localizable.strings */; };
+		CAC4421821FA735A00D9EEEA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4421721FA735A00D9EEEA /* TabBarViewController.swift */; };
+		CAC4421D21FB458C00D9EEEA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4421C21FB458C00D9EEEA /* LoginViewController.swift */; };
+		CAC4421F21FB677000D9EEEA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4421E21FB677000D9EEEA /* LoginViewModel.swift */; };
+		CAC4422121FB691A00D9EEEA /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422021FB691A00D9EEEA /* LoginResponse.swift */; };
+		CAC4422321FB6B9100D9EEEA /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422221FB6B9100D9EEEA /* LoginAPI.swift */; };
+		CAC4422621FB748200D9EEEA /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422521FB748200D9EEEA /* Credentials.swift */; };
+		CAC4422821FB7D9700D9EEEA /* LoginViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */; };
 		CAC816C921E41BD800EB3D8D /* ResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */; };
 		CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816CE21E4EB6700EB3D8D /* APIClient.swift */; };
 		CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */; };
@@ -139,6 +146,13 @@
 		CAA828AE21EE79A900027BAD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAA828C221EE7D5400027BAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		CAC4421721FA735A00D9EEEA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		CAC4421C21FB458C00D9EEEA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CAC4421E21FB677000D9EEEA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		CAC4422021FB691A00D9EEEA /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		CAC4422221FB6B9100D9EEEA /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
+		CAC4422521FB748200D9EEEA /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Layout.swift"; sourceTree = "<group>"; };
 		CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceProtocol.swift; sourceTree = "<group>"; };
 		CAC816CE21E4EB6700EB3D8D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResponse.swift; sourceTree = "<group>"; };
@@ -262,6 +276,8 @@
 		CA12BA1E21E39D5C00DF6CC5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CAC4421A21FB456300D9EEEA /* AuthenticationViews */,
+				CAC4421921FA738500D9EEEA /* TabBarView */,
 				CA752CB621F2395200B4C3F3 /* DetailViews */,
 				CA752CB521F2394A00B4C3F3 /* TableViews */,
 				CAC816E721E67D2800EB3D8D /* LoadingScreenView */,
@@ -460,12 +476,40 @@
 			path = en.lproj;
 			sourceTree = "<group>";
 		};
+		CAC4421921FA738500D9EEEA /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				CAC4421721FA735A00D9EEEA /* TabBarViewController.swift */,
+			);
+			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		CAC4421A21FB456300D9EEEA /* AuthenticationViews */ = {
+			isa = PBXGroup;
+			children = (
+				CAC4421B21FB456D00D9EEEA /* LoginView */,
+			);
+			path = AuthenticationViews;
+			sourceTree = "<group>";
+		};
+		CAC4421B21FB456D00D9EEEA /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				CAC4421C21FB458C00D9EEEA /* LoginViewController.swift */,
+				CAC4421E21FB677000D9EEEA /* LoginViewModel.swift */,
+				CAC4422221FB6B9100D9EEEA /* LoginAPI.swift */,
+				CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
 		CAC816D021E52B2100EB3D8D /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				CA12BA2421E3A4A400DF6CC5 /* Person.swift */,
 				CA12BA2621E3A77100DF6CC5 /* Starship.swift */,
 				CA12BA2821E3A8AB00DF6CC5 /* Specie.swift */,
+				CAC4422521FB748200D9EEEA /* Credentials.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -478,6 +522,7 @@
 				CACC022021F759C9004A33C6 /* StarshipsResponse.swift */,
 				CACC022221F759E8004A33C6 /* SpeciesResponse.swift */,
 				CA21ED7F21FA531E00AEBE44 /* PostResponse.swift */,
+				CAC4422021FB691A00D9EEEA /* LoginResponse.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -804,9 +849,11 @@
 				CA752CAD21F1322D00B4C3F3 /* APIClientInjectionProtocol.swift in Sources */,
 				CAE2B55121F76F2E003E7043 /* StarshipViewController+Layout.swift in Sources */,
 				CACC022321F759E8004A33C6 /* SpeciesResponse.swift in Sources */,
+				CAC4422121FB691A00D9EEEA /* LoginResponse.swift in Sources */,
 				CA21ED7E21FA17F800AEBE44 /* CollectionViewCell.swift in Sources */,
 				CA12BA3521E3AC0100DF6CC5 /* StarshipsTableViewModel.swift in Sources */,
 				CA21ED8221FA539600AEBE44 /* PostAPI.swift in Sources */,
+				CAC4421821FA735A00D9EEEA /* TabBarViewController.swift in Sources */,
 				CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */,
 				CA12BA2921E3A8AB00DF6CC5 /* Specie.swift in Sources */,
 				CA12BA2521E3A4A400DF6CC5 /* Person.swift in Sources */,
@@ -835,16 +882,21 @@
 				CA752CAF21F21EBF00B4C3F3 /* PeopleAPI.swift in Sources */,
 				CA752CC621F286C500B4C3F3 /* PersonViewController+Layout.swift in Sources */,
 				CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */,
+				CAC4421D21FB458C00D9EEEA /* LoginViewController.swift in Sources */,
 				CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */,
 				CA12BA3021E3AB5500DF6CC5 /* PeopleTableViewController.swift in Sources */,
 				CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */,
 				CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */,
 				CACC021E21F65481004A33C6 /* ResponseProtocol.swift in Sources */,
+				CAC4421F21FB677000D9EEEA /* LoginViewModel.swift in Sources */,
 				CA21ED7B21FA0E2F00AEBE44 /* UIColor+Hex.swift in Sources */,
 				CAE2B55721F78252003E7043 /* SpecieViewController+Layout.swift in Sources */,
+				CAC4422621FB748200D9EEEA /* Credentials.swift in Sources */,
 				CAE2B56121F7B83A003E7043 /* UITableViewController+GeneralLayout.swift in Sources */,
 				CA12BA0C21E39CA400DF6CC5 /* AppDelegate.swift in Sources */,
+				CAC4422321FB6B9100D9EEEA /* LoginAPI.swift in Sources */,
 				CA12BA2721E3A77100DF6CC5 /* Starship.swift in Sources */,
+				CAC4422821FB7D9700D9EEEA /* LoginViewController+Layout.swift in Sources */,
 				CAE2B56421F7BA5C003E7043 /* TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

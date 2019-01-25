@@ -95,6 +95,8 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
 
     }
 
+    // The next functions are for the image slider
+
     // swiftlint:disable:next line_length
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
@@ -138,7 +140,6 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let page = Int(round(scrollView.contentOffset.x / 320))
-        pagingControl.currentPage = page
+        pagingControl.currentPage = Int(round(scrollView.contentOffset.x / 320))
     }
 }

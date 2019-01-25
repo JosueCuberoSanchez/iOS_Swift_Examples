@@ -17,15 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let apiClient = APIClient()
-
-        if let tab = window?.rootViewController as? UITabBarController {
-            for child in tab.viewControllers ?? [] {
-                for nav in child.children {
-                    if let top = nav as? APIClientInjectionProtocol {
-                        top.setAPIClient(apiClient: apiClient)
-                    }
-                }
-            }
+        if let loginView = window?.rootViewController as? LoginViewController {
+            loginView.setAPIClient(apiClient: apiClient)
         }
 
         return true
