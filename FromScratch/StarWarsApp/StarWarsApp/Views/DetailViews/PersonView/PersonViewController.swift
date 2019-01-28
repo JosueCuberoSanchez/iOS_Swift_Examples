@@ -20,7 +20,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
     // Subviews
     var scrollView = UIScrollView()
     var contentView = UIView()
-    var personImageView = UIImageView(image: #imageLiteral(resourceName: "bb8"))
+    var personImageView = UIImageView(image: R.image.detailBb8())
     var nameLabel = UILabel()
     var genderLabel = UILabel()
     var heightLabel = UILabel()
@@ -29,8 +29,9 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
     var collectionView: UICollectionView!
     var pagingControl = UIPageControl()
 
-    let backgroundImages = [#imageLiteral(resourceName: "backgroundImage"), #imageLiteral(resourceName: "m-falcon"), #imageLiteral(resourceName: "tatooine")]
-    let characterImages = [#imageLiteral(resourceName: "resistance"), #imageLiteral(resourceName: "characters"), #imageLiteral(resourceName: "dark-side"), #imageLiteral(resourceName: "robots"), #imageLiteral(resourceName: "jedis")]
+    let backgroundImages = [R.image.backgroundBb8(), R.image.backgroundFalcon(), R.image.backgroundTatooine()]
+    let characterImages =
+        [R.image.characters(), R.image.darkSide(), R.image.jedis(), R.image.robots(), R.image.resistance()]
 
     // Dynamic constraints
     var portraitImageViewTopAnchorConstraints: [NSLayoutConstraint]!
@@ -40,7 +41,7 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
         personViewModel =
-            PersonViewModel( request: { self.apiClient.requestAPIResource(PlanetAPI($0)) }, person: person)
+            PersonViewModel( request: { self.apiClient.requestAPIResource(PlanetResource($0)) }, person: person)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -61,35 +62,46 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
         /// Name
         personViewModel.personName
             .asObservable()
-            .map { String(format: "\(R.string.localizable.nameLabel())%@", $0) }
+            .map { R.string.localizable.name_format($0) }
             .bind(to: nameLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Gender
         personViewModel.personGender
             .asObservable()
-            .map { String(format: "\(R.string.localizable.genderLabel())%@", $0) }
+            .map { R.string.localizable.gender_format($0.rawValue) }
             .bind(to: genderLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Height
         personViewModel.personHeight
             .asObservable()
-            .map { String(format: "\(R.string.localizable.heightLabel())%@ ft", $0) }
+            .map { R.string.localizable.height_format($0) }
             .bind(to: heightLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Homeworld
         personViewModel.personHomeworld
             .asObservable()
-            .map { String(format: "\(R.string.localizable.homeworldLabel())%@", $0) }
+            .map { R.string.localizable.homeworld_format($0) }
             .bind(to: homeworldLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        /// Slider scroll
+        collectionView.rx.didEndDecelerating
+            .subscribe(onNext: { [weak self] in
+                if let xAxis = self?.collectionView.contentOffset.x {
+                    self?.pagingControl.currentPage = Int(round(xAxis / 320))
+                }
+            })
             .disposed(by: disposeBag)
 
         Observable.timer(0, period: 5.0, scheduler: MainScheduler.instance)
             .map { self.backgroundImages[$0 % self.backgroundImages.count] }
             .subscribe(onNext: { [weak self] in
-                self?.backgroundImageView.crossDissolveImage($0)
+                if let nextBackgroundImage = $0 {
+                    self?.backgroundImageView.setImageWithDissolveAnimation(nextBackgroundImage)
+                }
             })
             .disposed(by: disposeBag)
 
@@ -97,49 +109,53 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
 
     // The next functions are for the image slider
 
-    // swiftlint:disable:next line_length
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell =
-            collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath as IndexPath)
-        guard let collectionCell = cell as? CollectionViewCell else {
-            return CollectionViewCell()
+            collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCollectionViewCell",
+                                               for: indexPath as IndexPath)
+        guard let collectionCell = cell as? SliderCollectionViewCell, let image = characterImages[indexPath.row] else {
+            return SliderCollectionViewCell()
         }
 
-        collectionCell.setImage(characterImages[indexPath.row])
+        collectionCell.setImage(image)
         return collectionCell
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return characterImages.count
     }
 
-    // swiftlint:disable:next line_length
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: 50, height: 50)
     }
 
-    // swiftlint:disable:next line_length
-    private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    private func collectionView(collectionView: UICollectionView,
+                                layout collectionViewLayout: UICollectionViewLayout,
+                                insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 
-    // swiftlint:disable:next line_length
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.size.width, height: collectionView.bounds.size.height)
     }
 
-    // swiftlint:disable:next line_length
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
 
-    // swiftlint:disable:next line_length
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
 
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pagingControl.currentPage = Int(round(scrollView.contentOffset.x / 320))
-    }
 }

@@ -18,24 +18,22 @@ class PersonViewModel {
     // Outputs
     var personName: Driver<String>
     var personHeight: Driver<String>
-    var personGender: Driver<String>
+    var personGender: Driver<Person.Gender>
     var personHomeworld: Driver<String>
 
-    private var disposeBag = DisposeBag()
-
-    init(request: @escaping (_ planetIndex: Int) -> Observable<Response<PlanetResponse>>, person: Person) {
+    init(request: @escaping (_ planetIndex: Int?) -> Observable<Response<PlanetResponse>>, person: Person) {
 
         // Asign personDriver
         personDriver = Driver.of(person)
 
         // Map homeworld driver
         // Observable<Response<PlanetResponse>>
-        let sharedRequest = personDriver.asObservable().flatMap { request($0.homeworld.resourceIndex!) }.share()
+        let sharedRequest = personDriver.asObservable().flatMap { request($0.homeworld.resourceIndex) }.share()
         let planetResponse = sharedRequest.mapSuccess()
 
         // Map each Driver to the corresponding person attribute
         personName = personDriver.map { $0.name }
-        personGender = personDriver.map { $0.gender.rawValue }
+        personGender = personDriver.map { $0.gender }
         personHeight = personDriver.map { $0.height }
         personHomeworld = planetResponse.map { $0.name }.asDriver(onErrorDriveWith: Driver.empty())
 

@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct LoginAPI: ResourceProtocol {
+struct LoginResource: ResourceProtocol {
+
+    init(_ body: [String: Any]) {
+        self.body = body
+    }
 
     var path = "login/"
     var index: Int?
@@ -17,10 +21,12 @@ struct LoginAPI: ResourceProtocol {
         return path
     }
 
-    var parameters: [String: String] = [:]
+    var parameters: [String: String]?
 
     var method: Method {
         return .POST
     }
+
+    var body: [String: Any]?
 
 }

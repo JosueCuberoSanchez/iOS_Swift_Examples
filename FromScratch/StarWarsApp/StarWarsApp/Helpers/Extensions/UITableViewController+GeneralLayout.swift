@@ -32,7 +32,7 @@ extension UITableViewController {
      - Parameter name: The name that will go on the nameLabel
      - Parameter detail: The detail that will go on the detailLabel
      */
-    func customizeCell(_ cell: TableViewCell, _ row: Int, _ name: String, _ detail: String) {
+    func customizeCell(_ cell: TabListTableViewCell, _ row: Int, _ name: String, _ detail: String) {
 
         if row % 2 == 0 {
             cell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)

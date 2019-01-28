@@ -8,5 +8,18 @@
 
 import Foundation
 
-// Todo when I make a real API request to log in.
-struct LoginResponse: Codable {}
+struct LoginResponse: Codable {
+
+    var points: Int
+    var email: String
+    var firstName: String
+    var lastName: String
+    var username: String
+    var phone: String
+    var facebook: String
+    var twitter: String
+    var instagram: String
+    var image: String
+    var userId: String
+
+}

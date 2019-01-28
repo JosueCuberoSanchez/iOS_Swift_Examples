@@ -29,7 +29,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpecieCell" rowHeight="72" id="Xwq-MS-Hfo" customClass="TableViewCell" customModule="StarWarsApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpecieCell" rowHeight="72" id="Xwq-MS-Hfo" customClass="TabListTableViewCell" customModule="StarWarsApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xwq-MS-Hfo" id="Pwa-cG-jkW">
@@ -43,12 +43,12 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specie classification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S61-mK-x3F">
-                                            <rect key="frame" x="93" y="36" width="162" height="21"/>
+                                            <rect key="frame" x="93" y="36" width="161.5" height="21"/>
                                             <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vader" translatesAutoresizingMaskIntoConstraints="NO" id="hTb-rg-LkG">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="row-darth-vader" translatesAutoresizingMaskIntoConstraints="NO" id="hTb-rg-LkG">
                                             <rect key="frame" x="16" y="9" width="61" height="52"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="Wut-Ue-6hB"/>
@@ -87,7 +87,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Koz-Xh-Bts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361" y="555"/>
+            <point key="canvasLocation" x="1360.8" y="554.57271364317842"/>
         </scene>
         <!--Starship View Controller-->
         <scene sceneID="w1n-y2-Vc6">
@@ -148,7 +148,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonCell" rowHeight="72" id="syy-GQ-If6" customClass="TableViewCell" customModule="StarWarsApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonCell" rowHeight="72" id="syy-GQ-If6" customClass="TabListTableViewCell" customModule="StarWarsApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="syy-GQ-If6" id="1Iu-sc-Mds">
@@ -162,12 +162,12 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcV-uL-zNq">
-                                            <rect key="frame" x="93" y="36" width="144" height="21"/>
+                                            <rect key="frame" x="93" y="36" width="143.5" height="21"/>
                                             <fontDescription key="fontDescription" name="StarJediSpecialEdition" family="StarJedi Special Edition" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r2d2" translatesAutoresizingMaskIntoConstraints="NO" id="cxX-pT-2XP">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="row-r2d2" translatesAutoresizingMaskIntoConstraints="NO" id="cxX-pT-2XP">
                                             <rect key="frame" x="16" y="9" width="61" height="52"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="naO-iG-Nba"/>
@@ -223,7 +223,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StarshipCell" rowHeight="72" id="bPD-jt-UYJ" customClass="TableViewCell" customModule="StarWarsApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StarshipCell" rowHeight="72" id="bPD-jt-UYJ" customClass="TabListTableViewCell" customModule="StarWarsApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bPD-jt-UYJ" id="gu9-iz-7fp">
@@ -242,7 +242,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starship" translatesAutoresizingMaskIntoConstraints="NO" id="rD2-3M-c4i">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="row-starship" translatesAutoresizingMaskIntoConstraints="NO" id="rD2-3M-c4i">
                                             <rect key="frame" x="16" y="9" width="61" height="52"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="61" id="oJZ-oq-3u4"/>
@@ -329,7 +329,7 @@
         <scene sceneID="v1T-fH-yde">
             <objects>
                 <navigationController storyboardIdentifier="People" title="People" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LXZ-ou-GO0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="People" image="darth-vader" id="lAK-qc-0xb"/>
+                    <tabBarItem key="tabBarItem" title="People" image="tab-darth-vader" id="lAK-qc-0xb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RR3-vu-Bfo">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -348,7 +348,7 @@
         <scene sceneID="ELk-aM-9MM">
             <objects>
                 <navigationController storyboardIdentifier="Starships" title="Starships" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zDB-Z4-pN7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Starships" image="millennium-falcon" id="CdA-PD-VK6"/>
+                    <tabBarItem key="tabBarItem" title="Starships" image="tab-millennium-falcon" id="CdA-PD-VK6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B4U-6U-KDZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -367,7 +367,7 @@
         <scene sceneID="XUx-vS-KUL">
             <objects>
                 <navigationController storyboardIdentifier="Species" title="Species" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="txQ-1v-BvD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Species" image="death-star" id="OHa-MU-etV"/>
+                    <tabBarItem key="tabBarItem" title="Species" image="tab-death-star" id="OHa-MU-etV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Xy-oi-ed6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -384,11 +384,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="darth-vader" width="24" height="24"/>
-        <image name="death-star" width="24" height="24"/>
-        <image name="millennium-falcon" width="24" height="24"/>
-        <image name="r2d2" width="48" height="48"/>
-        <image name="starship" width="48" height="48"/>
-        <image name="vader" width="48" height="48"/>
+        <image name="row-darth-vader" width="48" height="48"/>
+        <image name="row-r2d2" width="48" height="48"/>
+        <image name="row-starship" width="48" height="48"/>
+        <image name="tab-darth-vader" width="24" height="24"/>
+        <image name="tab-death-star" width="24" height="24"/>
+        <image name="tab-millennium-falcon" width="24" height="24"/>
     </resources>
 </document>

@@ -15,8 +15,39 @@ extension PersonViewController {
     override func loadView() {
         super.loadView()
 
-        setupViewHierarchy(scrollView, contentView, backgroundImageView)
-        scrollView.isScrollEnabled = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+
+        backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.clipsToBounds = true
+        scrollView.addSubview(backgroundImageView)
+        scrollView.sendSubviewToBack(backgroundImageView)
+
+        // Background image
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
 
         personImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(personImageView)
@@ -42,15 +73,18 @@ extension PersonViewController {
         contentView.addSubview(homeworldLabel)
 
         portraitImageViewTopAnchorConstraints = [
-            personImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             personImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 180)
         ]
         landscapeImageViewTopAnchorConstraints = [
-            personImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             personImageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 50)
         ]
 
         updateDynamicViewConstraints()
+
+        // Detail Image View
+        NSLayoutConstraint.activate([
+            personImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        ])
 
         // Name
         NSLayoutConstraint.activate([
@@ -86,7 +120,7 @@ extension PersonViewController {
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isPagingEnabled = true
-        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionCell")
+        collectionView.register(SliderCollectionViewCell.self, forCellWithReuseIdentifier: "SliderCollectionViewCell")
         collectionView.collectionViewLayout.invalidateLayout()
         contentView.addSubview(collectionView)
         NSLayoutConstraint.activate([

@@ -19,7 +19,7 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
     // Subviews
     var scrollView = UIScrollView()
     var contentView = UIView()
-    var starshipImageView = UIImageView(image: #imageLiteral(resourceName: "death-star-d"))
+    var starshipImageView = UIImageView(image: R.image.detailDeathStar())
     var nameLabel = UILabel()
     var manufacturerLabel = UILabel()
     var lengthLabel = UILabel()
@@ -27,7 +27,7 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
     var classLabel = UILabel()
     var backgroundImageView = UIImageView()
 
-    let backgroundImages = [#imageLiteral(resourceName: "backgroundImage"), #imageLiteral(resourceName: "m-falcon"), #imageLiteral(resourceName: "tatooine")]
+    let backgroundImages = [R.image.backgroundBb8(), R.image.backgroundFalcon(), R.image.backgroundTatooine()]
 
     // Dynamic constraints
     var portraitImageViewTopAnchorConstraints: [NSLayoutConstraint]!
@@ -36,8 +36,7 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
     init(_ starship: Starship, _ apiClient: APIClient) {
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
-        starshipViewModel =
-            StarshipViewModel(request: { self.apiClient.requestAPIResource(PostAPI()) }, starship: starship)
+        starshipViewModel = StarshipViewModel(starship: starship)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -56,35 +55,35 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
         /// Name
         starshipViewModel.starshipName
             .asObservable()
-            .map { String(format: "\(R.string.localizable.nameLabel())%@", $0) }
+            .map { R.string.localizable.name_format($0) }
             .bind(to: nameLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Manufacturer
         starshipViewModel.starshipManufacturer
             .asObservable()
-            .map { String(format: "\(R.string.localizable.manufacturerLabel())%@", $0) }
+            .map { R.string.localizable.manufacturer_format($0) }
             .bind(to: manufacturerLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Length
         starshipViewModel.starshipLength
             .asObservable()
-            .map { String(format: "\(R.string.localizable.lengthLabel())%@ ft", $0) }
+            .map { R.string.localizable.length_format($0) }
             .bind(to: lengthLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Passengers
         starshipViewModel.starshipPassengers
             .asObservable()
-            .map { String(format: "\(R.string.localizable.passengersLabel())%@", $0) }
+            .map { R.string.localizable.passengers_format($0) }
             .bind(to: passengersLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Class
         starshipViewModel.starshipClass
             .asObservable()
-            .map { String(format: "\(R.string.localizable.classLabel())%@", $0) }
+            .map { R.string.localizable.class_format($0) }
             .bind(to: classLabel.rx.text)
             .disposed(by: disposeBag)
 
@@ -92,7 +91,9 @@ class StarshipViewController: UIViewController, UIScrollViewDelegate {
         Observable.timer(0, period: 5.0, scheduler: MainScheduler.instance)
             .map { self.backgroundImages[$0 % self.backgroundImages.count] }
             .subscribe(onNext: { [weak self] in
-                self?.backgroundImageView.crossDissolveImage($0)
+                if let nextBackgroundImage = $0 {
+                    self?.backgroundImageView.setImageWithDissolveAnimation(nextBackgroundImage)
+                }
             })
             .disposed(by: disposeBag)
     }

@@ -22,16 +22,14 @@ class SpecieViewModel {
     var specieLanguage: Driver<String>
     var specieHomeworld: Driver<String>
 
-    private var disposeBag = DisposeBag()
-
-    init(request: @escaping (_ planetIndex: Int) -> Observable<Response<PlanetResponse>>, specie: Specie) {
+    init(request: @escaping (_ planetIndex: Int?) -> Observable<Response<PlanetResponse>>, specie: Specie) {
 
         // Asign personDriver
         specieDriver = Driver.of(specie)
 
         // Map homeworld driver
         let sharedRequest =
-            specieDriver.asObservable().flatMap { request($0.homeworld?.resourceIndex! ?? 0) }.share()
+            specieDriver.asObservable().flatMap { request($0.homeworld?.resourceIndex ?? 0) }.share()
             // Droid specie has a null homeworld
         let planetResponse = sharedRequest.mapSuccess()
 

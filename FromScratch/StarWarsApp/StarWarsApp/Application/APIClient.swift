@@ -11,11 +11,11 @@ import RxSwift
 
 final class APIClient {
 
-    private let session: URLSession
-    private var baseURL = "https://swapi.co/api/"
+    private let session = URLSession(configuration: URLSessionConfiguration.default)
+    private let baseURL: String
 
-    init(configuration: URLSessionConfiguration = URLSessionConfiguration.default) {
-        session = URLSession(configuration: URLSessionConfiguration.default)
+    init(baseURL: String) {
+        self.baseURL = baseURL
     }
 
     /**
@@ -26,36 +26,33 @@ final class APIClient {
      */
     func requestAPIResource<Value: Codable>(_ resource: ResourceProtocol) -> Observable<Response<Value>> {
 
-        var request: URLRequest
-        do {
-            request = try buildRequest(resource)
-        } catch let error {
-            print(error)
-            return Observable.empty()
-        }
+        let request = buildRequest(resource)
 
         return Observable<Response<Value>>.create { [weak self] observer in
 
+            guard let request = request else { // guard if the request is invalid
+                observer.onNext(.failure(NetworkingError.invalidRequest))
+                observer.onCompleted()
+                return Disposables.create()
+            }
+
             let task = self?.session.dataTask(with: request) { (data, response, error) in
+
                 if let error = error {
-                    observer.onNext(.failure(ApplicationError.server(message: error.localizedDescription)))
+                    observer.onNext(.failure(NetworkingError.server(message: error.localizedDescription)))
                 } else {
 
                     guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-                        observer.onNext(.failure(ApplicationError.server(message: "Response object is empty")))
+                        observer.onNext(.failure(NetworkingError.server(message: "Response objects are empty")))
+                        observer.onCompleted()
                         return
                     }
 
-                    if 200 ... 299 ~= httpResponse.statusCode {
-                        do {
-                            let model: Value = try JSONDecoder().decode(Value.self, from: data)
-                            observer.onNext(.success(model))
-                        } catch {
-                            print(error)
-                            observer.onNext(.failure(ApplicationError.decoding))
-                        }
-                    } else {
-                        observer.onNext(.failure(ApplicationError.badStatusCode(statusCode: httpResponse.statusCode)))
+                    do {
+                        let model: Value = try JSONDecoder().decode(Value.self, from: data)
+                        observer.onNext(.success(model, httpResponse.statusCode))
+                    } catch {
+                        observer.onNext(.failure(ApplicationError.decoding))
                     }
 
                 }
@@ -75,33 +72,23 @@ final class APIClient {
      
      - Returns: The built URL request.
      */
-    func buildRequest(_ resource: ResourceProtocol) throws -> URLRequest {
+    func buildRequest(_ resource: ResourceProtocol) -> URLRequest? {
 
-        // this will be just to test post...
-        // comparing resource path, because I may use post method to log in into a real auth server...
-        if resource.fullResourcePath == "posts/" {
-            baseURL = "https://jsonplaceholder.typicode.com"
+        guard let builtURL = URL(string: baseURL),
+              var components = URLComponents(url: builtURL.appendingPathComponent(resource.fullResourcePath),
+                                             resolvingAgainstBaseURL: false)
+        else {
+            return nil
         }
 
-        guard let builtURL = URL(string: baseURL) else {
-            throw ApplicationError.invalidURL(url: baseURL)
-        }
-
-        guard var components =
-            URLComponents(url: builtURL.appendingPathComponent(resource.fullResourcePath),
-                          resolvingAgainstBaseURL: false) else {
-            throw ApplicationError.invalidURL(url: baseURL+resource.fullResourcePath)
-        }
-
-        let parameters = resource.parameters
-        if parameters != [:] {
+        if let parameters = resource.parameters {
             components.queryItems = parameters.map {
-                URLQueryItem(name: String($0), value: String($1))
+                URLQueryItem(name: $0, value: $1)
             }
         }
 
         guard let url = components.url else {
-            throw ApplicationError.invalidURLComponents
+            return nil
         }
 
         var request = URLRequest(url: url)
@@ -109,12 +96,13 @@ final class APIClient {
         request.httpShouldHandleCookies = false
         request.httpShouldUsePipelining = true
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        // this is just to test post
-        if resource.fullResourcePath == "posts/" {
-            let parameters: [String: Any] = ["title": "Title", "body": "Body", "userId": 1]
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        if resource.method == .POST {
+            guard let body = resource.body else {
+                return nil
+            }
+            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
         }
         return request
     }

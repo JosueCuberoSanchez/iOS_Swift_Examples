@@ -17,20 +17,23 @@ class StarshipsTableViewModel {
     // Pagination helpers
     private var pagination = BehaviorRelay<Int>(value: 1)
     private var activityIndicator = ActivityIndicator()
+    private var itemsRelay = BehaviorRelay<[Starship]>(value: [])
     var nextPageTrigger = PublishRelay<Void>()
 
-    private var itemsRelay = BehaviorRelay<[Starship]>(value: [])
-
+    // Filter helpers
     let filterSource = BehaviorRelay<String>(value: "")
 
     // Outputs
     let starshipList: Driver<[Starship]>
 
+    // Constants
+    private var maxPage = 5
+
     init(request: @escaping (_ page: Int) -> Observable<Response<StarshipsResponse>>) {
 
         starshipList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
             data.filter { starship in
-                if filter == "" {
+                guard filter != "" else {
                     return true
                 }
                 return starship.name.lowercased().contains(filter.lowercased())
@@ -38,7 +41,7 @@ class StarshipsTableViewModel {
         }
 
         let sharedRequest =
-            pagination.flatMap { [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
+            pagination.flatMap { request($0).trackActivity(self.activityIndicator) }.share()
         let starshipsResponse = sharedRequest.mapSuccess()
 
         starshipsResponse.map { $0.starships }
@@ -51,7 +54,7 @@ class StarshipsTableViewModel {
             .withLatestFrom(activityIndicator)
             .filter { !$0 }
             .withLatestFrom(pagination) { $1 + 1 }
-            .filter { $0 < 5 }
+            .filter { $0 < self.maxPage }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(pagination)
             .disposed(by: disposeBag)

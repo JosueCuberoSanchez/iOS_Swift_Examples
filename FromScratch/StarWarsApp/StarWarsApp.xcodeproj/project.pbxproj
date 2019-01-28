@@ -25,25 +25,24 @@
 		CA12BA4421E3AC7100DF6CC5 /* StarshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4321E3AC7100DF6CC5 /* StarshipViewController.swift */; };
 		CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4621E3AC8600DF6CC5 /* SpecieViewController.swift */; };
 		CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4821E3AC9400DF6CC5 /* SpecieViewModel.swift */; };
-		CA21ED7521F9174A00AEBE44 /* UIImageView+Dissolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED7421F9174A00AEBE44 /* UIImageView+Dissolve.swift */; };
 		CA21ED7821F9FF5800AEBE44 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA21ED7621F9FF5700AEBE44 /* Images.xcassets */; };
 		CA21ED7B21FA0E2F00AEBE44 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED7A21FA0E2F00AEBE44 /* UIColor+Hex.swift */; };
-		CA21ED7E21FA17F800AEBE44 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED7D21FA17F800AEBE44 /* CollectionViewCell.swift */; };
-		CA21ED8021FA531E00AEBE44 /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED7F21FA531E00AEBE44 /* PostResponse.swift */; };
-		CA21ED8221FA539600AEBE44 /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED8121FA539600AEBE44 /* PostAPI.swift */; };
+		CA21ED7E21FA17F800AEBE44 /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED7D21FA17F800AEBE44 /* SliderCollectionViewCell.swift */; };
 		CA752C8921EFCB7800B4C3F3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752C8821EFCB7800B4C3F3 /* Response.swift */; };
 		CA752C9121F0C07F00B4C3F3 /* StarWarsAppPersonViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752C9021F0C07F00B4C3F3 /* StarWarsAppPersonViewModelTests.swift */; };
 		CA752CA921F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CA821F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift */; };
-		CA752CAD21F1322D00B4C3F3 /* APIClientInjectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAC21F1322C00B4C3F3 /* APIClientInjectionProtocol.swift */; };
-		CA752CAF21F21EBF00B4C3F3 /* PeopleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAE21F21EBF00B4C3F3 /* PeopleAPI.swift */; };
-		CA752CB121F21FA300B4C3F3 /* PlanetAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB021F21FA300B4C3F3 /* PlanetAPI.swift */; };
+		CA752CAD21F1322D00B4C3F3 /* APIClientInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAC21F1322C00B4C3F3 /* APIClientInjection.swift */; };
+		CA752CAF21F21EBF00B4C3F3 /* PeopleResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAE21F21EBF00B4C3F3 /* PeopleResource.swift */; };
+		CA752CB121F21FA300B4C3F3 /* PlanetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB021F21FA300B4C3F3 /* PlanetResource.swift */; };
 		CA752CB321F2252700B4C3F3 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB221F2252700B4C3F3 /* ApplicationError.swift */; };
-		CA752CB921F239C700B4C3F3 /* Reactive+ScrollViewBottomReached.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB821F239C700B4C3F3 /* Reactive+ScrollViewBottomReached.swift */; };
+		CA752CB921F239C700B4C3F3 /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB821F239C700B4C3F3 /* UIScrollView+Rx.swift */; };
 		CA752CBC21F25BC600B4C3F3 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CBB21F25BC600B4C3F3 /* ActivityIndicator.swift */; };
-		CA752CC221F27F3C00B4C3F3 /* String+ResourceIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CC121F27F3C00B4C3F3 /* String+ResourceIndex.swift */; };
+		CA752CC221F27F3C00B4C3F3 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CC121F27F3C00B4C3F3 /* String+Utilities.swift */; };
 		CA752CC621F286C500B4C3F3 /* PersonViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CC521F286C500B4C3F3 /* PersonViewController+Layout.swift */; };
 		CA83D53E21E7FDE900EBC98C /* PlanetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */; };
 		CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */; };
+		CA84F20E21FF6F8000A9B440 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F20D21FF6F8000A9B440 /* NetworkingError.swift */; };
+		CA84F21121FF90E300A9B440 /* UIImageView+Dissolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */; };
 		CAA3881D21E8F6A600332328 /* StarJediSpecialEdition.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */; };
 		CAA828AF21EE79A900027BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828AE21EE79A900027BAD /* Main.storyboard */; };
 		CAA828B121EE79CA00027BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */; };
@@ -52,7 +51,7 @@
 		CAC4421D21FB458C00D9EEEA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4421C21FB458C00D9EEEA /* LoginViewController.swift */; };
 		CAC4421F21FB677000D9EEEA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4421E21FB677000D9EEEA /* LoginViewModel.swift */; };
 		CAC4422121FB691A00D9EEEA /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422021FB691A00D9EEEA /* LoginResponse.swift */; };
-		CAC4422321FB6B9100D9EEEA /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422221FB6B9100D9EEEA /* LoginAPI.swift */; };
+		CAC4422321FB6B9100D9EEEA /* LoginResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422221FB6B9100D9EEEA /* LoginResource.swift */; };
 		CAC4422621FB748200D9EEEA /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422521FB748200D9EEEA /* Credentials.swift */; };
 		CAC4422821FB7D9700D9EEEA /* LoginViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */; };
 		CAC816C921E41BD800EB3D8D /* ResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */; };
@@ -62,17 +61,16 @@
 		CACC021E21F65481004A33C6 /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC021D21F65481004A33C6 /* ResponseProtocol.swift */; };
 		CACC022121F759C9004A33C6 /* StarshipsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022021F759C9004A33C6 /* StarshipsResponse.swift */; };
 		CACC022321F759E8004A33C6 /* SpeciesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022221F759E8004A33C6 /* SpeciesResponse.swift */; };
-		CAE2B54F21F76B9F003E7043 /* StarshipsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B54E21F76B9F003E7043 /* StarshipsAPI.swift */; };
+		CAE2B54F21F76B9F003E7043 /* StarshipsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B54E21F76B9F003E7043 /* StarshipsResource.swift */; };
 		CAE2B55121F76F2E003E7043 /* StarshipViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55021F76F2E003E7043 /* StarshipViewController+Layout.swift */; };
-		CAE2B55321F77D90003E7043 /* SpeciesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55221F77D90003E7043 /* SpeciesAPI.swift */; };
+		CAE2B55321F77D90003E7043 /* SpeciesResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55221F77D90003E7043 /* SpeciesResource.swift */; };
 		CAE2B55721F78252003E7043 /* SpecieViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55621F78252003E7043 /* SpecieViewController+Layout.swift */; };
 		CAE2B55921F78669003E7043 /* StarWarsAppStarshipViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55821F78669003E7043 /* StarWarsAppStarshipViewModelTests.swift */; };
 		CAE2B55B21F78687003E7043 /* StarWarsAppStarshipsTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55A21F78686003E7043 /* StarWarsAppStarshipsTableViewModelTests.swift */; };
 		CAE2B55D21F786A3003E7043 /* StarWarsAppSpecieViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55C21F786A3003E7043 /* StarWarsAppSpecieViewModelTests.swift */; };
 		CAE2B55F21F786BB003E7043 /* StarWarsAppSpeciesTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B55E21F786BB003E7043 /* StarWarsAppSpeciesTableViewModelTests.swift */; };
 		CAE2B56121F7B83A003E7043 /* UITableViewController+GeneralLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B56021F7B83A003E7043 /* UITableViewController+GeneralLayout.swift */; };
-		CAE2B56421F7BA5C003E7043 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B56321F7BA5C003E7043 /* TableViewCell.swift */; };
-		CAE2B56621F7C334003E7043 /* UIViewController+GeneralStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B56521F7C334003E7043 /* UIViewController+GeneralStyles.swift */; };
+		CAE2B56421F7BA5C003E7043 /* TabListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B56321F7BA5C003E7043 /* TabListTableViewCell.swift */; };
 		CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08421ECD66000B33AB5 /* R.generated.swift */; };
 		CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3A08621ECDEE700B33AB5 /* Typography.swift */; };
 /* End PBXBuildFile section */
@@ -120,28 +118,27 @@
 		CA12BA4321E3AC7100DF6CC5 /* StarshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipViewController.swift; sourceTree = "<group>"; };
 		CA12BA4621E3AC8600DF6CC5 /* SpecieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewController.swift; sourceTree = "<group>"; };
 		CA12BA4821E3AC9400DF6CC5 /* SpecieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewModel.swift; sourceTree = "<group>"; };
-		CA21ED7421F9174A00AEBE44 /* UIImageView+Dissolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Dissolve.swift"; sourceTree = "<group>"; };
 		CA21ED7621F9FF5700AEBE44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CA21ED7A21FA0E2F00AEBE44 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		CA21ED7D21FA17F800AEBE44 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		CA21ED7F21FA531E00AEBE44 /* PostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
-		CA21ED8121FA539600AEBE44 /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
+		CA21ED7D21FA17F800AEBE44 /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA752C8821EFCB7800B4C3F3 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		CA752C8E21F0C07F00B4C3F3 /* StarWarsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA752C9021F0C07F00B4C3F3 /* StarWarsAppPersonViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppPersonViewModelTests.swift; sourceTree = "<group>"; };
 		CA752C9221F0C07F00B4C3F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA752C9E21F0CF1800B4C3F3 /* StarWarsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA752CA821F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppPeopleTableViewModelTests.swift; sourceTree = "<group>"; };
-		CA752CAC21F1322C00B4C3F3 /* APIClientInjectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientInjectionProtocol.swift; sourceTree = "<group>"; };
-		CA752CAE21F21EBF00B4C3F3 /* PeopleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleAPI.swift; sourceTree = "<group>"; };
-		CA752CB021F21FA300B4C3F3 /* PlanetAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetAPI.swift; sourceTree = "<group>"; };
+		CA752CAC21F1322C00B4C3F3 /* APIClientInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientInjection.swift; sourceTree = "<group>"; };
+		CA752CAE21F21EBF00B4C3F3 /* PeopleResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResource.swift; sourceTree = "<group>"; };
+		CA752CB021F21FA300B4C3F3 /* PlanetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetResource.swift; sourceTree = "<group>"; };
 		CA752CB221F2252700B4C3F3 /* ApplicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
-		CA752CB821F239C700B4C3F3 /* Reactive+ScrollViewBottomReached.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+ScrollViewBottomReached.swift"; sourceTree = "<group>"; };
+		CA752CB821F239C700B4C3F3 /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		CA752CBB21F25BC600B4C3F3 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		CA752CC121F27F3C00B4C3F3 /* String+ResourceIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ResourceIndex.swift"; sourceTree = "<group>"; };
+		CA752CC121F27F3C00B4C3F3 /* String+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utilities.swift"; sourceTree = "<group>"; };
 		CA752CC521F286C500B4C3F3 /* PersonViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonViewController+Layout.swift"; sourceTree = "<group>"; };
 		CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetResponse.swift; sourceTree = "<group>"; };
 		CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedAPIResponseProtocol.swift; sourceTree = "<group>"; };
+		CA84F20D21FF6F8000A9B440 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Dissolve.swift"; sourceTree = "<group>"; };
 		CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarJediSpecialEdition.ttf; sourceTree = "<group>"; };
 		CAA828AE21EE79A900027BAD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -150,7 +147,7 @@
 		CAC4421C21FB458C00D9EEEA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CAC4421E21FB677000D9EEEA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CAC4422021FB691A00D9EEEA /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
-		CAC4422221FB6B9100D9EEEA /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
+		CAC4422221FB6B9100D9EEEA /* LoginResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResource.swift; sourceTree = "<group>"; };
 		CAC4422521FB748200D9EEEA /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Layout.swift"; sourceTree = "<group>"; };
 		CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceProtocol.swift; sourceTree = "<group>"; };
@@ -160,17 +157,16 @@
 		CACC021D21F65481004A33C6 /* ResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProtocol.swift; sourceTree = "<group>"; };
 		CACC022021F759C9004A33C6 /* StarshipsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsResponse.swift; sourceTree = "<group>"; };
 		CACC022221F759E8004A33C6 /* SpeciesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesResponse.swift; sourceTree = "<group>"; };
-		CAE2B54E21F76B9F003E7043 /* StarshipsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsAPI.swift; sourceTree = "<group>"; };
+		CAE2B54E21F76B9F003E7043 /* StarshipsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsResource.swift; sourceTree = "<group>"; };
 		CAE2B55021F76F2E003E7043 /* StarshipViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StarshipViewController+Layout.swift"; sourceTree = "<group>"; };
-		CAE2B55221F77D90003E7043 /* SpeciesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesAPI.swift; sourceTree = "<group>"; };
+		CAE2B55221F77D90003E7043 /* SpeciesResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesResource.swift; sourceTree = "<group>"; };
 		CAE2B55621F78252003E7043 /* SpecieViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpecieViewController+Layout.swift"; sourceTree = "<group>"; };
 		CAE2B55821F78669003E7043 /* StarWarsAppStarshipViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppStarshipViewModelTests.swift; sourceTree = "<group>"; };
 		CAE2B55A21F78686003E7043 /* StarWarsAppStarshipsTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppStarshipsTableViewModelTests.swift; sourceTree = "<group>"; };
 		CAE2B55C21F786A3003E7043 /* StarWarsAppSpecieViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppSpecieViewModelTests.swift; sourceTree = "<group>"; };
 		CAE2B55E21F786BB003E7043 /* StarWarsAppSpeciesTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppSpeciesTableViewModelTests.swift; sourceTree = "<group>"; };
 		CAE2B56021F7B83A003E7043 /* UITableViewController+GeneralLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+GeneralLayout.swift"; sourceTree = "<group>"; };
-		CAE2B56321F7BA5C003E7043 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		CAE2B56521F7C334003E7043 /* UIViewController+GeneralStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+GeneralStyles.swift"; sourceTree = "<group>"; };
+		CAE2B56321F7BA5C003E7043 /* TabListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListTableViewCell.swift; sourceTree = "<group>"; };
 		CAF3A08421ECD66000B33AB5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CAF3A08621ECDEE700B33AB5 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		E9A8C9231DBE11944A6D021A /* Pods-StarWarsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWarsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarWarsAppTests/Pods-StarWarsAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -288,9 +284,8 @@
 		CA12BA2121E39D8500DF6CC5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				CA752CB221F2252700B4C3F3 /* ApplicationError.swift */,
 				CAC816CE21E4EB6700EB3D8D /* APIClient.swift */,
-				CA752CAC21F1322C00B4C3F3 /* APIClientInjectionProtocol.swift */,
+				CA752CAC21F1322C00B4C3F3 /* APIClientInjection.swift */,
 				CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -299,6 +294,7 @@
 		CA12BA2221E39D9500DF6CC5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CA84F20F21FF6FB200A9B440 /* Errors */,
 				CA12BA2321E39DA600DF6CC5 /* Supporting files */,
 				CA752CBA21F25AD900B4C3F3 /* Reactive */,
 				CA752CB721F2398700B4C3F3 /* Extensions */,
@@ -321,7 +317,6 @@
 			children = (
 				CA12BA2D21E3AB1100DF6CC5 /* PeopleTableViewModel.swift */,
 				CA12BA2F21E3AB5500DF6CC5 /* PeopleTableViewController.swift */,
-				CA752CAE21F21EBF00B4C3F3 /* PeopleAPI.swift */,
 			);
 			path = PeopleTableView;
 			sourceTree = "<group>";
@@ -331,7 +326,6 @@
 			children = (
 				CA12BA3221E3ABE400DF6CC5 /* StarshipsTableViewController.swift */,
 				CA12BA3421E3AC0100DF6CC5 /* StarshipsTableViewModel.swift */,
-				CAE2B54E21F76B9F003E7043 /* StarshipsAPI.swift */,
 			);
 			path = StarshipsTableView;
 			sourceTree = "<group>";
@@ -341,7 +335,6 @@
 			children = (
 				CA12BA3721E3AC1600DF6CC5 /* SpeciesTableViewModel.swift */,
 				CA12BA3921E3AC2000DF6CC5 /* SpeciesTableViewController.swift */,
-				CAE2B55221F77D90003E7043 /* SpeciesAPI.swift */,
 			);
 			path = SpeciesTableView;
 			sourceTree = "<group>";
@@ -351,7 +344,6 @@
 			children = (
 				CA12BA3C21E3AC4300DF6CC5 /* PersonViewController.swift */,
 				CA12BA3E21E3AC4F00DF6CC5 /* PersonViewModel.swift */,
-				CA752CB021F21FA300B4C3F3 /* PlanetAPI.swift */,
 				CA752CC521F286C500B4C3F3 /* PersonViewController+Layout.swift */,
 			);
 			path = PersonView;
@@ -363,7 +355,6 @@
 				CA12BA4121E3AC6600DF6CC5 /* StarshipViewModel.swift */,
 				CA12BA4321E3AC7100DF6CC5 /* StarshipViewController.swift */,
 				CAE2B55021F76F2E003E7043 /* StarshipViewController+Layout.swift */,
-				CA21ED8121FA539600AEBE44 /* PostAPI.swift */,
 			);
 			path = StarshipView;
 			sourceTree = "<group>";
@@ -381,7 +372,7 @@
 		CA21ED7C21FA17E600AEBE44 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CA21ED7D21FA17F800AEBE44 /* CollectionViewCell.swift */,
+				CA21ED7D21FA17F800AEBE44 /* SliderCollectionViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -425,12 +416,11 @@
 		CA752CB721F2398700B4C3F3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CA752CB821F239C700B4C3F3 /* Reactive+ScrollViewBottomReached.swift */,
-				CA752CC121F27F3C00B4C3F3 /* String+ResourceIndex.swift */,
+				CA752CB821F239C700B4C3F3 /* UIScrollView+Rx.swift */,
+				CA752CC121F27F3C00B4C3F3 /* String+Utilities.swift */,
 				CAE2B56021F7B83A003E7043 /* UITableViewController+GeneralLayout.swift */,
-				CAE2B56521F7C334003E7043 /* UIViewController+GeneralStyles.swift */,
-				CA21ED7421F9174A00AEBE44 /* UIImageView+Dissolve.swift */,
 				CA21ED7A21FA0E2F00AEBE44 /* UIColor+Hex.swift */,
+				CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -441,6 +431,45 @@
 				CA752CBB21F25BC600B4C3F3 /* ActivityIndicator.swift */,
 			);
 			path = Reactive;
+			sourceTree = "<group>";
+		};
+		CA84F20F21FF6FB200A9B440 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				CA752CB221F2252700B4C3F3 /* ApplicationError.swift */,
+				CA84F20D21FF6F8000A9B440 /* NetworkingError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		CA84F21221FF952400A9B440 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */,
+				CAC4422221FB6B9100D9EEEA /* LoginResource.swift */,
+				CA752CAE21F21EBF00B4C3F3 /* PeopleResource.swift */,
+				CAE2B54E21F76B9F003E7043 /* StarshipsResource.swift */,
+				CAE2B55221F77D90003E7043 /* SpeciesResource.swift */,
+				CA752CB021F21FA300B4C3F3 /* PlanetResource.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CA84F21321FF967A00A9B440 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				CA752C8821EFCB7800B4C3F3 /* Response.swift */,
+				CACC021D21F65481004A33C6 /* ResponseProtocol.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		CA84F21421FF969900A9B440 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		CAA3881B21E8F5D500332328 /* Fonts */ = {
@@ -497,7 +526,6 @@
 			children = (
 				CAC4421C21FB458C00D9EEEA /* LoginViewController.swift */,
 				CAC4421E21FB677000D9EEEA /* LoginViewModel.swift */,
-				CAC4422221FB6B9100D9EEEA /* LoginAPI.swift */,
 				CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */,
 			);
 			path = LoginView;
@@ -521,7 +549,6 @@
 				CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */,
 				CACC022021F759C9004A33C6 /* StarshipsResponse.swift */,
 				CACC022221F759E8004A33C6 /* SpeciesResponse.swift */,
-				CA21ED7F21FA531E00AEBE44 /* PostResponse.swift */,
 				CAC4422021FB691A00D9EEEA /* LoginResponse.swift */,
 			);
 			path = Networking;
@@ -530,10 +557,9 @@
 		CAC816DF21E63B4500EB3D8D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */,
-				CACC021D21F65481004A33C6 /* ResponseProtocol.swift */,
-				CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */,
-				CA752C8821EFCB7800B4C3F3 /* Response.swift */,
+				CA84F21421FF969900A9B440 /* Request */,
+				CA84F21321FF967A00A9B440 /* Response */,
+				CA84F21221FF952400A9B440 /* Resources */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -549,7 +575,7 @@
 		CAE2B56221F7BA4E003E7043 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CAE2B56321F7BA5C003E7043 /* TableViewCell.swift */,
+				CAE2B56321F7BA5C003E7043 /* TabListTableViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -838,40 +864,38 @@
 				CA12BA3321E3ABE400DF6CC5 /* StarshipsTableViewController.swift in Sources */,
 				CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */,
 				CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */,
-				CA752CAD21F1322D00B4C3F3 /* APIClientInjectionProtocol.swift in Sources */,
+				CA752CAD21F1322D00B4C3F3 /* APIClientInjection.swift in Sources */,
+				CA84F20E21FF6F8000A9B440 /* NetworkingError.swift in Sources */,
 				CAE2B55121F76F2E003E7043 /* StarshipViewController+Layout.swift in Sources */,
 				CACC022321F759E8004A33C6 /* SpeciesResponse.swift in Sources */,
 				CAC4422121FB691A00D9EEEA /* LoginResponse.swift in Sources */,
-				CA21ED7E21FA17F800AEBE44 /* CollectionViewCell.swift in Sources */,
+				CA21ED7E21FA17F800AEBE44 /* SliderCollectionViewCell.swift in Sources */,
 				CA12BA3521E3AC0100DF6CC5 /* StarshipsTableViewModel.swift in Sources */,
-				CA21ED8221FA539600AEBE44 /* PostAPI.swift in Sources */,
 				CAC4421821FA735A00D9EEEA /* TabBarViewController.swift in Sources */,
 				CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */,
 				CA12BA2921E3A8AB00DF6CC5 /* Specie.swift in Sources */,
 				CA12BA2521E3A4A400DF6CC5 /* Person.swift in Sources */,
-				CA752CB121F21FA300B4C3F3 /* PlanetAPI.swift in Sources */,
-				CAE2B55321F77D90003E7043 /* SpeciesAPI.swift in Sources */,
-				CA752CB921F239C700B4C3F3 /* Reactive+ScrollViewBottomReached.swift in Sources */,
+				CA752CB121F21FA300B4C3F3 /* PlanetResource.swift in Sources */,
+				CAE2B55321F77D90003E7043 /* SpeciesResource.swift in Sources */,
+				CA752CB921F239C700B4C3F3 /* UIScrollView+Rx.swift in Sources */,
 				CA12BA3A21E3AC2000DF6CC5 /* SpeciesTableViewController.swift in Sources */,
 				CA12BA3F21E3AC4F00DF6CC5 /* PersonViewModel.swift in Sources */,
 				CA12BA2E21E3AB1100DF6CC5 /* PeopleTableViewModel.swift in Sources */,
-				CA21ED7521F9174A00AEBE44 /* UIImageView+Dissolve.swift in Sources */,
 				CAC816C921E41BD800EB3D8D /* ResourceProtocol.swift in Sources */,
 				CA752CBC21F25BC600B4C3F3 /* ActivityIndicator.swift in Sources */,
 				CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */,
 				CACC022121F759C9004A33C6 /* StarshipsResponse.swift in Sources */,
 				CA83D53E21E7FDE900EBC98C /* PlanetResponse.swift in Sources */,
-				CA752CC221F27F3C00B4C3F3 /* String+ResourceIndex.swift in Sources */,
-				CAE2B54F21F76B9F003E7043 /* StarshipsAPI.swift in Sources */,
+				CA752CC221F27F3C00B4C3F3 /* String+Utilities.swift in Sources */,
+				CAE2B54F21F76B9F003E7043 /* StarshipsResource.swift in Sources */,
 				CA12BA3821E3AC1600DF6CC5 /* SpeciesTableViewModel.swift in Sources */,
-				CAE2B56621F7C334003E7043 /* UIViewController+GeneralStyles.swift in Sources */,
 				CA752CB321F2252700B4C3F3 /* ApplicationError.swift in Sources */,
 				CA12BA4221E3AC6600DF6CC5 /* StarshipViewModel.swift in Sources */,
 				CA12BA4421E3AC7100DF6CC5 /* StarshipViewController.swift in Sources */,
 				CA12BA3D21E3AC4300DF6CC5 /* PersonViewController.swift in Sources */,
 				CA752C8921EFCB7800B4C3F3 /* Response.swift in Sources */,
-				CA21ED8021FA531E00AEBE44 /* PostResponse.swift in Sources */,
-				CA752CAF21F21EBF00B4C3F3 /* PeopleAPI.swift in Sources */,
+				CA84F21121FF90E300A9B440 /* UIImageView+Dissolve.swift in Sources */,
+				CA752CAF21F21EBF00B4C3F3 /* PeopleResource.swift in Sources */,
 				CA752CC621F286C500B4C3F3 /* PersonViewController+Layout.swift in Sources */,
 				CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */,
 				CAC4421D21FB458C00D9EEEA /* LoginViewController.swift in Sources */,
@@ -886,10 +910,10 @@
 				CAC4422621FB748200D9EEEA /* Credentials.swift in Sources */,
 				CAE2B56121F7B83A003E7043 /* UITableViewController+GeneralLayout.swift in Sources */,
 				CA12BA0C21E39CA400DF6CC5 /* AppDelegate.swift in Sources */,
-				CAC4422321FB6B9100D9EEEA /* LoginAPI.swift in Sources */,
+				CAC4422321FB6B9100D9EEEA /* LoginResource.swift in Sources */,
 				CA12BA2721E3A77100DF6CC5 /* Starship.swift in Sources */,
 				CAC4422821FB7D9700D9EEEA /* LoginViewController+Layout.swift in Sources */,
-				CAE2B56421F7BA5C003E7043 /* TableViewCell.swift in Sources */,
+				CAE2B56421F7BA5C003E7043 /* TabListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

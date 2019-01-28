@@ -28,7 +28,7 @@ class StarshipsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         starshipsTableViewModel =
-            StarshipsTableViewModel(request: { self.apiClient.requestAPIResource(StarshipsAPI($0)) })
+            StarshipsTableViewModel(request: { self.apiClient.requestAPIResource(StarshipsResource($0)) })
         loadingScreenView.showLoadingScreen()
         setupTableView()
         setupTableViewBindings()
@@ -50,7 +50,7 @@ class StarshipsTableViewController: UITableViewController {
 
         starshipsTableViewModel.starshipList
             // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "StarshipCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
+            .drive(tableView.rx.items(cellIdentifier: "StarshipCell", cellType: TabListTableViewCell.self)) { [ weak self ] (row, element, cell) in
                 self?.customizeCell(cell, row, element.name, element.manufacturer)
                 self?.loadingScreenView.hideLoadingScreen()
             }
@@ -58,8 +58,10 @@ class StarshipsTableViewController: UITableViewController {
 
         tableView.rx.modelSelected(Starship.self).asDriver()
             .drive(onNext: { [ weak self ] model in
-                // swiftlint:disable:next line_length
-                self?.navigationController?.pushViewController(StarshipViewController(model, (self?.apiClient)!), animated: true)
+                if let apiClient = self?.apiClient {
+                    self?.navigationController?
+                        .pushViewController(StarshipViewController(model, apiClient), animated: true)
+                }
             }).disposed(by: disposeBag)
 
         tableView.rx.reachedBottom
@@ -69,14 +71,14 @@ class StarshipsTableViewController: UITableViewController {
         searchBar.rx.text
             .orEmpty
             .debounce(0.2, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.starshipsTableViewModel.filterSource.accept($0) })
+            .bind(to: starshipsTableViewModel.filterSource)
             .disposed(by: disposeBag)
 
     }
 
 }
 
-extension StarshipsTableViewController: APIClientInjectionProtocol {
+extension StarshipsTableViewController: APIClientInjection {
     func setAPIClient(apiClient: APIClient) {
         self.apiClient = apiClient
     }

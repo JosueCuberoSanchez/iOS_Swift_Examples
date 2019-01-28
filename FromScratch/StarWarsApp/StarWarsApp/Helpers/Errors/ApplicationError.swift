@@ -9,11 +9,5 @@
 import Foundation
 
 enum ApplicationError: Error {
-    case invalidURL(url: String)
-    case invalidURLComponents
-    case invalidRequest
-    case server(message: String)
-    case badStatusCode(statusCode: Int)
     case decoding
-    case invalidCredentials
 }

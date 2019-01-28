@@ -17,20 +17,23 @@ class SpeciesTableViewModel {
     // Pagination helpers
     private var pagination = BehaviorRelay<Int>(value: 1)
     private var activityIndicator = ActivityIndicator()
+    private var itemsRelay = BehaviorRelay<[Specie]>(value: [])
     var nextPageTrigger = PublishRelay<Void>()
 
-    private var itemsRelay = BehaviorRelay<[Specie]>(value: [])
-
+    // Filter helpers
     let filterSource = BehaviorRelay<String>(value: "")
 
     // Outputs
     let specieList: Driver<[Specie]>
 
+    // Constants
+    private var maxPage = 5
+
     init(request: @escaping (_ page: Int) -> Observable<Response<SpeciesResponse>>) {
 
         specieList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
             data.filter { specie in
-                if filter == "" {
+                guard filter != "" else {
                     return true
                 }
                 return specie.name.lowercased().contains(filter.lowercased())
@@ -38,7 +41,7 @@ class SpeciesTableViewModel {
         }
 
         let sharedRequest =
-            pagination.flatMap { [weak self] in request($0).trackActivity((self?.activityIndicator)!) }.share()
+            pagination.flatMap { request($0).trackActivity(self.activityIndicator) }.share()
         let specieResponse = sharedRequest.mapSuccess()
 
         specieResponse.map { $0.species }
@@ -51,7 +54,7 @@ class SpeciesTableViewModel {
             .withLatestFrom(activityIndicator)
             .filter { !$0 }
             .withLatestFrom(pagination) { $1 + 1 }
-            .filter { $0 < 5 }
+            .filter { $0 < self.maxPage }
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(pagination)
             .disposed(by: disposeBag)

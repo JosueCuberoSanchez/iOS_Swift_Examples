@@ -16,10 +16,11 @@ enum Method: String {
 
 protocol ResourceProtocol {
 
-    var path: String { get set }
-    var index: Int? { get set }
+    var path: String { get }
+    var index: Int? { get }
     var fullResourcePath: String { get }
     var method: Method { get }
-    var parameters: [String: String] { get }
+    var parameters: [String: String]? { get }
+    var body: [String: Any]? { get }
 
 }

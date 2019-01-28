@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct PlanetAPI: ResourceProtocol {
+struct PlanetResource: ResourceProtocol {
 
-    init(_ index: Int) {
+    init(_ index: Int?) {
         self.index = index
     }
 
@@ -24,10 +24,12 @@ struct PlanetAPI: ResourceProtocol {
         return "\(path)\(String(index))"
     }
 
-    var parameters: [String: String] = [:]
+    var parameters: [String: String]?
 
     var method: Method {
         return .GET
     }
+
+    var body: [String: Any]?
 
 }

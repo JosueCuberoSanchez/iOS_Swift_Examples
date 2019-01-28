@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class SliderCollectionViewCell: UICollectionViewCell {
 
     let imageView = UIImageView()
 

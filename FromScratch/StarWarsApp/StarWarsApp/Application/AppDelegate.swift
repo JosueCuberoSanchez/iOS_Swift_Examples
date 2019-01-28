@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // swiftlint:disable:next line_length
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let apiClient = APIClient()
+        let apiClient = APIClient(baseURL: "http://localhost:7777/api/")
         if let loginView = window?.rootViewController as? LoginViewController {
             loginView.setAPIClient(apiClient: apiClient)
         }

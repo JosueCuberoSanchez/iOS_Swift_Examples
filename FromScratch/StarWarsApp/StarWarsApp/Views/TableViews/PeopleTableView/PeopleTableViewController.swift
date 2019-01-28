@@ -28,7 +28,7 @@ class PeopleTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         peopleTableViewModel =
-            PeopleTableViewModel(request: { self.apiClient.requestAPIResource(PeopleAPI($0)) })
+            PeopleTableViewModel(request: { self.apiClient.requestAPIResource(PeopleResource($0)) })
         loadingScreenView.showLoadingScreen()
         setupTableView()
         setupTableViewBindings()
@@ -50,7 +50,7 @@ class PeopleTableViewController: UITableViewController {
 
         peopleTableViewModel.peopleList
             // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "PersonCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
+            .drive(tableView.rx.items(cellIdentifier: "PersonCell", cellType: TabListTableViewCell.self)) { [ weak self ] (row, element, cell) in
                 self?.customizeCell(cell, row, element.name, element.gender.rawValue)
                 self?.loadingScreenView.hideLoadingScreen()
             }
@@ -58,8 +58,10 @@ class PeopleTableViewController: UITableViewController {
 
         tableView.rx.modelSelected(Person.self).asDriver()
             .drive(onNext: { [ weak self ] model in
-                // swiftlint:disable:next line_length
-                self?.navigationController?.pushViewController(PersonViewController(model, (self?.apiClient)!), animated: true)
+                if let apiClient = self?.apiClient {
+                    self?.navigationController?
+                        .pushViewController(PersonViewController(model, apiClient), animated: true)
+                }
             })
             .disposed(by: disposeBag)
 
@@ -70,14 +72,14 @@ class PeopleTableViewController: UITableViewController {
         searchBar.rx.text
             .orEmpty
             .debounce(0.2, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.peopleTableViewModel.filterSource.accept($0) })
+            .bind(to: peopleTableViewModel.filterSource)
             .disposed(by: disposeBag)
 
     }
 
 }
 
-extension PeopleTableViewController: APIClientInjectionProtocol {
+extension PeopleTableViewController: APIClientInjection {
     func setAPIClient(apiClient: APIClient) {
         self.apiClient = apiClient
     }

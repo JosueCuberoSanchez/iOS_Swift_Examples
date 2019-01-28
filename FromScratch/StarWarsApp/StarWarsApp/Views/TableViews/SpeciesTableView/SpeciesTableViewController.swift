@@ -28,7 +28,7 @@ class SpeciesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         speciesTableViewModel =
-            SpeciesTableViewModel(request: { self.apiClient.requestAPIResource(SpeciesAPI($0)) })
+            SpeciesTableViewModel(request: { self.apiClient.requestAPIResource(SpeciesResource($0)) })
         loadingScreenView.showLoadingScreen()
         setupTableView()
         setupTableViewBindings()
@@ -50,7 +50,7 @@ class SpeciesTableViewController: UITableViewController {
 
         speciesTableViewModel.specieList
             // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "SpecieCell", cellType: TableViewCell.self)) { [ weak self ] (row, element, cell) in
+            .drive(tableView.rx.items(cellIdentifier: "SpecieCell", cellType: TabListTableViewCell.self)) { [ weak self ] (row, element, cell) in
                 self?.customizeCell(cell, row, element.name, element.classification)
                 self?.loadingScreenView.hideLoadingScreen()
             }
@@ -58,8 +58,10 @@ class SpeciesTableViewController: UITableViewController {
 
         tableView.rx.modelSelected(Specie.self).asDriver()
             .drive(onNext: { [ weak self ] model in
-                // swiftlint:disable:next line_length
-                self?.navigationController?.pushViewController(SpecieViewController(model, (self?.apiClient)!), animated: true)
+                if let apiClient = self?.apiClient {
+                    self?.navigationController?
+                        .pushViewController(SpecieViewController(model, apiClient), animated: true)
+                }
             }).disposed(by: disposeBag)
 
         tableView.rx.reachedBottom
@@ -69,14 +71,14 @@ class SpeciesTableViewController: UITableViewController {
         searchBar.rx.text
             .orEmpty
             .debounce(0.2, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { self.speciesTableViewModel.filterSource.accept($0) })
+            .bind(to: speciesTableViewModel.filterSource)
             .disposed(by: disposeBag)
 
     }
 
 }
 
-extension SpeciesTableViewController: APIClientInjectionProtocol {
+extension SpeciesTableViewController: APIClientInjection {
     func setAPIClient(apiClient: APIClient) {
         self.apiClient = apiClient
     }

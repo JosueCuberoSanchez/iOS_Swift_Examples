@@ -22,13 +22,7 @@ class StarshipViewModel {
     var starshipPassengers: Driver<String>
     var starshipClass: Driver<String>
 
-    private var disposeBag = DisposeBag()
-
-    init(request: @escaping () -> Observable<Response<PostResponse>>, starship: Starship) {
-
-        let sharedRequest = request().share()
-        let postResponse = sharedRequest.mapSuccess()
-        postResponse.subscribe(onNext: { print($0) }).disposed(by: disposeBag)
+    init(starship: Starship) {
 
         starshipDriver = Driver.of(starship)
 

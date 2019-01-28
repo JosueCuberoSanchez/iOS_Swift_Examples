@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 enum Response<Value> {
-    case success(Value)
+    case success(Value, Int)
     case failure(Error)
 }
 
@@ -21,7 +21,7 @@ extension Response: ResponseProtocol {
      */
     func unwrapSuccess() throws -> Value {
         switch self {
-        case .success(let model):
+        case .success(let model, _):
             return model
         case .failure(let error):
             throw error
@@ -45,8 +45,11 @@ extension Response: ResponseProtocol {
      */
     var isSuccessful: Bool {
         switch self {
-        case .success:
-            return true
+        case .success(_, let statusCode):
+            if 200 ... 299 ~= statusCode {
+                return true
+            }
+            return false
         default:
             return false
         }

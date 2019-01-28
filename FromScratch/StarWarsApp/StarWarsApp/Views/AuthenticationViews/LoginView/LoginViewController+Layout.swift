@@ -19,7 +19,7 @@ extension LoginViewController {
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.clipsToBounds = true
-        backgroundImageView.image = #imageLiteral(resourceName: "dark-side")
+        backgroundImageView.image = R.image.darkSide()
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
 
@@ -35,7 +35,6 @@ extension LoginViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
         blurEffectView.alpha = 0.7
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurEffectView)
         NSLayoutConstraint.activate([
             blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -53,14 +52,13 @@ extension LoginViewController {
         stackView.spacing = 16.0
         view.addSubview(stackView)
         NSLayoutConstraint.activate([
-            stackView.widthAnchor.constraint(equalToConstant: 300),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
 
         // Logo view
         let logoView = UIImageView()
-        logoView.image = #imageLiteral(resourceName: "logo")
+        logoView.image = R.image.starWarsLogo()
 
         // Email views
         let emailLabel = UILabel()
@@ -70,6 +68,7 @@ extension LoginViewController {
         emailLabel.textAlignment = .left
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.placeholder = "Enter email"
+        emailTextField.autocapitalizationType = .none
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         emailTextField.borderStyle = .roundedRect
@@ -88,6 +87,7 @@ extension LoginViewController {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Enter password"
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.autocapitalizationType = .none
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         passwordTextField.borderStyle = .roundedRect
@@ -121,7 +121,7 @@ extension LoginViewController {
 
         // Email view constraints
         NSLayoutConstraint.activate([
-            emailView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            emailView.widthAnchor.constraint(equalToConstant: 300),
             emailView.heightAnchor.constraint(equalToConstant: 70)
         ])
         NSLayoutConstraint.activate([
@@ -135,7 +135,7 @@ extension LoginViewController {
             passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 5)
         ])
         NSLayoutConstraint.activate([
-            passwordView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            passwordView.widthAnchor.constraint(equalToConstant: 300),
             passwordView.heightAnchor.constraint(equalToConstant: 70)
         ])
 

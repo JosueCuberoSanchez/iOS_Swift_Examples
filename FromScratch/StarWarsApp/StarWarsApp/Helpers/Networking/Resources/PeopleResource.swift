@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PeopleAPI: ResourceProtocol {
+struct PeopleResource: ResourceProtocol {
 
     init(_ index: Int) {
         self.index = index
@@ -21,9 +21,9 @@ struct PeopleAPI: ResourceProtocol {
         return path
     }
 
-    var parameters: [String: String] {
+    var parameters: [String: String]? {
         guard let index = index else {
-            return [:]
+            return nil
         }
         return ["page": String(index)]
     }
@@ -31,5 +31,7 @@ struct PeopleAPI: ResourceProtocol {
     var method: Method {
         return .GET
     }
+
+    var body: [String: Any]?
 
 }

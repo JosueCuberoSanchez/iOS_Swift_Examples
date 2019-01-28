@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginViewModel =
-            LoginViewModel(request: { self.apiClient.requestAPIResource(LoginAPI()) })
+            LoginViewModel(request: { self.apiClient.requestAPIResource(LoginResource($0)) })
         setupBindings()
     }
 
@@ -52,16 +52,16 @@ class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        loginViewModel.loginFailure // leak
-            .subscribe(onNext: { [weak self] error in
+        loginViewModel.loginFailure
+            .drive(onNext: { [weak self] error in
                 print(error.debugDescription)
                 self?.setErrorBordersForInputFields()
             })
             .disposed(by: disposeBag)
 
         loginViewModel.loginSuccess
-            .subscribe(onNext: { [weak self] credentials in
-                print("Welcome \(credentials.email)")
+            .drive(onNext: { [weak self] user in
+                print("Welcome \(user.firstName) \(user.lastName)")
                 self?.performSegue(withIdentifier: "seeTabBarViewSegue", sender: nil)
             })
             .disposed(by: disposeBag)
@@ -69,13 +69,13 @@ class LoginViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let tabBarViewController = segue.destination as? TabBarViewController {
-            tabBarViewController.setAPIClient(apiClient: apiClient)
+            tabBarViewController.setAPIClient()
         }
     }
 
 }
 
-extension LoginViewController: APIClientInjectionProtocol {
+extension LoginViewController: APIClientInjection {
     func setAPIClient(apiClient: APIClient) {
         self.apiClient = apiClient
     }

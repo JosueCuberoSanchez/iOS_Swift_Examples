@@ -19,7 +19,7 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
     // Subviews
     var scrollView = UIScrollView()
     var contentView = UIView()
-    var specieImageView = UIImageView(image: #imageLiteral(resourceName: "rebel-alliance"))
+    var specieImageView = UIImageView(image: R.image.detailRebelAlliance())
     var nameLabel = UILabel()
     var classificationLabel = UILabel()
     var averageHeightLabel = UILabel()
@@ -27,7 +27,7 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
     var homeworldLabel = UILabel()
     var backgroundImageView = UIImageView()
 
-    let backgroundImages = [#imageLiteral(resourceName: "backgroundImage"), #imageLiteral(resourceName: "m-falcon"), #imageLiteral(resourceName: "tatooine")]
+    let backgroundImages = [R.image.backgroundBb8(), R.image.backgroundFalcon(), R.image.backgroundTatooine()]
 
     // Dynamic constraints
     var portraitImageViewTopAnchorConstraints: [NSLayoutConstraint]!
@@ -37,7 +37,7 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
         specieViewModel =
-            SpecieViewModel( request: { self.apiClient.requestAPIResource(PlanetAPI($0)) }, specie: specie)
+            SpecieViewModel( request: { self.apiClient.requestAPIResource(PlanetResource($0)) }, specie: specie)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -56,42 +56,44 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
         /// Name
         specieViewModel.specieName
             .asObservable()
-            .map { String(format: "\(R.string.localizable.nameLabel())%@", $0) }
+            .map { R.string.localizable.name_format($0) }
             .bind(to: nameLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Classification
         specieViewModel.specieClassification
             .asObservable()
-            .map { String(format: "\(R.string.localizable.classificationLabel())%@", $0) }
+            .map { R.string.localizable.classification_format($0) }
             .bind(to: classificationLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Average height
         specieViewModel.specieAverageHeight
             .asObservable()
-            .map { String(format: "\(R.string.localizable.averageHeightLabel())%@ ft", $0) }
+            .map { R.string.localizable.average_height_format($0) }
             .bind(to: averageHeightLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Average height
         specieViewModel.specieLanguage
             .asObservable()
-            .map { String(format: "\(R.string.localizable.languageLabel())%@", $0) }
+            .map { R.string.localizable.language_format($0) }
             .bind(to: languageLabel.rx.text)
             .disposed(by: disposeBag)
 
         /// Homeworld
         specieViewModel.specieHomeworld
             .asObservable()
-            .map { String(format: "\(R.string.localizable.homeworldLabel())%@", $0) }
+            .map { R.string.localizable.homeworld_format($0) }
             .bind(to: homeworldLabel.rx.text)
             .disposed(by: disposeBag)
 
         Observable.timer(0, period: 5.0, scheduler: MainScheduler.instance)
             .map { self.backgroundImages[$0 % self.backgroundImages.count] }
             .subscribe(onNext: { [weak self] in
-                self?.backgroundImageView.crossDissolveImage($0)
+                if let nextBackgroundImage = $0 {
+                    self?.backgroundImageView.setImageWithDissolveAnimation(nextBackgroundImage)
+                }
             })
             .disposed(by: disposeBag)
     }

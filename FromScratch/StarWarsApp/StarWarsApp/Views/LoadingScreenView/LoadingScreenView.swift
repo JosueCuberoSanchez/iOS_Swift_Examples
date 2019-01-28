@@ -37,14 +37,12 @@ class LoadingScreenView: UIView {
         self.addSubview(loadingLabel)
         loadingLabel.textColor = .gray
         loadingLabel.textAlignment = .center
-        loadingLabel.text = R.string.localizable.loadingMessage()
+        loadingLabel.text = R.string.localizable.loading_message()
 
         NSLayoutConstraint.activate([
             spinner.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             spinner.topAnchor.constraint(equalTo: self.topAnchor),
-            spinner.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-        NSLayoutConstraint.activate([
+            spinner.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             loadingLabel.leadingAnchor.constraint(equalTo: spinner.trailingAnchor, constant: 5),
             loadingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             loadingLabel.topAnchor.constraint(equalTo: self.topAnchor),

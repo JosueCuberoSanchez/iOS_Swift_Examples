@@ -13,6 +13,7 @@ import RxCocoa
 // Taken from: https://github.com/tryswift/RxPagination/blob/master/Pagination/UIScrollView%2BRx.swift
 // Detects when user has reached the bottom of the table view's scroll view
 extension Reactive where Base: UIScrollView {
+
     var reachedBottom: ControlEvent<Void> {
         let observable = contentOffset
             .flatMap { [weak base] contentOffset -> Observable<Void> in
@@ -30,4 +31,5 @@ extension Reactive where Base: UIScrollView {
 
         return ControlEvent(events: observable)
     }
+
 }

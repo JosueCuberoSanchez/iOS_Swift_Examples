@@ -11,6 +11,6 @@ import Foundation
 /**
   This protocol is for those classes that need the apiClient to be injected.
  */
-protocol APIClientInjectionProtocol {
+protocol APIClientInjection {
     func setAPIClient(apiClient: APIClient)
 }
