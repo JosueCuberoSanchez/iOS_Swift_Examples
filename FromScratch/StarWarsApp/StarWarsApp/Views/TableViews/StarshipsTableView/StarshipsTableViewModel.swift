@@ -10,28 +10,23 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class StarshipsTableViewModel {
+class StarshipsTableViewModel: BaseViewModel {
+
+    typealias Model = Starship
+
+    var pagination = BehaviorRelay<Int>(value: 1)
+    var activityIndicator = ActivityIndicator()
+    var itemsRelay = BehaviorRelay<[Model]>(value: [])
+    var nextPageTrigger = PublishRelay<Void>()
+    var filterSource = BehaviorRelay<String>(value: "")
+    var modelList: SharedSequence<DriverSharingStrategy, [Model]>
+    var maxPage = 5
 
     private let disposeBag = DisposeBag()
 
-    // Pagination helpers
-    private var pagination = BehaviorRelay<Int>(value: 1)
-    private var activityIndicator = ActivityIndicator()
-    private var itemsRelay = BehaviorRelay<[Starship]>(value: [])
-    var nextPageTrigger = PublishRelay<Void>()
-
-    // Filter helpers
-    let filterSource = BehaviorRelay<String>(value: "")
-
-    // Outputs
-    let starshipList: Driver<[Starship]>
-
-    // Constants
-    private var maxPage = 5
-
     init(request: @escaping (_ page: Int) -> Observable<Response<StarshipsResponse>>) {
 
-        starshipList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
+        modelList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
             data.filter { starship in
                 guard filter != "" else {
                     return true

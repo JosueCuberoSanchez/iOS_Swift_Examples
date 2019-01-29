@@ -1,60 +1,21 @@
 //
-//  PeopleController.swift
+//  PeopleTableTestViewController.swift
 //  StarWarsApp
 //
-//  Created by Josue on 1/7/19.
+//  Created by Josue on 1/29/19.
 //  Copyright © 2019 Josue. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import RxSwift
-import RxCocoa
 
-class SpeciesTableViewController: UITableViewController {
-
-    private var apiClient: APIClient!
-    private var speciesTableViewModel: SpeciesTableViewModel!
-    private let disposeBag = DisposeBag()
-    var loadingScreenView = LoadingScreenView()
-
-    @IBOutlet weak var searchBar: UISearchBar!
-
-    override func loadView() {
-        super.loadView()
-
-        setupLoadingScreen(loadingScreenView)
-    }
+class SpeciesTableViewController: GenericTableViewController<SpeciesTableViewModel> {
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        speciesTableViewModel =
+        viewModel =
             SpeciesTableViewModel(request: { self.apiClient.requestAPIResource(SpeciesResource($0)) })
-        loadingScreenView.showLoadingScreen()
-        setupTableView()
-        setupTableViewBindings()
-    }
 
-    /**
-     Sets up the table view delegates and data source.
-     */
-    private func setupTableView() {
-        tableView.dataSource = nil
-        tableView.delegate = nil
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-    }
-
-    /**
-     Sets up the table view data by binding itself to the ViewModel specieList observable.
-     */
-    private func setupTableViewBindings() {
-
-        speciesTableViewModel.specieList
-            // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "SpecieCell", cellType: TabListTableViewCell.self)) { [ weak self ] (row, element, cell) in
-                self?.customizeCell(cell, row, element.name, element.classification)
-                self?.loadingScreenView.hideLoadingScreen()
-            }
-            .disposed(by: disposeBag)
+        super.viewDidLoad()
 
         tableView.rx.modelSelected(Specie.self).asDriver()
             .drive(onNext: { [ weak self ] model in
@@ -62,24 +23,13 @@ class SpeciesTableViewController: UITableViewController {
                     self?.navigationController?
                         .pushViewController(SpecieViewController(model, apiClient), animated: true)
                 }
-            }).disposed(by: disposeBag)
-
-        tableView.rx.reachedBottom
-            .bind(to: speciesTableViewModel.nextPageTrigger)
+            })
             .disposed(by: disposeBag)
-
-        searchBar.rx.text
-            .orEmpty
-            .debounce(0.2, scheduler: MainScheduler.instance)
-            .bind(to: speciesTableViewModel.filterSource)
-            .disposed(by: disposeBag)
-
     }
 
-}
-
-extension SpeciesTableViewController: APIClientInjection {
-    func setAPIClient(apiClient: APIClient) {
-        self.apiClient = apiClient
+    override func setCellLabelContents(_ cell: TabListTableViewCell, _ model: Specie) {
+        cell.nameLabel.text = model.name
+        cell.detailLabel.text = model.classification
     }
+
 }

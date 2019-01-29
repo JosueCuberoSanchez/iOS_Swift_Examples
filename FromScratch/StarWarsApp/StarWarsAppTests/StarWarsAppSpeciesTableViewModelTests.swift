@@ -78,19 +78,19 @@ class StarWarsAppspecieTableViewModelTests: XCTestCase {
 
     // Drivers
     func testSpecieListDriver() {
-        XCTAssertEqual(try specieTableViewModel.specieList.asObservable().toBlocking().first(), specieList!)
+        XCTAssertEqual(try specieTableViewModel.modelList.asObservable().toBlocking().first(), specieList!)
     }
 
     func testSpecieListDriverAfterAnotherFetch() {
         specieTableViewModel.nextPageTrigger.accept(())
         XCTAssertEqual(try
-            specieTableViewModel.specieList.asObservable().toBlocking().first(), specieListAfertAnotherFetch)
+            specieTableViewModel.modelList.asObservable().toBlocking().first(), specieListAfertAnotherFetch)
     }
 
     func testSpecieListDriverAfterFilter() {
         specieTableViewModel.filterSource.accept("MAN")
         XCTAssertEqual(try
-            specieTableViewModel.specieList.asObservable().toBlocking().first(), specieListAfterFilter)
+            specieTableViewModel.modelList.asObservable().toBlocking().first(), specieListAfterFilter)
     }
 
     override func tearDown() {

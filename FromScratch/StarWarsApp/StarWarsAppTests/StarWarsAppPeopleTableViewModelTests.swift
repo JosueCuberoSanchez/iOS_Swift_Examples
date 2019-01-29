@@ -58,19 +58,19 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
 
     // Drivers
     func testPeopleListDriver() {
-        XCTAssertEqual(try peopleTableViewModel.peopleList.asObservable().toBlocking().first(), peopleList!)
+        XCTAssertEqual(try peopleTableViewModel.modelList.asObservable().toBlocking().first(), peopleList!)
     }
 
     func testPeopleListDriverAfterAnotherFetch() {
         peopleTableViewModel.nextPageTrigger.accept(())
         XCTAssertEqual(try
-            peopleTableViewModel.peopleList.asObservable().toBlocking().first(), peopleListAfertAnotherFetch)
+            peopleTableViewModel.modelList.asObservable().toBlocking().first(), peopleListAfertAnotherFetch)
     }
 
     func testPeopleListDriverAfterFilter() {
         peopleTableViewModel.filterSource.accept("1")
         XCTAssertEqual(try
-            peopleTableViewModel.peopleList.asObservable().toBlocking().first(), peopleListAfterFilter)
+            peopleTableViewModel.modelList.asObservable().toBlocking().first(), peopleListAfterFilter)
     }
 
     override func tearDown() {

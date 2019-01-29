@@ -80,19 +80,19 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
 
     // Drivers
     func testStarshipListDriver() {
-        XCTAssertEqual(try starshipsTableViewModel.starshipList.asObservable().toBlocking().first(), starshipList!)
+        XCTAssertEqual(try starshipsTableViewModel.modelList.asObservable().toBlocking().first(), starshipList!)
     }
 
     func testStarshipListDriverAfterAnotherFetch() {
         starshipsTableViewModel.nextPageTrigger.accept(())
         XCTAssertEqual(try
-            starshipsTableViewModel.starshipList.asObservable().toBlocking().first(), starshipListAfertAnotherFetch)
+            starshipsTableViewModel.modelList.asObservable().toBlocking().first(), starshipListAfertAnotherFetch)
     }
 
     func testStarshipListDriverAfterFilter() {
         starshipsTableViewModel.filterSource.accept("jay")
         XCTAssertEqual(try
-            starshipsTableViewModel.starshipList.asObservable().toBlocking().first(), starshipListAfterFilter)
+            starshipsTableViewModel.modelList.asObservable().toBlocking().first(), starshipListAfterFilter)
     }
 
     override func tearDown() {

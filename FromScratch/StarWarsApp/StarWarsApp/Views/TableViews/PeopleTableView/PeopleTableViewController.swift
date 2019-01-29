@@ -1,60 +1,21 @@
 //
-//  PeopleController.swift
+//  PeopleTableTestViewController.swift
 //  StarWarsApp
 //
-//  Created by Josue on 1/7/19.
+//  Created by Josue on 1/29/19.
 //  Copyright © 2019 Josue. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import RxSwift
-import RxCocoa
 
-class PeopleTableViewController: UITableViewController {
-
-    private var apiClient: APIClient!
-    private var peopleTableViewModel: PeopleTableViewModel!
-    private let disposeBag = DisposeBag()
-    var loadingScreenView = LoadingScreenView()
-
-    @IBOutlet weak var searchBar: UISearchBar!
-
-    override func loadView() {
-        super.loadView()
-
-        setupLoadingScreen(loadingScreenView)
-    }
+class PeopleTableViewController: GenericTableViewController<PeopleTableViewModel> {
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        peopleTableViewModel =
+        viewModel =
             PeopleTableViewModel(request: { self.apiClient.requestAPIResource(PeopleResource($0)) })
-        loadingScreenView.showLoadingScreen()
-        setupTableView()
-        setupTableViewBindings()
-    }
 
-    /**
-     Sets up the table view delegates and data source.
-     */
-    private func setupTableView() {
-        tableView.dataSource = nil
-        tableView.delegate = nil
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-    }
-
-    /**
-     Sets up the table view data by binding itself to the ViewModel peopleList observable.
-     */
-    private func setupTableViewBindings() {
-
-        peopleTableViewModel.peopleList
-            // swiftlint:disable:next line_length
-            .drive(tableView.rx.items(cellIdentifier: "PersonCell", cellType: TabListTableViewCell.self)) { [ weak self ] (row, element, cell) in
-                self?.customizeCell(cell, row, element.name, element.gender.rawValue)
-                self?.loadingScreenView.hideLoadingScreen()
-            }
-            .disposed(by: disposeBag)
+        super.viewDidLoad()
 
         tableView.rx.modelSelected(Person.self).asDriver()
             .drive(onNext: { [ weak self ] model in
@@ -64,23 +25,11 @@ class PeopleTableViewController: UITableViewController {
                 }
             })
             .disposed(by: disposeBag)
-
-        tableView.rx.reachedBottom
-            .bind(to: peopleTableViewModel.nextPageTrigger)
-            .disposed(by: disposeBag)
-
-        searchBar.rx.text
-            .orEmpty
-            .debounce(0.2, scheduler: MainScheduler.instance)
-            .bind(to: peopleTableViewModel.filterSource)
-            .disposed(by: disposeBag)
-
     }
 
-}
-
-extension PeopleTableViewController: APIClientInjection {
-    func setAPIClient(apiClient: APIClient) {
-        self.apiClient = apiClient
+    override func setCellLabelContents(_ cell: TabListTableViewCell, _ model: Person) {
+        cell.nameLabel.text = model.name
+        cell.detailLabel.text = model.gender.rawValue
     }
+
 }
