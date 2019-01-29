@@ -16,17 +16,10 @@ struct LoginResource: ResourceProtocol {
 
     var path = "login/"
     var index: Int?
-
-    var fullResourcePath: String {
-        return path
-    }
-
     var parameters: [String: String]?
-
     var method: Method {
         return .POST
     }
-
     var body: [String: Any]?
 
 }

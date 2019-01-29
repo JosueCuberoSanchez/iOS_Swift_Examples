@@ -18,36 +18,15 @@ extension StarshipViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
 
         contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
-        NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ])
 
         backgroundImageView.contentMode =  UIView.ContentMode.scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.clipsToBounds = true
         scrollView.addSubview(backgroundImageView)
         scrollView.sendSubviewToBack(backgroundImageView)
-
-        // Background image
-        NSLayoutConstraint.activate([
-            backgroundImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
 
         starshipImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(starshipImageView)
@@ -88,48 +67,45 @@ extension StarshipViewController {
 
         updateDynamicViewConstraints()
 
-        // Detail Image View
         NSLayoutConstraint.activate([
-            starshipImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        ])
-
-        // Name
-        NSLayoutConstraint.activate([
+            // Scroll view
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            // Content view
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            // Background image
+            backgroundImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            // Detail image
+            starshipImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            // Labels
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            nameLabel.topAnchor.constraint(equalTo: starshipImageView.bottomAnchor, constant: 50)
-        ])
+            nameLabel.topAnchor.constraint(equalTo: starshipImageView.bottomAnchor, constant: 50),
 
-        // Manufacturer
-        NSLayoutConstraint.activate([
             manufacturerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             manufacturerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            manufacturerLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 32)
-        ])
+            manufacturerLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 32),
 
-        // Length
-        NSLayoutConstraint.activate([
             lengthLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             lengthLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            lengthLabel.topAnchor.constraint(equalTo: manufacturerLabel.bottomAnchor, constant: 32)
-        ])
+            lengthLabel.topAnchor.constraint(equalTo: manufacturerLabel.bottomAnchor, constant: 32),
 
-        // Passengers
-        NSLayoutConstraint.activate([
             passengersLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             passengersLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            passengersLabel.topAnchor.constraint(equalTo: lengthLabel.bottomAnchor, constant: 32)
-        ])
+            passengersLabel.topAnchor.constraint(equalTo: lengthLabel.bottomAnchor, constant: 32),
 
-        // Class
-        NSLayoutConstraint.activate([
             classLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             classLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            classLabel.topAnchor.constraint(equalTo: passengersLabel.bottomAnchor, constant: 32)
-        ])
-
-        // Content view padding
-        NSLayoutConstraint.activate([
+            classLabel.topAnchor.constraint(equalTo: passengersLabel.bottomAnchor, constant: 32),
             contentView.bottomAnchor.constraint(equalTo: classLabel.bottomAnchor, constant: 50)
         ])
 

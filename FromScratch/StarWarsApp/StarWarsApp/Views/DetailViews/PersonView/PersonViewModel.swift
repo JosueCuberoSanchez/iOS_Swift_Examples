@@ -21,14 +21,14 @@ class PersonViewModel {
     var personGender: Driver<Person.Gender>
     var personHomeworld: Driver<String>
 
-    init(request: @escaping (_ planetIndex: Int?) -> Observable<Response<PlanetResponse>>, person: Person) {
+    init(request: @escaping (_ planetPath: String) -> Observable<Response<PlanetResponse>>, person: Person) {
 
         // Asign personDriver
         personDriver = Driver.of(person)
 
         // Map homeworld driver
         // Observable<Response<PlanetResponse>>
-        let sharedRequest = personDriver.asObservable().flatMap { request($0.homeworld.resourceIndex) }.share()
+        let sharedRequest = personDriver.asObservable().flatMap { request($0.homeworld.resourcePath) }.share()
         let planetResponse = sharedRequest.mapSuccess()
 
         // Map each Driver to the corresponding person attribute

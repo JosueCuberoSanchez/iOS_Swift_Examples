@@ -112,15 +112,13 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell =
-            collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCollectionViewCell",
-                                               for: indexPath as IndexPath)
-        guard let collectionCell = cell as? SliderCollectionViewCell, let image = characterImages[indexPath.row] else {
+        guard let cell = collectionView.dequeueReusableCell(with: SliderCollectionViewCell.self, for: indexPath),
+              let image = characterImages[indexPath.row] else {
             return SliderCollectionViewCell()
         }
 
-        collectionCell.setImage(image)
-        return collectionCell
+        cell.setImage(image)
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView,

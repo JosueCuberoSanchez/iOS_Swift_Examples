@@ -16,22 +16,15 @@ struct PeopleResource: ResourceProtocol {
 
     var path = "people/"
     var index: Int?
-
-    var fullResourcePath: String {
-        return path
-    }
-
     var parameters: [String: String]? {
         guard let index = index else {
             return nil
         }
         return ["page": String(index)]
     }
-
     var method: Method {
         return .GET
     }
-
     var body: [String: Any]?
 
 }

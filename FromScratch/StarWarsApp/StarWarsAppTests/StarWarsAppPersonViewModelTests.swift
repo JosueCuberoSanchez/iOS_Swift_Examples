@@ -31,13 +31,13 @@ class StarWarsAppPersonViewModelTests: XCTestCase {
         mockupPersonViewModel()
     }
 
-    private func mockPlanetResponse() -> (_ index: Int) -> Observable<Response<PlanetResponse>> {
+    private func mockPlanetResponse() -> (_ resourcePath: String) -> Observable<Response<PlanetResponse>> {
         return { _ in
             let planetResponse =
                 PlanetResponse(population: "", gravity: "", diameter: "", rotationPeriod: "",
                                orbitalPeriod: "", name: self.personHomeworld, climate: "",
                                terrain: "", surfaceWater: "", residents: ["", ""])
-            let response = Response.success(planetResponse)
+            let response = Response.success(planetResponse, 200)
             return Observable.of(response)
         }
     }
@@ -62,7 +62,7 @@ class StarWarsAppPersonViewModelTests: XCTestCase {
 
     func testPersonGenderDriver() {
         XCTAssertEqual(try personViewModel.personGender.asObservable().toBlocking().first(),
-        Person.Gender.male.rawValue)
+        Person.Gender.male)
     }
 
     // The next test were just used to test the blocking observable basic operators
@@ -83,12 +83,9 @@ class StarWarsAppPersonViewModelTests: XCTestCase {
             .map { $0 * 2 }
             .subscribeOn(scheduler)
 
-        do {
-            let result = try intObservbale.observeOn(MainScheduler.instance).toBlocking().toArray()
-            XCTAssertEqual(result, [20, 40, 60])
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
+        // swiftlint:disable:next force_try
+        let result = try! intObservbale.observeOn(MainScheduler.instance).toBlocking().toArray()
+        XCTAssertEqual(result, [20, 40, 60])
     }
 
     override func tearDown() {

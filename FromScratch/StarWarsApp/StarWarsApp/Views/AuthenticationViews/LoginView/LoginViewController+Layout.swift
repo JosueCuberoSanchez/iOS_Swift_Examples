@@ -23,25 +23,11 @@ extension LoginViewController {
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
 
-        // Background image
-        NSLayoutConstraint.activate([
-            backgroundImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
-
         let blurEffect = UIBlurEffect(style: .extraLight)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.translatesAutoresizingMaskIntoConstraints = false
         blurEffectView.alpha = 0.7
         view.addSubview(blurEffectView)
-        NSLayoutConstraint.activate([
-            blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            blurEffectView.topAnchor.constraint(equalTo: view.topAnchor),
-            blurEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
 
         //Stack View
         let stackView = UIStackView()
@@ -51,10 +37,6 @@ extension LoginViewController {
         stackView.alignment = .center
         stackView.spacing = 16.0
         view.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
 
         // Logo view
         let logoView = UIImageView()
@@ -102,8 +84,8 @@ extension LoginViewController {
         loginButton.setTitle("Log in", for: .normal)
         loginButton.titleLabel?.setTypography(.label)
         loginButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        loginButton.titleEdgeInsets.left = 5
-        loginButton.titleEdgeInsets.right = 5
+        loginButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10)
+        loginButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
@@ -113,36 +95,35 @@ extension LoginViewController {
         stackView.addArrangedSubview(passwordView)
         stackView.addArrangedSubview(loginButton)
 
-        // Logo view constraints
         NSLayoutConstraint.activate([
+            // Background image
+            backgroundImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            // Blur effect
+            blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurEffectView.topAnchor.constraint(equalTo: view.topAnchor),
+            blurEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            // Stack view
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            // Logo view
             logoView.widthAnchor.constraint(equalToConstant: 200),
-            logoView.heightAnchor.constraint(equalToConstant: 100)
-        ])
-
-        // Email view constraints
-        NSLayoutConstraint.activate([
+            logoView.heightAnchor.constraint(equalToConstant: 100),
+            // Email view
             emailView.widthAnchor.constraint(equalToConstant: 300),
-            emailView.heightAnchor.constraint(equalToConstant: 70)
-        ])
-        NSLayoutConstraint.activate([
+            emailView.heightAnchor.constraint(equalToConstant: 70),
             emailTextField.widthAnchor.constraint(equalTo: emailView.widthAnchor),
-            emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 5)
-        ])
-
-        // Password view constraints
-        NSLayoutConstraint.activate([
+            emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 5),
+            // Password view
+            passwordView.widthAnchor.constraint(equalToConstant: 300),
+            passwordView.heightAnchor.constraint(equalToConstant: 70),
             passwordTextField.widthAnchor.constraint(equalTo: passwordView.widthAnchor),
             passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 5)
         ])
-        NSLayoutConstraint.activate([
-            passwordView.widthAnchor.constraint(equalToConstant: 300),
-            passwordView.heightAnchor.constraint(equalToConstant: 70)
-        ])
 
-        // Login button constraints
-        NSLayoutConstraint.activate([
-            loginButton.widthAnchor.constraint(equalToConstant: 100)
-        ])
     }
 
     /**

@@ -18,7 +18,6 @@ protocol ResourceProtocol {
 
     var path: String { get }
     var index: Int? { get }
-    var fullResourcePath: String { get }
     var method: Method { get }
     var parameters: [String: String]? { get }
     var body: [String: Any]? { get }

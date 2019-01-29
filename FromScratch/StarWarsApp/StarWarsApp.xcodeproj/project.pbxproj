@@ -43,6 +43,7 @@
 		CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */; };
 		CA84F20E21FF6F8000A9B440 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F20D21FF6F8000A9B440 /* NetworkingError.swift */; };
 		CA84F21121FF90E300A9B440 /* UIImageView+Dissolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */; };
+		CA84F219220098F000A9B440 /* UICollectionView+RegisterDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F218220098F000A9B440 /* UICollectionView+RegisterDequeue.swift */; };
 		CAA3881D21E8F6A600332328 /* StarJediSpecialEdition.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */; };
 		CAA828AF21EE79A900027BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828AE21EE79A900027BAD /* Main.storyboard */; };
 		CAA828B121EE79CA00027BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */; };
@@ -139,6 +140,7 @@
 		CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedAPIResponseProtocol.swift; sourceTree = "<group>"; };
 		CA84F20D21FF6F8000A9B440 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Dissolve.swift"; sourceTree = "<group>"; };
+		CA84F218220098F000A9B440 /* UICollectionView+RegisterDequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+RegisterDequeue.swift"; sourceTree = "<group>"; };
 		CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarJediSpecialEdition.ttf; sourceTree = "<group>"; };
 		CAA828AE21EE79A900027BAD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				CAE2B56021F7B83A003E7043 /* UITableViewController+GeneralLayout.swift */,
 				CA21ED7A21FA0E2F00AEBE44 /* UIColor+Hex.swift */,
 				CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */,
+				CA84F218220098F000A9B440 /* UICollectionView+RegisterDequeue.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				CA12BA2521E3A4A400DF6CC5 /* Person.swift in Sources */,
 				CA752CB121F21FA300B4C3F3 /* PlanetResource.swift in Sources */,
 				CAE2B55321F77D90003E7043 /* SpeciesResource.swift in Sources */,
+				CA84F219220098F000A9B440 /* UICollectionView+RegisterDequeue.swift in Sources */,
 				CA752CB921F239C700B4C3F3 /* UIScrollView+Rx.swift in Sources */,
 				CA12BA3A21E3AC2000DF6CC5 /* SpeciesTableViewController.swift in Sources */,
 				CA12BA3F21E3AC4F00DF6CC5 /* PersonViewModel.swift in Sources */,

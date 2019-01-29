@@ -13,11 +13,11 @@ extension String {
     /**
      Gets the index of a url resource. Ex: https://swapi.com/planets/12 -> 12
      */
-    var resourceIndex: Int? {
-        guard let index = self.dropLast().components(separatedBy: "/").last else {
-            return nil
-        }
-        return Int(index)
+    var resourcePath: String {
+        let components = self.dropLast().components(separatedBy: "/")
+        let resource = components[components.count-2]
+        let index = components[components.count-1]
+        return "\(resource)/\(index)"
     }
 
 }

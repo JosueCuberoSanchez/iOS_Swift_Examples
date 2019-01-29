@@ -69,7 +69,7 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
     private func mockStarshipsResponse() -> (_ index: Int) -> Observable<Response<StarshipsResponse>> {
         return { index in
             let starshipsResponse = StarshipsResponse(count: 0, next: "", previous: "", starships: self.starshipList)
-            let response = Response.success(starshipsResponse)
+            let response = Response.success(starshipsResponse, 200)
             return Observable.of(response)
         }
     }

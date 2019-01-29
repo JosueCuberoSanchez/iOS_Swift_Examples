@@ -75,7 +75,7 @@ final class APIClient {
     func buildRequest(_ resource: ResourceProtocol) -> URLRequest? {
 
         guard let builtURL = URL(string: baseURL),
-              var components = URLComponents(url: builtURL.appendingPathComponent(resource.fullResourcePath),
+              var components = URLComponents(url: builtURL.appendingPathComponent(resource.path),
                                              resolvingAgainstBaseURL: false)
         else {
             return nil

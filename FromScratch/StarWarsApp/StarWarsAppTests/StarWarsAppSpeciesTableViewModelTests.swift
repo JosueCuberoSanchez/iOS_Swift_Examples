@@ -67,7 +67,7 @@ class StarWarsAppspecieTableViewModelTests: XCTestCase {
     private func mockSpecieResponse() -> (_ index: Int) -> Observable<Response<SpeciesResponse>> {
         return { index in
             let specieResponse = SpeciesResponse(count: 0, next: "", previous: "", species: self.specieList)
-            let response = Response.success(specieResponse)
+            let response = Response.success(specieResponse, 200)
             return Observable.of(response)
         }
     }

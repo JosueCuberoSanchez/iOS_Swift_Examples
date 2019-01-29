@@ -47,7 +47,7 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
     private func mockPeopleResponse() -> (_ index: Int) -> Observable<Response<PeopleResponse>> {
         return { index in
             let peopleResponse = PeopleResponse(count: 0, next: "", previous: "", people: self.peopleList)
-            let response = Response.success(peopleResponse)
+            let response = Response.success(peopleResponse, 200)
             return Observable.of(response)
         }
     }

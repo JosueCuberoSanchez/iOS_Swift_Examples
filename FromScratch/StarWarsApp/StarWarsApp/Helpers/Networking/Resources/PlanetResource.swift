@@ -10,26 +10,16 @@ import Foundation
 
 struct PlanetResource: ResourceProtocol {
 
-    init(_ index: Int?) {
-        self.index = index
+    init(_ path: String) {
+        self.path = path
     }
 
-    var path = "planets/"
+    var path: String
     var index: Int?
-
-    var fullResourcePath: String {
-        guard let index = index else {
-            return path
-        }
-        return "\(path)\(String(index))"
-    }
-
     var parameters: [String: String]?
-
     var method: Method {
         return .GET
     }
-
     var body: [String: Any]?
 
 }
