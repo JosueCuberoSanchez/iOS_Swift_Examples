@@ -32,14 +32,14 @@ class StarWarsAppspecieViewModelTests: XCTestCase {
         mockupSpecieViewModel()
     }
 
-    private func mockPlanetResponse() -> (_ resourcePath: String) -> Observable<Response<PlanetResponse>> {
+    private func mockPlanetResponse() -> (_ resourcePath: String) -> Driver<Response<PlanetResponse>> {
         return { _ in
             let planetResponse =
                 PlanetResponse(population: "", gravity: "", diameter: "", rotationPeriod: "",
                                orbitalPeriod: "", name: self.specieHomeworld, climate: "",
                                terrain: "", surfaceWater: "", residents: ["", ""])
-            let response = Response.success(planetResponse, 200)
-            return Observable.of(response)
+            let response = Response.success(planetResponse)
+            return Driver.of(response)
         }
     }
 

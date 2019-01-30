@@ -19,7 +19,6 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
     private var peopleTableViewModel: PeopleTableViewModel!
 
     private var peopleList: [Person]!
-    private var peopleListAfertAnotherFetch: [Person]!
     private var peopleListAfterFilter: [Person]!
 
     override func setUp() {
@@ -40,15 +39,14 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
         let person9 = Person(height: "9", homeworld: "9", name: "9", gender: Person.Gender.none)
         let person10 = Person(height: "10", homeworld: "10", name: "10", gender: Person.Gender.female)
         peopleList = [person1, person2, person3, person4, person5, person6, person7, person8, person9, person10]
-        peopleListAfertAnotherFetch = peopleList + peopleList
         peopleListAfterFilter = [person1, person10]
     }
 
-    private func mockPeopleResponse() -> (_ index: Int) -> Observable<Response<PeopleResponse>> {
+    private func mockPeopleResponse() -> (_ index: Int) -> Driver<Response<PeopleResponse>> {
         return { index in
             let peopleResponse = PeopleResponse(count: 0, next: "", previous: "", people: self.peopleList)
-            let response = Response.success(peopleResponse, 200)
-            return Observable.of(response)
+            let response = Response.success(peopleResponse)
+            return Driver.of(response)
         }
     }
 
@@ -59,12 +57,6 @@ class StarWarsAppPeopleTableViewModelTests: XCTestCase {
     // Drivers
     func testPeopleListDriver() {
         XCTAssertEqual(try peopleTableViewModel.modelList.asObservable().toBlocking().first(), peopleList!)
-    }
-
-    func testPeopleListDriverAfterAnotherFetch() {
-        peopleTableViewModel.nextPageTrigger.accept(())
-        XCTAssertEqual(try
-            peopleTableViewModel.modelList.asObservable().toBlocking().first(), peopleListAfertAnotherFetch)
     }
 
     func testPeopleListDriverAfterFilter() {

@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct PlanetResource: ResourceProtocol {
+struct PlanetResource: Request {
+
+    typealias Value = PlanetResponse
 
     init(_ path: String) {
         self.path = path

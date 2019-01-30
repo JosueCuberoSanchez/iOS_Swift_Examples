@@ -24,7 +24,7 @@ class SpeciesTableViewModel: BaseViewModel {
 
     private let disposeBag = DisposeBag()
 
-    init(request: @escaping (_ page: Int) -> Observable<Response<SpeciesResponse>>) {
+    init(request: @escaping (_ page: Int) -> Driver<Response<SpeciesResponse>>) {
 
         modelList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
             data.filter { specie in

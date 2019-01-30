@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PaginatedAPIResponseProtocol: Codable {
+protocol PaginatedAPIResponse: Codable {
 
     var count: Int {get set}
     var next: String? {get set}

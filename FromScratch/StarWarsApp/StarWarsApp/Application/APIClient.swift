@@ -19,43 +19,20 @@ final class APIClient {
     }
 
     /**
-     Creates and return an observable of type T based on the request response.
-     
-     - Parameter request: the URLRequest containing the url and the policy.
-     - Returns: An observable of type T (ex: PeopleResponse)
+     Executes a network request.
+     - Returns: An observable of HTTPResponse containing all the data from the server response.
      */
-    func requestAPIResource<Value: Codable>(_ resource: ResourceProtocol) -> Observable<Response<Value>> {
+    func execute(_ resource: Resource) -> Observable<HTTPResponse> {
 
-        let request = buildRequest(resource)
+        return Observable<HTTPResponse>.create { [weak self] observer in
 
-        return Observable<Response<Value>>.create { [weak self] observer in
-
-            guard let request = request else { // guard if the request is invalid
-                observer.onNext(.failure(NetworkingError.invalidRequest))
-                observer.onCompleted()
+            guard let request = self?.buildRequest(resource) else {
+                observer.onError(NetworkingError.invalidRequest)
                 return Disposables.create()
             }
 
             let task = self?.session.dataTask(with: request) { (data, response, error) in
-
-                if let error = error {
-                    observer.onNext(.failure(NetworkingError.server(message: error.localizedDescription)))
-                } else {
-
-                    guard let data = data, let httpResponse = response as? HTTPURLResponse else {
-                        observer.onNext(.failure(NetworkingError.server(message: "Response objects are empty")))
-                        observer.onCompleted()
-                        return
-                    }
-
-                    do {
-                        let model: Value = try JSONDecoder().decode(Value.self, from: data)
-                        observer.onNext(.success(model, httpResponse.statusCode))
-                    } catch {
-                        observer.onNext(.failure(ApplicationError.decoding))
-                    }
-
-                }
+                observer.onNext(HTTPResponse(data, response as? HTTPURLResponse, error))
                 observer.onCompleted()
             }
 
@@ -69,10 +46,9 @@ final class APIClient {
 
     /**
      Builds a URLRequest based on a baseURL, path and parameters.
-     
      - Returns: The built URL request.
      */
-    func buildRequest(_ resource: ResourceProtocol) -> URLRequest? {
+    func buildRequest(_ resource: Resource) -> URLRequest? {
 
         guard let builtURL = URL(string: baseURL),
               var components = URLComponents(url: builtURL.appendingPathComponent(resource.path),

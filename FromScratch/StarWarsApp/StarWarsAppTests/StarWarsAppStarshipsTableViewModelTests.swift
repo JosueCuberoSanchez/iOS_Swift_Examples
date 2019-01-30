@@ -19,7 +19,6 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
     private var starshipsTableViewModel: StarshipsTableViewModel!
 
     private var starshipList: [Starship]!
-    private var starshipListAfertAnotherFetch: [Starship]!
     private var starshipListAfterFilter: [Starship]!
 
     override func setUp() {
@@ -62,15 +61,14 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
         starshipList =
             [starship1, starship2, starship3, starship4, starship5,
             starship6, starship7, starship8, starship9, starship10]
-        starshipListAfertAnotherFetch = starshipList + starshipList
         starshipListAfterFilter = [starship3]
     }
 
-    private func mockStarshipsResponse() -> (_ index: Int) -> Observable<Response<StarshipsResponse>> {
+    private func mockStarshipsResponse() -> (_ index: Int) -> Driver<Response<StarshipsResponse>> {
         return { index in
             let starshipsResponse = StarshipsResponse(count: 0, next: "", previous: "", starships: self.starshipList)
-            let response = Response.success(starshipsResponse, 200)
-            return Observable.of(response)
+            let response = Response.success(starshipsResponse)
+            return Driver.of(response)
         }
     }
 
@@ -81,12 +79,6 @@ class StarWarsAppStarshipsTableViewModelTests: XCTestCase {
     // Drivers
     func testStarshipListDriver() {
         XCTAssertEqual(try starshipsTableViewModel.modelList.asObservable().toBlocking().first(), starshipList!)
-    }
-
-    func testStarshipListDriverAfterAnotherFetch() {
-        starshipsTableViewModel.nextPageTrigger.accept(())
-        XCTAssertEqual(try
-            starshipsTableViewModel.modelList.asObservable().toBlocking().first(), starshipListAfertAnotherFetch)
     }
 
     func testStarshipListDriverAfterFilter() {

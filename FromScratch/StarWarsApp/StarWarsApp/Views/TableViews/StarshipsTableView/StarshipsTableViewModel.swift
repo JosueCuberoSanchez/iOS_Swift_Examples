@@ -24,7 +24,7 @@ class StarshipsTableViewModel: BaseViewModel {
 
     private let disposeBag = DisposeBag()
 
-    init(request: @escaping (_ page: Int) -> Observable<Response<StarshipsResponse>>) {
+    init(request: @escaping (_ page: Int) -> Driver<Response<StarshipsResponse>>) {
 
         modelList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
             data.filter { starship in

@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct SpeciesResource: ResourceProtocol {
+struct SpeciesResource: Request {
+
+    typealias Value = SpeciesResponse
 
     init(_ index: Int) {
         self.index = index

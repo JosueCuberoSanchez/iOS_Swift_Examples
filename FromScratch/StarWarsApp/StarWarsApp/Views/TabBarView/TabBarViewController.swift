@@ -12,14 +12,13 @@ import UIKit
 class TabBarViewController: UITabBarController {
 
     /**
-     Injects the apiClient to each child view.
+     Injects the needed dependencies to each child view.
      */
-    func setAPIClient() {
-        let apiClient = APIClient(baseURL: "https://swapi.co/api/")
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
         for child in viewControllers ?? [] {
             for nav in child.children {
-                if let top = nav as? APIClientInjection {
-                    top.setAPIClient(apiClient: apiClient)
+                if let top = nav as? DependenciesInjection {
+                    top.setDependencies(apiClient: apiClient, jsonDecoder: jsonDecoder)
                 }
             }
         }

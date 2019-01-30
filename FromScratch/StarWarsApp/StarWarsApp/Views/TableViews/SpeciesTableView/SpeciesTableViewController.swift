@@ -13,7 +13,9 @@ class SpeciesTableViewController: GenericTableViewController<SpeciesTableViewMod
 
     override func viewDidLoad() {
         viewModel =
-            SpeciesTableViewModel(request: { self.apiClient.requestAPIResource(SpeciesResource($0)) })
+            SpeciesTableViewModel(
+                request: { SpeciesResource($0).execute(with: self.apiClient, using: self.jsonDecoder) }
+            )
 
         super.viewDidLoad()
 

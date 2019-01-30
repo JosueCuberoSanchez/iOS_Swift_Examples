@@ -20,7 +20,7 @@ class LoginViewModel {
     var loginSuccess: Driver<LoginResponse>
     var loginFailure: Driver<Error?>
 
-    init(request: @escaping (_ body: [String: Any]) -> Observable<Response<LoginResponse>>) {
+    init(request: @escaping (_ body: [String: Any]) -> Driver<Response<LoginResponse>>) {
         loginSuccess = Driver.empty()
         loginFailure = Driver.empty()
 

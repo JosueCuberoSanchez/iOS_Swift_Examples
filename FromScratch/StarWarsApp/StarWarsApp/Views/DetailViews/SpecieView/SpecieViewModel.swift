@@ -22,7 +22,7 @@ class SpecieViewModel {
     var specieLanguage: Driver<String>
     var specieHomeworld: Driver<String>
 
-    init(request: @escaping (_ planetPath: String) -> Observable<Response<PlanetResponse>>, specie: Specie) {
+    init(request: @escaping (_ planetPath: String) -> Driver<Response<PlanetResponse>>, specie: Specie) {
 
         // Asign personDriver
         specieDriver = Driver.of(specie)

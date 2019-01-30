@@ -40,8 +40,10 @@ class PersonViewController: UIViewController, UIScrollViewDelegate, UICollection
     init(_ person: Person, _ apiClient: APIClient) {
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
-        personViewModel =
-            PersonViewModel( request: { self.apiClient.requestAPIResource(PlanetResource($0)) }, person: person)
+        personViewModel = PersonViewModel(
+            request: { PlanetResource($0).execute(with: self.apiClient, using: JSONDecoder()) },
+            person: person
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {

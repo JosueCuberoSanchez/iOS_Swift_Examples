@@ -17,8 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let apiClient = APIClient(baseURL: "http://localhost:7777/api/")
+        let jsonDecoder = JSONDecoder()
+
+        // Inject dependencies to root view, this view will be passing them down to all the pther views.
         if let loginView = window?.rootViewController as? LoginViewController {
-            loginView.setAPIClient(apiClient: apiClient)
+            loginView.setDependencies(apiClient: apiClient, jsonDecoder: jsonDecoder)
         }
 
         return true

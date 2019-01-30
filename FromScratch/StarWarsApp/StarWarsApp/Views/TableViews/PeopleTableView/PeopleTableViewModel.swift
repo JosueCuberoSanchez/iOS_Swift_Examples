@@ -24,7 +24,7 @@ class PeopleTableViewModel: BaseViewModel {
 
     private let disposeBag = DisposeBag()
 
-    init(request: @escaping (_ page: Int) -> Observable<Response<PeopleResponse>>) {
+    init(request: @escaping (_ page: Int) -> Driver<Response<PeopleResponse>>) {
 
         modelList = Driver.combineLatest(itemsRelay.asDriver(), filterSource.asDriver()) { data, filter in
             data.filter { person in
@@ -54,7 +54,10 @@ class PeopleTableViewModel: BaseViewModel {
          the shared request trigger the next page load.*/
         nextPageTrigger
             .withLatestFrom(activityIndicator)
-            .filter { !$0 }
+            .filter { act in    
+                print("Filtering \(act)")
+                return !act
+            }
             .withLatestFrom(pagination) { $1 + 1 }
             .filter { $0 < self.maxPage }
             .asDriver(onErrorDriveWith: Driver.empty())

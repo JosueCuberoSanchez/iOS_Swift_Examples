@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct LoginResource: ResourceProtocol {
+struct LoginResource: Request {
+
+    typealias Value = LoginResponse
 
     init(_ body: [String: Any]) {
         self.body = body

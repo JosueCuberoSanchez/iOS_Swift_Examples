@@ -11,7 +11,7 @@ import Foundation
 extension String {
 
     /**
-     Gets the index of a url resource. Ex: https://swapi.com/planets/12 -> 12
+     Gets the resource of a url. Ex: https://swapi.com/planets/12 -> planets/12
      */
     var resourcePath: String {
         let components = self.dropLast().components(separatedBy: "/")

@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Protocol to get a class name. Ex: UIImage.className -> UIImage / APIClient.className -> APIClient
+ */
 public protocol ClassNameProtocol {
     static var className: String { get }
     var className: String { get }

@@ -36,8 +36,10 @@ class SpecieViewController: UIViewController, UIScrollViewDelegate {
     init(_ specie: Specie, _ apiClient: APIClient) {
         self.apiClient = apiClient
         super.init(nibName: nil, bundle: nil)
-        specieViewModel =
-            SpecieViewModel( request: { self.apiClient.requestAPIResource(PlanetResource($0)) }, specie: specie)
+        specieViewModel = SpecieViewModel(
+            request: { PlanetResource($0).execute(with: self.apiClient, using: JSONDecoder()) },
+            specie: specie
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {

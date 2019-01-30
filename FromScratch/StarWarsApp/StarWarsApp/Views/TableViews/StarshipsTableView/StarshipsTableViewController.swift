@@ -13,8 +13,9 @@ import RxCocoa
 class StarshipsTableViewController: GenericTableViewController<StarshipsTableViewModel> {
 
     override func viewDidLoad() {
-        viewModel =
-            StarshipsTableViewModel(request: { self.apiClient.requestAPIResource(StarshipsResource($0)) })
+        viewModel = StarshipsTableViewModel(
+            request: { StarshipsResource($0).execute(with: self.apiClient, using: self.jsonDecoder) }
+        )
 
         super.viewDidLoad()
 

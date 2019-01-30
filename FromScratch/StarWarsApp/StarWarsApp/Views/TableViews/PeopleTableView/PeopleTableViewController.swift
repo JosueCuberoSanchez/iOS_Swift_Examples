@@ -13,7 +13,7 @@ class PeopleTableViewController: GenericTableViewController<PeopleTableViewModel
 
     override func viewDidLoad() {
         viewModel =
-            PeopleTableViewModel(request: { self.apiClient.requestAPIResource(PeopleResource($0)) })
+            PeopleTableViewModel(request: { PeopleResource($0).execute(with: self.apiClient, using: self.jsonDecoder) })
 
         super.viewDidLoad()
 

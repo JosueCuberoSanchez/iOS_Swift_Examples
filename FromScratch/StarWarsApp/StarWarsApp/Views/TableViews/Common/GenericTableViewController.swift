@@ -14,6 +14,7 @@ class GenericTableViewController<VM: BaseViewModel>: UITableViewController {
 
     var viewModel: VM!
     var apiClient: APIClient!
+    var jsonDecoder: JSONDecoder!
     let disposeBag = DisposeBag()
     var loadingScreenView = LoadingScreenView()
 
@@ -96,15 +97,18 @@ class GenericTableViewController<VM: BaseViewModel>: UITableViewController {
 
     }
 
-    func setCellLabelContents(_ cell: TabListTableViewCell, _ model: VM.Model) {
-        cell.nameLabel.text = "Name"
-        cell.detailLabel.text = "Detail"
-    }
+    /**
+     Sets the cell label text contents.
+     - Parameter cell: the cell to be set.
+     - Parameter model: the model.
+     */
+    func setCellLabelContents(_ cell: TabListTableViewCell, _ model: VM.Model) {}
 
 }
 
-extension GenericTableViewController: APIClientInjection {
-    func setAPIClient(apiClient: APIClient) {
+extension GenericTableViewController: DependenciesInjection {
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
         self.apiClient = apiClient
+        self.jsonDecoder = jsonDecoder
     }
 }

@@ -9,6 +9,11 @@ import RxSwift
 import RxCocoa
 
 extension UIImageView {
+
+    /**
+     Creates an animation for the background image transition.
+     - Parameter image: the next background image.
+     */
     func setImageWithDissolveAnimation(_ image: UIImage) {
         UIView.transition(
             with: self,
@@ -18,4 +23,5 @@ extension UIImageView {
             completion: nil
         )
     }
+
 }

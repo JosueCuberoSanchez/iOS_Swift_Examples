@@ -10,6 +10,8 @@ import Foundation
 
 enum NetworkingError: Error {
     case invalidRequest
+    case emptyResponse
+    case emptyData
     case server(message: String)
     case badStatusCode(statusCode: Int)
 }

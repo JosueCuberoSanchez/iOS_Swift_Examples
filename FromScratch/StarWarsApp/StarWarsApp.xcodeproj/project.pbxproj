@@ -24,12 +24,11 @@
 		CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4621E3AC8600DF6CC5 /* SpecieViewController.swift */; };
 		CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA12BA4821E3AC9400DF6CC5 /* SpecieViewModel.swift */; };
 		CA21ED7821F9FF5800AEBE44 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA21ED7621F9FF5700AEBE44 /* Images.xcassets */; };
-		CA21ED7B21FA0E2F00AEBE44 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED7A21FA0E2F00AEBE44 /* UIColor+Hex.swift */; };
 		CA21ED7E21FA17F800AEBE44 /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA21ED7D21FA17F800AEBE44 /* SliderCollectionViewCell.swift */; };
 		CA752C8921EFCB7800B4C3F3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752C8821EFCB7800B4C3F3 /* Response.swift */; };
 		CA752C9121F0C07F00B4C3F3 /* StarWarsAppPersonViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752C9021F0C07F00B4C3F3 /* StarWarsAppPersonViewModelTests.swift */; };
 		CA752CA921F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CA821F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift */; };
-		CA752CAD21F1322D00B4C3F3 /* APIClientInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAC21F1322C00B4C3F3 /* APIClientInjection.swift */; };
+		CA752CAD21F1322D00B4C3F3 /* DependenciesInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAC21F1322C00B4C3F3 /* DependenciesInjection.swift */; };
 		CA752CAF21F21EBF00B4C3F3 /* PeopleResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CAE21F21EBF00B4C3F3 /* PeopleResource.swift */; };
 		CA752CB121F21FA300B4C3F3 /* PlanetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB021F21FA300B4C3F3 /* PlanetResource.swift */; };
 		CA752CB321F2252700B4C3F3 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CB221F2252700B4C3F3 /* ApplicationError.swift */; };
@@ -38,7 +37,7 @@
 		CA752CC221F27F3C00B4C3F3 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CC121F27F3C00B4C3F3 /* String+Utilities.swift */; };
 		CA752CC621F286C500B4C3F3 /* PersonViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA752CC521F286C500B4C3F3 /* PersonViewController+Layout.swift */; };
 		CA83D53E21E7FDE900EBC98C /* PlanetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */; };
-		CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */; };
+		CA83D54021E7FEF800EBC98C /* PaginatedAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponse.swift */; };
 		CA84F20E21FF6F8000A9B440 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F20D21FF6F8000A9B440 /* NetworkingError.swift */; };
 		CA84F21121FF90E300A9B440 /* UIImageView+Dissolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */; };
 		CA84F219220098F000A9B440 /* UICollectionView+RegisterDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F218220098F000A9B440 /* UICollectionView+RegisterDequeue.swift */; };
@@ -47,6 +46,7 @@
 		CA84F2252200C7C500A9B440 /* PeopleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F2242200C7C500A9B440 /* PeopleTableViewModel.swift */; };
 		CA84F2272200C93400A9B440 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F2262200C93400A9B440 /* PeopleTableViewController.swift */; };
 		CA84F22A2200EDD700A9B440 /* Class+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F2292200EDD700A9B440 /* Class+Name.swift */; };
+		CA84F22C2201EF9F00A9B440 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84F22B2201EF9F00A9B440 /* HTTPResponse.swift */; };
 		CAA3881D21E8F6A600332328 /* StarJediSpecialEdition.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */; };
 		CAA828AF21EE79A900027BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828AE21EE79A900027BAD /* Main.storyboard */; };
 		CAA828B121EE79CA00027BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */; };
@@ -58,11 +58,10 @@
 		CAC4422321FB6B9100D9EEEA /* LoginResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422221FB6B9100D9EEEA /* LoginResource.swift */; };
 		CAC4422621FB748200D9EEEA /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422521FB748200D9EEEA /* Credentials.swift */; };
 		CAC4422821FB7D9700D9EEEA /* LoginViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */; };
-		CAC816C921E41BD800EB3D8D /* ResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */; };
+		CAC816C921E41BD800EB3D8D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816C821E41BD700EB3D8D /* Resource.swift */; };
 		CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816CE21E4EB6700EB3D8D /* APIClient.swift */; };
 		CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */; };
 		CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */; };
-		CACC021E21F65481004A33C6 /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC021D21F65481004A33C6 /* ResponseProtocol.swift */; };
 		CACC022121F759C9004A33C6 /* StarshipsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022021F759C9004A33C6 /* StarshipsResponse.swift */; };
 		CACC022321F759E8004A33C6 /* SpeciesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC022221F759E8004A33C6 /* SpeciesResponse.swift */; };
 		CAE2B54F21F76B9F003E7043 /* StarshipsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE2B54E21F76B9F003E7043 /* StarshipsResource.swift */; };
@@ -120,7 +119,6 @@
 		CA12BA4621E3AC8600DF6CC5 /* SpecieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewController.swift; sourceTree = "<group>"; };
 		CA12BA4821E3AC9400DF6CC5 /* SpecieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewModel.swift; sourceTree = "<group>"; };
 		CA21ED7621F9FF5700AEBE44 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CA21ED7A21FA0E2F00AEBE44 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		CA21ED7D21FA17F800AEBE44 /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA752C8821EFCB7800B4C3F3 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		CA752C8E21F0C07F00B4C3F3 /* StarWarsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +126,7 @@
 		CA752C9221F0C07F00B4C3F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA752C9E21F0CF1800B4C3F3 /* StarWarsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA752CA821F0EEC400B4C3F3 /* StarWarsAppPeopleTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAppPeopleTableViewModelTests.swift; sourceTree = "<group>"; };
-		CA752CAC21F1322C00B4C3F3 /* APIClientInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientInjection.swift; sourceTree = "<group>"; };
+		CA752CAC21F1322C00B4C3F3 /* DependenciesInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesInjection.swift; sourceTree = "<group>"; };
 		CA752CAE21F21EBF00B4C3F3 /* PeopleResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResource.swift; sourceTree = "<group>"; };
 		CA752CB021F21FA300B4C3F3 /* PlanetResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetResource.swift; sourceTree = "<group>"; };
 		CA752CB221F2252700B4C3F3 /* ApplicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
@@ -137,7 +135,7 @@
 		CA752CC121F27F3C00B4C3F3 /* String+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utilities.swift"; sourceTree = "<group>"; };
 		CA752CC521F286C500B4C3F3 /* PersonViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonViewController+Layout.swift"; sourceTree = "<group>"; };
 		CA83D53D21E7FDE900EBC98C /* PlanetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetResponse.swift; sourceTree = "<group>"; };
-		CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedAPIResponseProtocol.swift; sourceTree = "<group>"; };
+		CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedAPIResponse.swift; sourceTree = "<group>"; };
 		CA84F20D21FF6F8000A9B440 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Dissolve.swift"; sourceTree = "<group>"; };
 		CA84F218220098F000A9B440 /* UICollectionView+RegisterDequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+RegisterDequeue.swift"; sourceTree = "<group>"; };
@@ -146,6 +144,7 @@
 		CA84F2242200C7C500A9B440 /* PeopleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewModel.swift; sourceTree = "<group>"; };
 		CA84F2262200C93400A9B440 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		CA84F2292200EDD700A9B440 /* Class+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class+Name.swift"; sourceTree = "<group>"; };
+		CA84F22B2201EF9F00A9B440 /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 		CAA3881C21E8F6A600332328 /* StarJediSpecialEdition.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarJediSpecialEdition.ttf; sourceTree = "<group>"; };
 		CAA828AE21EE79A900027BAD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CAA828B021EE79CA00027BAD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -157,11 +156,10 @@
 		CAC4422221FB6B9100D9EEEA /* LoginResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResource.swift; sourceTree = "<group>"; };
 		CAC4422521FB748200D9EEEA /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		CAC4422721FB7D9700D9EEEA /* LoginViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Layout.swift"; sourceTree = "<group>"; };
-		CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceProtocol.swift; sourceTree = "<group>"; };
+		CAC816C821E41BD700EB3D8D /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		CAC816CE21E4EB6700EB3D8D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		CAC816D421E52C1800EB3D8D /* PeopleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleResponse.swift; sourceTree = "<group>"; };
 		CAC816E821E67D5600EB3D8D /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
-		CACC021D21F65481004A33C6 /* ResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProtocol.swift; sourceTree = "<group>"; };
 		CACC022021F759C9004A33C6 /* StarshipsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsResponse.swift; sourceTree = "<group>"; };
 		CACC022221F759E8004A33C6 /* SpeciesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesResponse.swift; sourceTree = "<group>"; };
 		CAE2B54E21F76B9F003E7043 /* StarshipsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsResource.swift; sourceTree = "<group>"; };
@@ -291,7 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				CAC816CE21E4EB6700EB3D8D /* APIClient.swift */,
-				CA752CAC21F1322C00B4C3F3 /* APIClientInjection.swift */,
+				CA752CAC21F1322C00B4C3F3 /* DependenciesInjection.swift */,
 				CA12BA0B21E39CA400DF6CC5 /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -300,10 +298,10 @@
 		CA12BA2221E39D9500DF6CC5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CA752CB721F2398700B4C3F3 /* Extensions */,
 				CA84F20F21FF6FB200A9B440 /* Errors */,
 				CA12BA2321E39DA600DF6CC5 /* Supporting files */,
 				CA752CBA21F25AD900B4C3F3 /* Reactive */,
-				CA752CB721F2398700B4C3F3 /* Extensions */,
 				CAA3881B21E8F5D500332328 /* Fonts */,
 				CAC816DF21E63B4500EB3D8D /* Networking */,
 			);
@@ -424,7 +422,6 @@
 			children = (
 				CA752CB821F239C700B4C3F3 /* UIScrollView+Rx.swift */,
 				CA752CC121F27F3C00B4C3F3 /* String+Utilities.swift */,
-				CA21ED7A21FA0E2F00AEBE44 /* UIColor+Hex.swift */,
 				CA84F21021FF90E300A9B440 /* UIImageView+Dissolve.swift */,
 				CA84F218220098F000A9B440 /* UICollectionView+RegisterDequeue.swift */,
 				CA84F2292200EDD700A9B440 /* Class+Name.swift */,
@@ -452,7 +449,7 @@
 		CA84F21221FF952400A9B440 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CAC816C821E41BD700EB3D8D /* ResourceProtocol.swift */,
+				CAC816C821E41BD700EB3D8D /* Resource.swift */,
 				CAC4422221FB6B9100D9EEEA /* LoginResource.swift */,
 				CA752CAE21F21EBF00B4C3F3 /* PeopleResource.swift */,
 				CAE2B54E21F76B9F003E7043 /* StarshipsResource.swift */,
@@ -465,8 +462,8 @@
 		CA84F21321FF967A00A9B440 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				CA84F22B2201EF9F00A9B440 /* HTTPResponse.swift */,
 				CA752C8821EFCB7800B4C3F3 /* Response.swift */,
-				CACC021D21F65481004A33C6 /* ResponseProtocol.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -474,7 +471,7 @@
 		CA84F21421FF969900A9B440 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift */,
+				CA83D53F21E7FEF800EBC98C /* PaginatedAPIResponse.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -874,7 +871,7 @@
 				CA12BA3321E3ABE400DF6CC5 /* StarshipsTableViewController.swift in Sources */,
 				CAF3A08721ECDEE700B33AB5 /* Typography.swift in Sources */,
 				CAF3A08521ECD66000B33AB5 /* R.generated.swift in Sources */,
-				CA752CAD21F1322D00B4C3F3 /* APIClientInjection.swift in Sources */,
+				CA752CAD21F1322D00B4C3F3 /* DependenciesInjection.swift in Sources */,
 				CA84F22A2200EDD700A9B440 /* Class+Name.swift in Sources */,
 				CA84F20E21FF6F8000A9B440 /* NetworkingError.swift in Sources */,
 				CAE2B55121F76F2E003E7043 /* StarshipViewController+Layout.swift in Sources */,
@@ -882,6 +879,7 @@
 				CAC4422121FB691A00D9EEEA /* LoginResponse.swift in Sources */,
 				CA21ED7E21FA17F800AEBE44 /* SliderCollectionViewCell.swift in Sources */,
 				CA12BA3521E3AC0100DF6CC5 /* StarshipsTableViewModel.swift in Sources */,
+				CA84F22C2201EF9F00A9B440 /* HTTPResponse.swift in Sources */,
 				CAC4421821FA735A00D9EEEA /* TabBarViewController.swift in Sources */,
 				CAC816CF21E4EB6700EB3D8D /* APIClient.swift in Sources */,
 				CA12BA2921E3A8AB00DF6CC5 /* Specie.swift in Sources */,
@@ -892,7 +890,7 @@
 				CA752CB921F239C700B4C3F3 /* UIScrollView+Rx.swift in Sources */,
 				CA12BA3A21E3AC2000DF6CC5 /* SpeciesTableViewController.swift in Sources */,
 				CA12BA3F21E3AC4F00DF6CC5 /* PersonViewModel.swift in Sources */,
-				CAC816C921E41BD800EB3D8D /* ResourceProtocol.swift in Sources */,
+				CAC816C921E41BD800EB3D8D /* Resource.swift in Sources */,
 				CA752CBC21F25BC600B4C3F3 /* ActivityIndicator.swift in Sources */,
 				CA12BA4921E3AC9400DF6CC5 /* SpecieViewModel.swift in Sources */,
 				CACC022121F759C9004A33C6 /* StarshipsResponse.swift in Sources */,
@@ -911,12 +909,10 @@
 				CA752CC621F286C500B4C3F3 /* PersonViewController+Layout.swift in Sources */,
 				CAC816E921E67D5600EB3D8D /* LoadingScreenView.swift in Sources */,
 				CAC4421D21FB458C00D9EEEA /* LoginViewController.swift in Sources */,
-				CA83D54021E7FEF800EBC98C /* PaginatedAPIResponseProtocol.swift in Sources */,
+				CA83D54021E7FEF800EBC98C /* PaginatedAPIResponse.swift in Sources */,
 				CAC816D521E52C1800EB3D8D /* PeopleResponse.swift in Sources */,
 				CA12BA4721E3AC8600DF6CC5 /* SpecieViewController.swift in Sources */,
-				CACC021E21F65481004A33C6 /* ResponseProtocol.swift in Sources */,
 				CAC4421F21FB677000D9EEEA /* LoginViewModel.swift in Sources */,
-				CA21ED7B21FA0E2F00AEBE44 /* UIColor+Hex.swift in Sources */,
 				CA84F21F2200B39A00A9B440 /* GenericTableViewController.swift in Sources */,
 				CAE2B55721F78252003E7043 /* SpecieViewController+Layout.swift in Sources */,
 				CAC4422621FB748200D9EEEA /* Credentials.swift in Sources */,

@@ -21,7 +21,7 @@ class PersonViewModel {
     var personGender: Driver<Person.Gender>
     var personHomeworld: Driver<String>
 
-    init(request: @escaping (_ planetPath: String) -> Observable<Response<PlanetResponse>>, person: Person) {
+    init(request: @escaping (_ planetPath: String) -> Driver<Response<PlanetResponse>>, person: Person) {
 
         // Asign personDriver
         personDriver = Driver.of(person)

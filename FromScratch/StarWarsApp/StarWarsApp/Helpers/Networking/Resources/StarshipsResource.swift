@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct StarshipsResource: ResourceProtocol {
+struct StarshipsResource: Request {
+
+    typealias Value = StarshipsResponse
 
     init(_ index: Int) {
         self.index = index

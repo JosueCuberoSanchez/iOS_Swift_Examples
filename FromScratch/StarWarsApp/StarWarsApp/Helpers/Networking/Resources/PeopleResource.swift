@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct PeopleResource: ResourceProtocol {
+struct PeopleResource: Request {
+
+    typealias Value = PeopleResponse
 
     init(_ index: Int) {
         self.index = index

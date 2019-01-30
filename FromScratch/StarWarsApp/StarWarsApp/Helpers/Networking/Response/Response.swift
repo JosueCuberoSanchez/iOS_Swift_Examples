@@ -10,8 +10,15 @@ import Foundation
 import RxSwift
 
 enum Response<Value> {
-    case success(Value, Int)
+    case success(Value)
     case failure(Error)
+}
+
+protocol ResponseProtocol {
+    associatedtype Value
+    func unwrapSuccess() throws -> Value
+    func unwrapError() -> Error?
+    var isSuccessful: Bool { get }
 }
 
 extension Response: ResponseProtocol {
@@ -21,7 +28,7 @@ extension Response: ResponseProtocol {
      */
     func unwrapSuccess() throws -> Value {
         switch self {
-        case .success(let model, _):
+        case .success(let model):
             return model
         case .failure(let error):
             throw error
@@ -45,11 +52,8 @@ extension Response: ResponseProtocol {
      */
     var isSuccessful: Bool {
         switch self {
-        case .success(_, let statusCode):
-            if 200 ... 299 ~= statusCode {
-                return true
-            }
-            return false
+        case .success:
+            return true
         default:
             return false
         }
@@ -71,6 +75,18 @@ extension ObservableType where E: ResponseProtocol {
      */
     func mapError() -> Observable<Error?> {
         return filter { !$0.isSuccessful }.map { $0.unwrapError() }
+    }
+
+}
+
+extension ObservableType where E: Decodable {
+
+    /**
+     Wraps a model type into Response.success.
+     - Returns: An observable of <Response<E>>, where E is the model.
+     */
+    func wrapSuccess() -> Observable<Response<E>> {
+        return map { Response.success($0) }
     }
 
 }

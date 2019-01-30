@@ -13,6 +13,7 @@ import RxCocoa
 class LoginViewController: UIViewController {
 
     var apiClient: APIClient!
+    var jsonDecoder: JSONDecoder!
     var loginViewModel: LoginViewModel!
 
     var emailTextField = UITextField()
@@ -24,7 +25,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginViewModel =
-            LoginViewModel(request: { self.apiClient.requestAPIResource(LoginResource($0)) })
+            LoginViewModel(request: { LoginResource($0).execute(with: self.apiClient, using: self.jsonDecoder) })
         setupBindings()
     }
 
@@ -69,14 +70,16 @@ class LoginViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let tabBarViewController = segue.destination as? TabBarViewController {
-            tabBarViewController.setAPIClient()
+            tabBarViewController.setDependencies(apiClient: APIClient(baseURL: "https://swapi.co/api/"),
+                                                 jsonDecoder: jsonDecoder)
         }
     }
 
 }
 
-extension LoginViewController: APIClientInjection {
-    func setAPIClient(apiClient: APIClient) {
+extension LoginViewController: DependenciesInjection {
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
         self.apiClient = apiClient
+        self.jsonDecoder = jsonDecoder
     }
 }
