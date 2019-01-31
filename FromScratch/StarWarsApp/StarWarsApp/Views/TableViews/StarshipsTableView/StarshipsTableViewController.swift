@@ -20,10 +20,9 @@ class StarshipsTableViewController: GenericTableViewController<StarshipsTableVie
         super.viewDidLoad()
 
         tableView.rx.modelSelected(Starship.self).asDriver()
-            .drive(onNext: { [ weak self ] model in
-                if let apiClient = self?.apiClient {
-                    self?.navigationController?
-                        .pushViewController(StarshipViewController(model, apiClient), animated: true)
+            .drive(onNext: { [ weak self ] starship in
+                if let navigationController = self?.navigationController {
+                    self?.delegate?.didTapOnStarshipRow(of: starship, using: navigationController)
                 }
             })
             .disposed(by: disposeBag)

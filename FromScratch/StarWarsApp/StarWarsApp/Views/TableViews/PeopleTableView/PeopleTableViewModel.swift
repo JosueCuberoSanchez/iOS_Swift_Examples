@@ -54,10 +54,7 @@ class PeopleTableViewModel: BaseViewModel {
          the shared request trigger the next page load.*/
         nextPageTrigger
             .withLatestFrom(activityIndicator)
-            .filter { act in    
-                print("Filtering \(act)")
-                return !act
-            }
+            .filter { !$0 }
             .withLatestFrom(pagination) { $1 + 1 }
             .filter { $0 < self.maxPage }
             .asDriver(onErrorDriveWith: Driver.empty())

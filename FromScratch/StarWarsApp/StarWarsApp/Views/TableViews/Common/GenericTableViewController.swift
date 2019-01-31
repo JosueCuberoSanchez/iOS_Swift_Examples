@@ -20,6 +20,8 @@ class GenericTableViewController<VM: BaseViewModel>: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
 
+    weak var delegate: TabBarControllerDelegate?
+
     override func loadView() {
         super.loadView()
         setupLoadingScreen(loadingScreenView)
@@ -107,8 +109,11 @@ class GenericTableViewController<VM: BaseViewModel>: UITableViewController {
 }
 
 extension GenericTableViewController: DependenciesInjection {
-    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
+
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder, delegate: TabBarControllerDelegate?) {
         self.apiClient = apiClient
         self.jsonDecoder = jsonDecoder
+        self.delegate = delegate
     }
+
 }

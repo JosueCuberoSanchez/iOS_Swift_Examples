@@ -18,10 +18,9 @@ class PeopleTableViewController: GenericTableViewController<PeopleTableViewModel
         super.viewDidLoad()
 
         tableView.rx.modelSelected(Person.self).asDriver()
-            .drive(onNext: { [ weak self ] model in
-                if let apiClient = self?.apiClient {
-                    self?.navigationController?
-                        .pushViewController(PersonViewController(model, apiClient), animated: true)
+            .drive(onNext: { [ weak self ] person in
+                if let navigationController = self?.navigationController {
+                    self?.delegate?.didTapOnPersonRow(of: person, using: navigationController)
                 }
             })
             .disposed(by: disposeBag)

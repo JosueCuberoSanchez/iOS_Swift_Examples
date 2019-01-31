@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol LoginViewControllerDelegate: class {
+    func didSuccessfullyLogin()
+}
+
 class LoginViewController: UIViewController {
 
     var apiClient: APIClient!
@@ -21,6 +25,8 @@ class LoginViewController: UIViewController {
     var loginButton = UIButton()
 
     let disposeBag = DisposeBag()
+
+    weak var delegate: LoginViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,22 +69,15 @@ class LoginViewController: UIViewController {
         loginViewModel.loginSuccess
             .drive(onNext: { [weak self] user in
                 print("Welcome \(user.firstName) \(user.lastName)")
-                self?.performSegue(withIdentifier: "seeTabBarViewSegue", sender: nil)
+                self?.delegate?.didSuccessfullyLogin()
             })
             .disposed(by: disposeBag)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let tabBarViewController = segue.destination as? TabBarViewController {
-            tabBarViewController.setDependencies(apiClient: APIClient(baseURL: "https://swapi.co/api/"),
-                                                 jsonDecoder: jsonDecoder)
-        }
     }
 
 }
 
 extension LoginViewController: DependenciesInjection {
-    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder, delegate: TabBarControllerDelegate?) {
         self.apiClient = apiClient
         self.jsonDecoder = jsonDecoder
     }

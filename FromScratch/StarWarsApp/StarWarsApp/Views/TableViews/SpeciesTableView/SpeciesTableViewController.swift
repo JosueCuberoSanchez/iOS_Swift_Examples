@@ -20,10 +20,9 @@ class SpeciesTableViewController: GenericTableViewController<SpeciesTableViewMod
         super.viewDidLoad()
 
         tableView.rx.modelSelected(Specie.self).asDriver()
-            .drive(onNext: { [ weak self ] model in
-                if let apiClient = self?.apiClient {
-                    self?.navigationController?
-                        .pushViewController(SpecieViewController(model, apiClient), animated: true)
+            .drive(onNext: { [ weak self ] specie in
+                if let navigationController = self?.navigationController {
+                    self?.delegate?.didTapOnSpecieRow(of: specie, using: navigationController)
                 }
             })
             .disposed(by: disposeBag)
