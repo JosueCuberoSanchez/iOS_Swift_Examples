@@ -19,12 +19,12 @@ protocol Coordinator: class { // Class is needed to filter with !==
 // App coordinator is used at app start.
 final class AppCoordinator: Coordinator {
 
-    var childCoordinators: [Coordinator]
-    var viewController: LoginViewController
+    var childCoordinators = [Coordinator]()
+
+    let viewController: LoginViewController
     let jsonDecoder: JSONDecoder
 
     init(viewController: LoginViewController, jsonDecoder: JSONDecoder) {
-        childCoordinators = [Coordinator]()
         self.viewController = viewController
         self.jsonDecoder = jsonDecoder
     }
@@ -38,7 +38,7 @@ final class AppCoordinator: Coordinator {
     // All the showSomething funcs in a given coordinator should be children of the actual coordinator.
 
     fileprivate func showAuthentication() {
-        let authenticationCoordinator = AuthenticationCoordinator(from: viewController)
+        let authenticationCoordinator = AuthenticationCoordinator(from: viewController, jsonDecoder: jsonDecoder)
         authenticationCoordinator.delegate = self
         authenticationCoordinator.start()
         childCoordinators.append(authenticationCoordinator)

@@ -110,9 +110,16 @@ class GenericTableViewController<VM: BaseViewModel>: UITableViewController {
 
 extension GenericTableViewController: DependenciesInjection {
 
-    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder, delegate: TabBarControllerDelegate?) {
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
         self.apiClient = apiClient
         self.jsonDecoder = jsonDecoder
+    }
+
+}
+
+extension GenericTableViewController: TabBarDelegateInjection {
+
+    func setDelegate(_ delegate: TabBarControllerDelegate) {
         self.delegate = delegate
     }
 

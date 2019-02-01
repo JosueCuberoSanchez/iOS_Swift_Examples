@@ -20,20 +20,25 @@ protocol TabBarControllerDelegate: class {
 
 class TabBarViewController: UITabBarController {
 
-    weak var customDelegate: TabBarControllerDelegate?
+    weak var customDelegate: TabBarControllerDelegate!
 
 }
 
 extension TabBarViewController: DependenciesInjection {
 
-    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder, delegate: TabBarControllerDelegate?) {
-        self.customDelegate = delegate
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
         for child in viewControllers ?? [] {
-            for nav in child.children {
-                if let top = nav as? DependenciesInjection {
-                    top.setDependencies(apiClient: apiClient,
-                                        jsonDecoder: jsonDecoder,
-                                        delegate: customDelegate)
+            for childNav in child.children {
+
+                // Inject delegate
+                if let viewController = childNav as? TabBarDelegateInjection {
+                    viewController.setDelegate(customDelegate)
+                }
+
+                // Inject dependencies
+                if let viewController = childNav as? DependenciesInjection {
+                    viewController.setDependencies(apiClient: apiClient,
+                                        jsonDecoder: jsonDecoder)
                 }
             }
         }

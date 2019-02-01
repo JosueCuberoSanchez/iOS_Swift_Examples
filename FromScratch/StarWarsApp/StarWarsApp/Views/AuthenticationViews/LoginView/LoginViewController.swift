@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: DependenciesInjection {
-    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder, delegate: TabBarControllerDelegate?) {
+    func setDependencies(apiClient: APIClient, jsonDecoder: JSONDecoder) {
         self.apiClient = apiClient
         self.jsonDecoder = jsonDecoder
     }

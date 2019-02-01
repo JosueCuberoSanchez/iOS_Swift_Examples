@@ -15,10 +15,10 @@ protocol TabBarCoordinatorDelegate: class {
 
 final class TabBarCoordinator: Coordinator {
 
-    var childCoordinators: [Coordinator]
-    var previousViewController: LoginViewController
+    var childCoordinators = [Coordinator]()
+    let previousViewController: LoginViewController
 
-    fileprivate var tabBarViewController: TabBarViewController!
+    var tabBarViewController: TabBarViewController!
 
     weak var delegate: TabBarCoordinatorDelegate?
 
@@ -26,7 +26,6 @@ final class TabBarCoordinator: Coordinator {
     let jsonDecoder: JSONDecoder
 
     init(from previousViewController: LoginViewController, jsonDecoder: JSONDecoder) {
-        childCoordinators = [Coordinator]()
         self.previousViewController = previousViewController
         self.jsonDecoder = jsonDecoder
     }
@@ -36,15 +35,16 @@ final class TabBarCoordinator: Coordinator {
     }
 
     fileprivate func showTabBarController() {
-        guard let tabBarViewController =
+        if let tabBarViewController =
             previousViewController.storyboard?.instantiateViewController(withIdentifier: "tabBarViewController")
-                as? TabBarViewController else {
-                return
+                as? TabBarViewController {
+
+            tabBarViewController.customDelegate = self
+            tabBarViewController.setDependencies(apiClient: apiClient,
+                                                 jsonDecoder: jsonDecoder)
+            previousViewController.present(tabBarViewController, animated: false)
+
         }
-        tabBarViewController.setDependencies(apiClient: apiClient,
-                                             jsonDecoder: jsonDecoder,
-                                             delegate: self)
-        previousViewController.present(tabBarViewController, animated: false)
     }
 
     fileprivate func showPersonViewController(of person: Person,

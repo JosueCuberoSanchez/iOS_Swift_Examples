@@ -14,21 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var appCoordinator: AppCoordinator?
 
+    // Global dependencies
+    let jsonDecoder = JSONDecoder()
+
     // swiftlint:disable:next line_length
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let apiClient = APIClient(baseURL: "http://localhost:7777/api/")
-        let jsonDecoder = JSONDecoder()
-
-        guard let loginView = window?.rootViewController as? LoginViewController else {
-            return false
+        if let loginView = window?.rootViewController as? LoginViewController {
+            appCoordinator = AppCoordinator(viewController: loginView, jsonDecoder: jsonDecoder)
+            appCoordinator?.start()
         }
-
-        appCoordinator = AppCoordinator(viewController: loginView, jsonDecoder: jsonDecoder)
-        appCoordinator?.start()
-
-        // Inject dependencies to root view, this view will be passing them down to all the pther views.
-        //loginView.setDependencies(apiClient: apiClient, jsonDecoder: jsonDecoder, delegate: nil)
 
         return true
     }

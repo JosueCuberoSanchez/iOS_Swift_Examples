@@ -15,13 +15,18 @@ protocol AuthenticationCoordinatorDelegate: class {
 
 final class AuthenticationCoordinator: Coordinator {
 
-    var childCoordinators: [Coordinator]
-    var viewController: LoginViewController
+    var childCoordinators = [Coordinator]()
+
+    let viewController: LoginViewController
+
     weak var delegate: AuthenticationCoordinatorDelegate?
 
-    init(from viewController: LoginViewController) {
+    let apiClient = APIClient(baseURL: "http://localhost:7777/api/")
+    let jsonDecoder: JSONDecoder
+
+    init(from viewController: LoginViewController, jsonDecoder: JSONDecoder) {
         self.viewController = viewController
-        childCoordinators = [Coordinator]()
+        self.jsonDecoder = jsonDecoder
     }
 
     func start() {
@@ -29,6 +34,7 @@ final class AuthenticationCoordinator: Coordinator {
     }
 
     func showLoginViewController() {
+        viewController.setDependencies(apiClient: apiClient, jsonDecoder: jsonDecoder)
         viewController.delegate = self
         // In a full programmatic way, I should present or show the VC here.
         // Also, if I would have to instantiate it here, I could inject it's VM.
