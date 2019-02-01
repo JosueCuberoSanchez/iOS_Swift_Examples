@@ -40,6 +40,7 @@ class GenericTableViewController<VM: BaseViewModel>: UITableViewController {
     func setupTableView() {
         tableView.dataSource = nil
         tableView.delegate = nil
+        tableView.tableFooterView = UIView()
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
     }
 
